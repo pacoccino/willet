@@ -1,60 +1,19 @@
 /* eslint new-cap: 0 */
 
-import * as types from '../actions/ui';
-import * as stellarTypes from '../actions/stellar';
-import { createReducer } from '../helpers/redux';
+import * as types from './actions';
+import { createReducer } from 'js/helpers/redux';
 
 const initialState = {
-  destinationTruslines: [],
-  sendingOffer: false,
-  errorOpen: false,
-  errorData: null,
-  modalKeypair: false,
+  actionMode: null,
 };
 
-function openKeypairModal(state) {
+function setActionMode(state, action) {
   return {
     ...state,
-    modalKeypair: true,
-  };
-}
-
-function closeKeypairModal(state) {
-  return {
-    ...state,
-    modalKeypair: false,
-  };
-}
-
-function closeErrorModal(state) {
-  return {
-    ...state,
-    errorOpen: false,
-    errorData: null,
-  };
-}
-
-function openErrorModal(state, action) {
-  const { errorData } = action;
-  return {
-    ...state,
-    errorOpen: true,
-    errorData,
-  };
-}
-
-function setDestinationTrustlines(state, action) {
-  const { destinationTruslines } = action;
-  return {
-    ...state,
-    destinationTruslines,
+    actionMode: action.actionMode,
   };
 }
 
 export default createReducer(initialState, {
-  [types.OPEN_ERROR_MODAL]: openErrorModal,
-  [types.CLOSE_ERROR_MODAL]: closeErrorModal,
-  [types.OPEN_KEYPAIR_MODAL]: openKeypairModal,
-  [types.CLOSE_KEYPAIR_MODAL]: closeKeypairModal,
-  [stellarTypes.SET_DESTINATION_TRUSTLINES]: setDestinationTrustlines,
+  [types.SET_ACTION_MODE]: setActionMode,
 });

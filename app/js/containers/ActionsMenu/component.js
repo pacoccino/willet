@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 
+import { ACTION_MODES } from 'js/constants/misc';
+
 const styles = {
   container: {
     display: 'flex',
@@ -9,17 +11,18 @@ const styles = {
   },
 };
 
-function Component({}) {
+function Component({ setActionMode }) {
   return (
     <div style={styles.container}>
-      <a>Exchange</a>
-      <a>Send</a>
-      <a>Receive</a>
+      <button onClick={() => setActionMode(ACTION_MODES.EXCHANGE)}>Exchange</button>
+      <button onClick={() => setActionMode(ACTION_MODES.SEND)}>Send</button>
+      <button onClick={() => setActionMode(ACTION_MODES.RECEIVE)}>Receive</button>
     </div>
   );
 }
 
 Component.propTypes = {
+  setActionMode: PropTypes.func.isRequired,
 };
 
 export default Component;

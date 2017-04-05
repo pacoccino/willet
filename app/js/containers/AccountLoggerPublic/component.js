@@ -18,7 +18,7 @@ class Component extends React.Component {
         <div>
           <p>{keypair.publicKey()}</p>
           <button onClick={unsetAccount}>
-            Remove private
+            Disconnect
           </button>
         </div>
       );

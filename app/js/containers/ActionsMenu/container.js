@@ -1,7 +1,10 @@
 import { connect } from 'react-redux';
 
 import Component from './component';
+import { setActionMode } from 'js/business/ui/actions';
 
-const mapStateToProps = state => ({});
+const mapDispatchToProps = {
+  setActionMode,
+};
 
-export default connect(mapStateToProps, null)(Component);
+export default connect(null, mapDispatchToProps)(Component);

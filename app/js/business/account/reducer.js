@@ -1,6 +1,7 @@
 import * as types from './actions';
 import { createReducer } from '../../helpers/redux';
 
+
 const initialState = {
   error: null,
   account: null,
