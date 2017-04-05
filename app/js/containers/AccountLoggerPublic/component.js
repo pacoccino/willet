@@ -1,0 +1,54 @@
+import React, { PropTypes } from 'react';
+import { Field, propTypes } from 'redux-form';
+
+class Component extends React.Component {
+  render() {
+    const {
+      isAccountLoading,
+      loggedPublic,
+      unsetAccount,
+      keypair,
+      handleSubmit,
+      pristine,
+      submitting,
+    } = this.props;
+
+    if(loggedPublic) {
+      return (
+        <div>
+          <p>{keypair.publicKey()}</p>
+          <button onClick={unsetAccount}>
+            Remove private
+          </button>
+        </div>
+      );
+    }
+
+    return (
+      <div>
+        <form onSubmit={handleSubmit}>
+          <p>Username</p>
+          <Field
+            name="publicAddress"
+            component="input"
+            type="text"
+          />
+          <button type="submit" disabled={pristine || submitting}>
+            Login
+          </button>
+          {isAccountLoading && <p>Loading ...</p>}
+        </form>
+      </div>
+    );
+  }
+}
+
+Component.propTypes = {
+  unsetAccount: PropTypes.func.isRequired,
+  loggedPublic: PropTypes.bool,
+  isAccountLoading: PropTypes.bool,
+  keypair: PropTypes.object,
+  ...propTypes,
+};
+
+export default Component;
