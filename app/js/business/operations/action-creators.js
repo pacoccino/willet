@@ -2,6 +2,7 @@
 
 import {
   ASYNC_OPERATION,
+  ASYNC_GET_DEPOSIT,
 } from 'js/constants/asyncActions';
 import { AsyncActions } from 'js/helpers/asyncActions';
 import { setActionMode } from 'js/business/ui/actions';
@@ -38,5 +39,21 @@ export const delayResetOperation = () => dispatch => {
 
 export const resetOperation = () => dispatch => {
   dispatch(AsyncActions.reset(ASYNC_OPERATION));
+  dispatch(setActionMode(null));
+};
+
+export const getDepositAddress = (asset) => (dispatch) => {
+  dispatch(AsyncActions.startFetch(ASYNC_GET_DEPOSIT));
+  setTimeout(() => {
+    const depositAddress = {
+      type: 'stellar',
+      address: 'GDG4LKMTODR227EQQXKHAWIOYBLNGXRJEW6TJTNQ766UUGVMFWDGAVT6',
+    };
+    dispatch(AsyncActions.successFetch(ASYNC_GET_DEPOSIT, depositAddress));
+  }, 2000);
+};
+
+export const resetDepositAddress = () => dispatch => {
+  dispatch(AsyncActions.reset(ASYNC_GET_DEPOSIT));
   dispatch(setActionMode(null));
 };

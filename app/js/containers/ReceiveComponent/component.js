@@ -20,7 +20,12 @@ class ReceiveComponent extends React.Component {
     const {
       handleSubmit,
       submitting,
+      getDepositLaunched,
     } = this.props;
+
+    if(getDepositLaunched) {
+      return <ReceiveDeposit />;
+    }
 
     return (
       <div>
@@ -36,7 +41,6 @@ class ReceiveComponent extends React.Component {
             Generate address
           </button>
         </form>
-        <ReceiveDeposit />
       </div>
     );
   }
@@ -44,6 +48,7 @@ class ReceiveComponent extends React.Component {
 
 ReceiveComponent.propTypes = {
   balances: PropTypes.array.isRequired,
+  getDepositLaunched: PropTypes.bool.isRequired,
   ...propTypes,
 };
 

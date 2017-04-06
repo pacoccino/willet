@@ -9,7 +9,7 @@ class LaunchedOperation extends React.Component {
 
     let operationInfo = null;
     if(operation.isLoading) {
-      operationInfo = <p>Sending ...</p>;
+      operationInfo = <p>Processing ...</p>;
     } else if(operation.data) {
       operationInfo = <p>{operation.data}</p>;
     } else if(operation.error) {
