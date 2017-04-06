@@ -25,20 +25,20 @@ class Component extends React.Component {
     return (
       <div>
         <form onSubmit={handleSubmit}>
-          <label for="amount">Amount</label>
+          <label htmlFor="amount">Amount</label>
           <Field
             name="amount"
             component="input"
             type="number"
           />
-          <label for="currency">Currency</label>
+          <label htmlFor="currency">Currency</label>
           <Field
             name="currency"
             component="select"
           >
             {this.getSendableAssets()}
           </Field>
-          <label for="destination">Destination</label>
+          <label htmlFor="destination">Destination</label>
           <Field
             name="destination"
             component="input"

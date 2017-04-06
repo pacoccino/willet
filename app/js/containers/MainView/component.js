@@ -16,7 +16,7 @@ const styles = {
   },
 };
 
-function Component({ loggedPrivate, loggedPublic }) {
+function Component({ account, loggedPrivate, loggedPublic }) {
   const offlineView = (
     <div>
       <AccountLoggerPublic/>
@@ -34,8 +34,13 @@ function Component({ loggedPrivate, loggedPublic }) {
       <AccountLoggerPublic/>
       <BalancesViewer/>
       <AccountLoggerPrivate/>
-      <ActionsMenu/>
-      <ActionComponent/>
+      {
+        account &&
+        <div>
+          <ActionsMenu/>
+          <ActionComponent/>
+        </div>
+      }
     </div>
   );
 
@@ -53,6 +58,7 @@ function Component({ loggedPrivate, loggedPublic }) {
 }
 
 Component.propTypes = {
+  account: PropTypes.object,
   loggedPublic: PropTypes.bool,
   loggedPrivate: PropTypes.bool,
 };

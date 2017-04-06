@@ -26,7 +26,7 @@ class Component extends React.Component {
     return (
       <div>
         <form onSubmit={handleSubmit}>
-          <label for="currency">Currency</label>
+          <label htmlFor="currency">Currency</label>
           <Field
             name="currency"
             component="select"
@@ -34,7 +34,7 @@ class Component extends React.Component {
             {this.getReceivableAssets()}
           </Field>
           <button type="submit" disabled={submitting}>
-            Send
+            Generate address
           </button>
         </form>
         <ReceiveDeposit />

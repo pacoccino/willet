@@ -11,17 +11,33 @@ const styles = {
   },
 };
 
-function Component({ setActionMode }) {
+function Component({ setActionMode, actionMode }) {
   return (
     <div style={styles.container}>
-      <button onClick={() => setActionMode(ACTION_MODES.EXCHANGE)}>Exchange</button>
-      <button onClick={() => setActionMode(ACTION_MODES.SEND)}>Send</button>
-      <button onClick={() => setActionMode(ACTION_MODES.RECEIVE)}>Receive</button>
+      <button
+        onClick={() => setActionMode(ACTION_MODES.EXCHANGE)}
+        disabled={actionMode === ACTION_MODES.EXCHANGE}
+      >
+        Exchange
+      </button>
+      <button
+        onClick={() => setActionMode(ACTION_MODES.SEND)}
+        disabled={actionMode === ACTION_MODES.SEND}
+      >
+        Send
+      </button>
+      <button
+        onClick={() => setActionMode(ACTION_MODES.RECEIVE)}
+        disabled={actionMode === ACTION_MODES.RECEIVE}
+      >
+        Receive
+      </button>
     </div>
   );
 }
 
 Component.propTypes = {
+  actionMode: PropTypes.string,
   setActionMode: PropTypes.func.isRequired,
 };
 
