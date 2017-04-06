@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Field, propTypes } from 'redux-form';
 
-class Component extends React.Component {
+class AccountLoggerPrivate extends React.Component {
   render() {
     const {
       loggedPrivate,
@@ -39,10 +39,10 @@ class Component extends React.Component {
   }
 }
 
-Component.propTypes = {
+AccountLoggerPrivate.propTypes = {
   loggedPrivate: PropTypes.bool,
   isAccountLoading: PropTypes.bool,
   ...propTypes,
 };
 
-export default Component;
+export default AccountLoggerPrivate;

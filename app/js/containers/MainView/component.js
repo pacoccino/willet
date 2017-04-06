@@ -16,7 +16,7 @@ const styles = {
   },
 };
 
-function Component({ account, loggedPrivate, loggedPublic }) {
+function MainView({ account, loggedPrivate, loggedPublic }) {
   const offlineView = (
     <div>
       <AccountLoggerPublic/>
@@ -57,10 +57,10 @@ function Component({ account, loggedPrivate, loggedPublic }) {
   );
 }
 
-Component.propTypes = {
+MainView.propTypes = {
   account: PropTypes.object,
   loggedPublic: PropTypes.bool,
   loggedPrivate: PropTypes.bool,
 };
 
-export default Component;
+export default MainView;

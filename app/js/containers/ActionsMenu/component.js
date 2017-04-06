@@ -11,7 +11,7 @@ const styles = {
   },
 };
 
-function Component({ setActionMode, actionMode }) {
+function ActionsMenu({ setActionMode, actionMode }) {
   return (
     <div style={styles.container}>
       <button
@@ -36,9 +36,9 @@ function Component({ setActionMode, actionMode }) {
   );
 }
 
-Component.propTypes = {
+ActionsMenu.propTypes = {
   actionMode: PropTypes.string,
   setActionMode: PropTypes.func.isRequired,
 };
 
-export default Component;
+export default ActionsMenu;

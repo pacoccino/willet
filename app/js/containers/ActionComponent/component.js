@@ -6,7 +6,7 @@ import ReceiveComponent from '../ReceiveComponent';
 
 import { ACTION_MODES } from 'js/constants/misc';
 
-function Component({ actionMode }) {
+function ActionComponent({ actionMode }) {
   let actionComponent = null;
   switch(actionMode) {
     case ACTION_MODES.EXCHANGE: {
@@ -29,8 +29,8 @@ function Component({ actionMode }) {
   );
 }
 
-Component.propTypes = {
+ActionComponent.propTypes = {
   actionMode: PropTypes.string,
 };
 
-export default Component;
+export default ActionComponent;

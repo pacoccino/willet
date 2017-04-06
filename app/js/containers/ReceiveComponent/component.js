@@ -3,8 +3,7 @@ import { Field, propTypes } from 'redux-form';
 
 import ReceiveDeposit from '../ReceiveDeposit';
 
-class Component extends React.Component {
-
+class ReceiveComponent extends React.Component {
   getReceivableAssets() {
     return this.props.balances.map(
       balance =>
@@ -43,9 +42,9 @@ class Component extends React.Component {
   }
 }
 
-Component.propTypes = {
+ReceiveComponent.propTypes = {
   balances: PropTypes.array.isRequired,
   ...propTypes,
 };
 
-export default Component;
+export default ReceiveComponent;

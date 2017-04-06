@@ -6,7 +6,7 @@ const styles = {
   },
 };
 
-function Component({ balance }) {
+function BalanceCurrency({ balance }) {
   return (
     <div style={styles.container}>
       <p><b>{balance.balance}</b> {balance.asset_shortname}</p>
@@ -14,8 +14,8 @@ function Component({ balance }) {
   );
 }
 
-Component.propTypes = {
+BalanceCurrency.propTypes = {
   balance: PropTypes.object.isRequired,
 };
 
-export default Component;
+export default BalanceCurrency;

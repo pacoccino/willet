@@ -11,7 +11,7 @@ const styles = {
   },
 };
 
-function Component({ loggedPublic, accountLoaded, balances }) {
+function BalancesViewer({ loggedPublic, accountLoaded, balances }) {
   if(loggedPublic && !accountLoaded) {
     return (
       <div>
@@ -31,10 +31,10 @@ function Component({ loggedPublic, accountLoaded, balances }) {
   );
 }
 
-Component.propTypes = {
+BalancesViewer.propTypes = {
   balances: PropTypes.array.isRequired,
   accountLoaded: PropTypes.bool.isRequired,
   loggedPublic: PropTypes.bool.isRequired,
 };
 
-export default Component;
+export default BalancesViewer;

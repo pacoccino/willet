@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Field, propTypes } from 'redux-form';
 
-class Component extends React.Component {
+class ExchangeComponent extends React.Component {
 
   getExchangeableAssets() {
     return this.props.balances.map(
@@ -60,9 +60,9 @@ class Component extends React.Component {
   }
 }
 
-Component.propTypes = {
+ExchangeComponent.propTypes = {
   balances: PropTypes.array.isRequired,
   ...propTypes,
 };
 
-export default Component;
+export default ExchangeComponent;

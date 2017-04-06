@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-function Component({}) {
+function ReceiveDeposit({}) {
   function getQRCode() {
     return (
       <img src="http://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=stellar:GDG4LKMTODR227EQQXKHAWIOYBLNGXRJEW6TJTNQ766UUGVMFWDGAVT6" />
@@ -15,7 +15,7 @@ function Component({}) {
   );
 }
 
-Component.propTypes = {
+ReceiveDeposit.propTypes = {
 };
 
-export default Component;
+export default ReceiveDeposit;

@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Field, propTypes } from 'redux-form';
 
-class Component extends React.Component {
-
+class SendComponent extends React.Component {
   getSendableAssets() {
     return this.props.balances.map(
       balance =>
@@ -53,9 +52,9 @@ class Component extends React.Component {
   }
 }
 
-Component.propTypes = {
+SendComponent.propTypes = {
   balances: PropTypes.array.isRequired,
   ...propTypes,
 };
 
-export default Component;
+export default SendComponent;
