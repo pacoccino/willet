@@ -26,7 +26,7 @@ export const asyncErrorSelector = actionName =>
 export const asyncStartedSelector = actionName =>
   createSelector(
     asyncSelector(actionName),
-    data => !!(data.isLoading || data.data || data.error)
+    data => !!(data.isLoading || data.data || data.error),
   );
 
 export const getAsyncState = (state, actionName) =>

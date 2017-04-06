@@ -19,7 +19,7 @@ class CurrentAccount extends Component {
   }
 
   openOnNewTab() {
-    let url = routes.Account_G(this.props.keypair.publicKey());
+    const url = routes.Account_G(this.props.keypair.publicKey());
     window.open(url);
   }
 
@@ -27,7 +27,7 @@ class CurrentAccount extends Component {
     const { keypair } = this.props;
     const canSign = keypair.canSign();
 
-    if(canSign) {
+    if (canSign) {
       return (
         this.state.showSeed ?
           <Button

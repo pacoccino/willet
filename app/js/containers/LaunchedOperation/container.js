@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  close: resetOperation
+  close: resetOperation,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component);

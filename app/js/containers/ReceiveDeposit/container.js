@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  close: resetDepositAddress
+  close: resetDepositAddress,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component);

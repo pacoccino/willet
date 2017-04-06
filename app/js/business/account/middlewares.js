@@ -20,7 +20,7 @@ const stellarStreamerMiddleware = store => next => (action) => {
       const state = store.getState();
       const currentKeypair = selKeypair(state);
 
-      if(!keypair || (currentKeypair && keypair.publicKey() === currentKeypair.publicKey())) {
+      if (!keypair || (currentKeypair && keypair.publicKey() === currentKeypair.publicKey())) {
         break;
       }
 

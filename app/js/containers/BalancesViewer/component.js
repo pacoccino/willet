@@ -12,7 +12,7 @@ const styles = {
 };
 
 function BalancesViewer({ loggedPublic, accountLoaded, balances }) {
-  if(loggedPublic && !accountLoaded) {
+  if (loggedPublic && !accountLoaded) {
     return (
       <div>
         <p>Loading balances...</p>
@@ -24,7 +24,7 @@ function BalancesViewer({ loggedPublic, accountLoaded, balances }) {
       {
         balances.map(
           (balance, i) =>
-            <BalanceCurrency key={i} balance={balance} />
+            <BalanceCurrency key={i} balance={balance} />,
         )
       }
     </div>

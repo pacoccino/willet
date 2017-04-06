@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { Route, IndexRoute, Redirect } from 'react-router';
 import { connect } from 'react-redux';
 
-import { ConnectedRouter } from 'react-router-redux'
+import { ConnectedRouter } from 'react-router-redux';
 import { history } from './store';
 
 import Layout from '../components/views/Layout';

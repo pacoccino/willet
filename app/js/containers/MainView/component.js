@@ -5,7 +5,7 @@ import AccountLoggerPrivate from '../AccountLoggerPrivate';
 import BalancesViewer from '../BalancesViewer';
 import ActionsMenu from '../ActionsMenu';
 import ActionComponent from '../ActionComponent';
-import LaunchedOperation from "../LaunchedOperation";
+import LaunchedOperation from '../LaunchedOperation';
 
 const styles = {
   container: {
@@ -20,21 +20,21 @@ const styles = {
 function MainView({ account, loggedPrivate, loggedPublic, operationLaunched }) {
   const offlineView = (
     <div>
-      <AccountLoggerPublic/>
+      <AccountLoggerPublic />
     </div>
   );
   const publicView = (
     <div>
-      <AccountLoggerPublic/>
-      <BalancesViewer/>
-      <AccountLoggerPrivate/>
+      <AccountLoggerPublic />
+      <BalancesViewer />
+      <AccountLoggerPrivate />
     </div>
   );
   const privateView = (
     <div>
-      <AccountLoggerPublic/>
-      <BalancesViewer/>
-      <AccountLoggerPrivate/>
+      <AccountLoggerPublic />
+      <BalancesViewer />
+      <AccountLoggerPrivate />
       {
         account &&
         (
@@ -42,8 +42,8 @@ function MainView({ account, loggedPrivate, loggedPublic, operationLaunched }) {
             <LaunchedOperation />
             :
             <div>
-              <ActionsMenu/>
-              <ActionComponent/>
+              <ActionsMenu />
+              <ActionComponent />
             </div>
         )
       }

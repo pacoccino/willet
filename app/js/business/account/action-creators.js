@@ -6,7 +6,7 @@ import { AsyncActions } from 'js/helpers/asyncActions';
 import { ASYNC_FETCH_ACCOUNT } from 'js/constants/asyncActions';
 import { selKeypair } from 'js/business/account/selectors';
 
-export const setPublicAddress = (address) => (dispatch) => {
+export const setPublicAddress = address => (dispatch) => {
   dispatch(AsyncActions.startLoading(ASYNC_FETCH_ACCOUNT));
 
   StellarTools.resolveAddress(address)
@@ -15,22 +15,22 @@ export const setPublicAddress = (address) => (dispatch) => {
       dispatch(AccountActions.setKeypair(keypair));
       dispatch(AsyncActions.stopLoading(ASYNC_FETCH_ACCOUNT));
     })
-    .catch(e => {
+    .catch((e) => {
       console.error(e);
       dispatch(AsyncActions.stopLoading(ASYNC_FETCH_ACCOUNT));
     });
 };
 
-export const setPrivateSecret = (secret) => (dispatch, getState) => {
+export const setPrivateSecret = secret => (dispatch, getState) => {
   const state = getState();
   const currentKeypair = selKeypair(state);
   try {
     const newKeypair = Keypair.fromSecret(secret);
-    if(newKeypair.publicKey() !== currentKeypair.publicKey()) {
+    if (newKeypair.publicKey() !== currentKeypair.publicKey()) {
       throw new Error('Keypair from secret is different from current account');
     }
     dispatch(AccountActions.setKeypair(newKeypair));
-  } catch(e) {
+  } catch (e) {
     console.error(e);
   }
 };

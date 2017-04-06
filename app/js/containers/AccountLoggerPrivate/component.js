@@ -11,7 +11,7 @@ class AccountLoggerPrivate extends React.Component {
       submitting,
     } = this.props;
 
-    if(loggedPrivate) {
+    if (loggedPrivate) {
       return (
         <div>
           <button onClick={unsetPrivateSecret}>

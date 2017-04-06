@@ -13,7 +13,7 @@ class AccountLoggerPublic extends React.Component {
       submitting,
     } = this.props;
 
-    if(loggedPublic) {
+    if (loggedPublic) {
       return (
         <div>
           <p>{keypair.publicKey()}</p>

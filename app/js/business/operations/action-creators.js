@@ -14,7 +14,7 @@ export const OPERATIONS = {
   EXCHANGE: 'exchange',
 };
 
-export const sendOperation = (formData) => (dispatch) => {
+export const sendOperation = formData => (dispatch) => {
   dispatch(AsyncActions.startFetch(ASYNC_OPERATION));
   setTimeout(() => {
     dispatch(AsyncActions.successFetch(ASYNC_OPERATION, 'Send success'));
@@ -23,7 +23,7 @@ export const sendOperation = (formData) => (dispatch) => {
 };
 
 
-export const exchangeOperation = (formData) => (dispatch) => {
+export const exchangeOperation = formData => (dispatch) => {
   dispatch(AsyncActions.startFetch(ASYNC_OPERATION));
   setTimeout(() => {
     dispatch(AsyncActions.errorFetch(ASYNC_OPERATION, 'Exchange error'));
@@ -31,18 +31,18 @@ export const exchangeOperation = (formData) => (dispatch) => {
   }, 2000);
 };
 
-export const delayResetOperation = () => dispatch => {
+export const delayResetOperation = () => (dispatch) => {
   setTimeout(() => {
     dispatch(resetOperation());
   }, 5000);
 };
 
-export const resetOperation = () => dispatch => {
+export const resetOperation = () => (dispatch) => {
   dispatch(AsyncActions.reset(ASYNC_OPERATION));
   dispatch(setActionMode(null));
 };
 
-export const getDepositAddress = (asset) => (dispatch) => {
+export const getDepositAddress = asset => (dispatch) => {
   dispatch(AsyncActions.startFetch(ASYNC_GET_DEPOSIT));
   setTimeout(() => {
     const depositAddress = {
@@ -53,7 +53,7 @@ export const getDepositAddress = (asset) => (dispatch) => {
   }, 2000);
 };
 
-export const resetDepositAddress = () => dispatch => {
+export const resetDepositAddress = () => (dispatch) => {
   dispatch(AsyncActions.reset(ASYNC_GET_DEPOSIT));
   dispatch(setActionMode(null));
 };

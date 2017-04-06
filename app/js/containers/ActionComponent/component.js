@@ -8,17 +8,17 @@ import { OPERATIONS } from 'js/business/operations/action-creators';
 
 function ActionComponent({ actionMode }) {
   let actionComponent = null;
-  switch(actionMode) {
+  switch (actionMode) {
     case OPERATIONS.EXCHANGE: {
-      actionComponent = <ExchangeComponent/>;
+      actionComponent = <ExchangeComponent />;
       break;
     }
     case OPERATIONS.SEND: {
-      actionComponent = <SendComponent/>;
+      actionComponent = <SendComponent />;
       break;
     }
     case OPERATIONS.RECEIVE: {
-      actionComponent = <ReceiveComponent/>;
+      actionComponent = <ReceiveComponent />;
       break;
     }
   }

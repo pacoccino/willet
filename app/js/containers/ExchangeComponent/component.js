@@ -11,7 +11,7 @@ class ExchangeComponent extends React.Component {
           value={balance.asset_uuid}
         >
           {balance.asset_shortname}
-        </option>
+        </option>,
     );
   }
 

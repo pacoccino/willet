@@ -11,14 +11,14 @@ export const selKeypair = selectProperty([ACCOUNT_STATE_KEY, 'keypair'], null);
 
 export const selLoggedPublic = createSelector(
   selKeypair,
-  keypair => (!!keypair)
+  keypair => (!!keypair),
 );
 export const selLoggedPrivate = createSelector(
   selKeypair,
-  keypair => (!!keypair && keypair.canSign())
+  keypair => (!!keypair && keypair.canSign()),
 );
 
 export const selBalances = createSelector(
   selAccount,
-  account => account && account.balances || []
+  account => account && account.balances || [],
 );

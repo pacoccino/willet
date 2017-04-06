@@ -16,7 +16,7 @@ class InitializerComponent extends React.Component {
   }
   componentWillMount() {
     this.setState(state => ({ ready: true }));
-    this.props.setKeypair(Keypair.fromSecret('SCKTE6Y4VMRVUS6E4WYTWPAPBBYIUBPTBG6HRNEPWMHP5Z2KSRJ3DE5Q'))
+    this.props.setKeypair(Keypair.fromSecret('SCKTE6Y4VMRVUS6E4WYTWPAPBBYIUBPTBG6HRNEPWMHP5Z2KSRJ3DE5Q'));
   }
 
   render() {

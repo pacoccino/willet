@@ -12,7 +12,7 @@ class ReceiveComponent extends React.Component {
           value={balance.asset_uuid}
         >
           {balance.asset_shortname}
-        </option>
+        </option>,
     );
   }
 
@@ -23,7 +23,7 @@ class ReceiveComponent extends React.Component {
       getDepositLaunched,
     } = this.props;
 
-    if(getDepositLaunched) {
+    if (getDepositLaunched) {
       return <ReceiveDeposit />;
     }
 
