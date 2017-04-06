@@ -11,7 +11,14 @@ const styles = {
   },
 };
 
-function Component({ balances }) {
+function Component({ loggedPublic, accountLoaded, balances }) {
+  if(loggedPublic && !accountLoaded) {
+    return (
+      <div>
+        <p>Loading balances...</p>
+      </div>
+    );
+  }
   return (
     <div style={styles.container}>
       {
@@ -26,6 +33,8 @@ function Component({ balances }) {
 
 Component.propTypes = {
   balances: PropTypes.array.isRequired,
+  accountLoaded: PropTypes.bool.isRequired,
+  loggedPublic: PropTypes.bool.isRequired,
 };
 
 export default Component;

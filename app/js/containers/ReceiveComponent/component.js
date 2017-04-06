@@ -1,14 +1,51 @@
 import React, { PropTypes } from 'react';
+import { Field, propTypes } from 'redux-form';
 
-function Component({}) {
-  return (
-    <div>
-      Receive
-    </div>
-  );
+import ReceiveDeposit from '../ReceiveDeposit';
+
+class Component extends React.Component {
+
+  getReceivableAssets() {
+    return this.props.balances.map(
+      balance =>
+        <option
+          key={balance.asset_uuid}
+          value={balance.asset_uuid}
+        >
+          {balance.asset_shortname}
+        </option>
+    );
+  }
+
+  render() {
+    const {
+      handleSubmit,
+      submitting,
+    } = this.props;
+
+    return (
+      <div>
+        <form onSubmit={handleSubmit}>
+          <label for="currency">Currency</label>
+          <Field
+            name="currency"
+            component="select"
+          >
+            {this.getReceivableAssets()}
+          </Field>
+          <button type="submit" disabled={submitting}>
+            Send
+          </button>
+        </form>
+        <ReceiveDeposit />
+      </div>
+    );
+  }
 }
 
 Component.propTypes = {
+  balances: PropTypes.array.isRequired,
+  ...propTypes,
 };
 
 export default Component;

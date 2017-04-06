@@ -7,15 +7,9 @@ const styles = {
 };
 
 function Component({ balance }) {
-  let symbol = '';
-  if (balance.asset_type === 'native') {
-    symbol = 'XLM';
-  } else {
-    symbol = balance.asset_code;
-  }
   return (
     <div style={styles.container}>
-      <p><b>{balance.balance}</b> {symbol}</p>
+      <p><b>{balance.balance}</b> {balance.asset_shortname}</p>
     </div>
   );
 }
