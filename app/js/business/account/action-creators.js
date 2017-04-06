@@ -8,8 +8,16 @@ import * as AccountActions from './actions';
 
 export const setPublicAddress = address => (dispatch) => {
   dispatch(AsyncActions.startLoading(ASYNC_FETCH_ACCOUNT));
+  const isSeed = StellarTools.validSeed(address);
 
-  StellarTools.resolveAddress(address)
+  if (isSeed) {
+    const keypair = StellarTools.KeypairInstance({ secretSeed: address });
+    dispatch(AccountActions.setKeypair(keypair));
+    dispatch(AsyncActions.stopLoading(ASYNC_FETCH_ACCOUNT));
+    return Promise.resolve();
+  }
+
+  return StellarTools.resolveAddress(address)
     .then((resolved) => {
       const keypair = StellarTools.KeypairInstance({ publicKey: resolved.account_id });
       dispatch(AccountActions.setKeypair(keypair));
@@ -18,6 +26,7 @@ export const setPublicAddress = address => (dispatch) => {
     .catch((e) => {
       console.error(e);
       dispatch(AsyncActions.stopLoading(ASYNC_FETCH_ACCOUNT));
+      throw e;
     });
 };
 
@@ -26,12 +35,13 @@ export const setPrivateSecret = secret => (dispatch, getState) => {
   const currentKeypair = selKeypair(state);
   try {
     const newKeypair = Keypair.fromSecret(secret);
-    if (newKeypair.publicKey() !== currentKeypair.publicKey()) {
+    if (currentKeypair && newKeypair.publicKey() !== currentKeypair.publicKey()) {
       throw new Error('Keypair from secret is different from current account');
     }
     dispatch(AccountActions.setKeypair(newKeypair));
   } catch (e) {
     console.error(e);
+    throw e;
   }
 };
 

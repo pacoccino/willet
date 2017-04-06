@@ -1,7 +1,33 @@
 import React, { PropTypes } from 'react';
 import { Field, propTypes } from 'redux-form';
+import { debounce } from 'lodash';
+
+import { validateAddress } from './services';
 
 class AccountLoggerPublic extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      addressStatus: null,
+      addressResolving: null,
+    };
+
+    this.debouncedValidate = debounce(this.validateAddress, 300);
+  }
+
+  validateAddress(address) {
+    return validateAddress(address).then(type => {
+      this.setState({
+        addressStatus: type,
+        addressResolving: false,
+      });
+    });
+  }
+  onChange(e, value) {
+    this.setState({ addressResolving: true, addressStatus: null });
+    this.debouncedValidate(value);
+  }
+
   render() {
     const {
       isAccountLoading,
@@ -9,7 +35,7 @@ class AccountLoggerPublic extends React.Component {
       unsetAccount,
       keypair,
       handleSubmit,
-      pristine,
+      dirty,
       submitting,
     } = this.props;
 
@@ -32,10 +58,13 @@ class AccountLoggerPublic extends React.Component {
             name="publicAddress"
             component="input"
             type="text"
+            onChange={::this.onChange}
           />
-          <button type="submit" disabled={pristine || submitting}>
+          <button type="submit" disabled={submitting}>
             Login
           </button>
+          {this.state.addressResolving && <p>Resolving ...</p>}
+          {dirty && this.state.addressStatus && <p>{this.state.addressStatus}</p>}
           {isAccountLoading && <p>Loading ...</p>}
         </form>
       </div>

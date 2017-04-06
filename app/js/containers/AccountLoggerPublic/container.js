@@ -18,8 +18,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(unsetAccount());
   },
   onSubmit(values, d, props) {
-    dispatch(setPublicAddress(values.publicAddress));
     props.reset();
+    return dispatch(setPublicAddress(values.publicAddress));
   },
 });
 
