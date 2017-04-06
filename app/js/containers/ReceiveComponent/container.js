@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
-import Component from './component';
 import { selBalances } from 'js/business/account/selectors';
 import { selDepositAddressLaunched } from 'js/business/operations/selectors';
 import { getDepositAddress } from 'js/business/operations/action-creators';
+import Component from './component';
 
 const FORM_NAME = 'receive-form';
 

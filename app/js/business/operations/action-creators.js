@@ -14,21 +14,9 @@ export const OPERATIONS = {
   EXCHANGE: 'exchange',
 };
 
-export const sendOperation = formData => (dispatch) => {
-  dispatch(AsyncActions.startFetch(ASYNC_OPERATION));
-  setTimeout(() => {
-    dispatch(AsyncActions.successFetch(ASYNC_OPERATION, 'Send success'));
-    dispatch(delayResetOperation());
-  }, 2000);
-};
-
-
-export const exchangeOperation = formData => (dispatch) => {
-  dispatch(AsyncActions.startFetch(ASYNC_OPERATION));
-  setTimeout(() => {
-    dispatch(AsyncActions.errorFetch(ASYNC_OPERATION, 'Exchange error'));
-    dispatch(delayResetOperation());
-  }, 2000);
+export const resetOperation = () => (dispatch) => {
+  dispatch(AsyncActions.reset(ASYNC_OPERATION));
+  dispatch(setActionMode(null));
 };
 
 export const delayResetOperation = () => (dispatch) => {
@@ -37,8 +25,25 @@ export const delayResetOperation = () => (dispatch) => {
   }, 5000);
 };
 
-export const resetOperation = () => (dispatch) => {
-  dispatch(AsyncActions.reset(ASYNC_OPERATION));
+export const sendOperation = formData => (dispatch) => {
+  dispatch(AsyncActions.startFetch(ASYNC_OPERATION));
+  setTimeout(() => {
+    dispatch(AsyncActions.successFetch(ASYNC_OPERATION, `Send success :${JSON.stringify(formData)}`));
+    dispatch(delayResetOperation());
+  }, 2000);
+};
+
+
+export const exchangeOperation = formData => (dispatch) => {
+  dispatch(AsyncActions.startFetch(ASYNC_OPERATION));
+  setTimeout(() => {
+    dispatch(AsyncActions.errorFetch(ASYNC_OPERATION, `Exchange error :${JSON.stringify(formData)}`));
+    dispatch(delayResetOperation());
+  }, 2000);
+};
+
+export const resetDepositAddress = () => (dispatch) => {
+  dispatch(AsyncActions.reset(ASYNC_GET_DEPOSIT));
   dispatch(setActionMode(null));
 };
 
@@ -48,12 +53,8 @@ export const getDepositAddress = asset => (dispatch) => {
     const depositAddress = {
       type: 'stellar',
       address: 'GDG4LKMTODR227EQQXKHAWIOYBLNGXRJEW6TJTNQ766UUGVMFWDGAVT6',
+      asset,
     };
     dispatch(AsyncActions.successFetch(ASYNC_GET_DEPOSIT, depositAddress));
   }, 2000);
-};
-
-export const resetDepositAddress = () => (dispatch) => {
-  dispatch(AsyncActions.reset(ASYNC_GET_DEPOSIT));
-  dispatch(setActionMode(null));
 };

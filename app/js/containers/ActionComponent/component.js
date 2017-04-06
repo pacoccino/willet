@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
 
+import { OPERATIONS } from 'js/business/operations/action-creators';
+
 import ExchangeComponent from '../ExchangeComponent';
 import SendComponent from '../SendComponent';
 import ReceiveComponent from '../ReceiveComponent';
-
-import { OPERATIONS } from 'js/business/operations/action-creators';
 
 function ActionComponent({ actionMode }) {
   let actionComponent = null;

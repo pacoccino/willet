@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react';
-import { Route, IndexRoute, Redirect } from 'react-router';
+import React from 'react';
+import { Route, Redirect } from 'react-router';
 import { connect } from 'react-redux';
 
 import { ConnectedRouter } from 'react-router-redux';
@@ -20,9 +20,4 @@ const RouterContainer = () =>
     </Layout>
   </ConnectedRouter>;
 
-RouterContainer.propTypes = {
-};
-
-const mapDispatchToProps = {};
-
-export default connect(null, mapDispatchToProps)(RouterContainer);
+export default connect(null, null)(RouterContainer);

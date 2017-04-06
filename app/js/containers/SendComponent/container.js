@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
-import Component from './component';
 import { selBalances } from 'js/business/account/selectors';
 import { sendOperation } from 'js/business/operations/action-creators';
+
+import Component from './component';
 
 const FORM_NAME = 'send-form';
 

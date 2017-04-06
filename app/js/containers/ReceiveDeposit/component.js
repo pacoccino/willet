@@ -4,7 +4,10 @@ class ReceiveDeposit extends React.Component {
 
   getQRCode(depositAddress) {
     return (
-      <img src={`http://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=${depositAddress.type}:${depositAddress.address}`} />
+      <img
+        src={`http://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=${depositAddress.type}:${depositAddress.address}`}
+        alt={`${depositAddress.type}:${depositAddress.address}`}
+      />
     );
   }
 

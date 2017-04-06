@@ -1,10 +1,10 @@
 import { StellarTools } from 'stellar-toolkit';
 import { Keypair } from 'stellar-sdk';
 
-import * as AccountActions from './actions';
 import { AsyncActions } from 'js/helpers/asyncActions';
 import { ASYNC_FETCH_ACCOUNT } from 'js/constants/asyncActions';
 import { selKeypair } from 'js/business/account/selectors';
+import * as AccountActions from './actions';
 
 export const setPublicAddress = address => (dispatch) => {
   dispatch(AsyncActions.startLoading(ASYNC_FETCH_ACCOUNT));

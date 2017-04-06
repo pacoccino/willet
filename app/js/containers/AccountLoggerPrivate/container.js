@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
-import Component from './component';
 import { selLoggedPrivate } from 'js/business/account/selectors';
 import { setPrivateSecret, unsetPrivateSecret } from 'js/business/account/action-creators';
+import Component from './component';
 
 const FORM_NAME = 'login-private';
 

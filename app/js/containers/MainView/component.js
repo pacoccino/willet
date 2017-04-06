@@ -49,15 +49,13 @@ function MainView({ account, loggedPrivate, loggedPublic, operationLaunched }) {
       }
     </div>
   );
+  const loggedView = loggedPrivate ? privateView : publicView;
 
   return (
     <div style={styles.container}>
       {
         loggedPublic ?
-          (
-            loggedPrivate ? privateView : publicView
-          )
-          : offlineView
+          loggedView : offlineView
       }
     </div>
   );

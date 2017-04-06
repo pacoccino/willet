@@ -1,3 +1,4 @@
+/* eslint-disable no-unreachable */
 import { isArray } from 'lodash';
 
 import { StellarTools } from 'stellar-toolkit';

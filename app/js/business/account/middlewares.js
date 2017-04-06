@@ -1,9 +1,10 @@
-import { StellarServer, StellarStreamers } from 'stellar-toolkit';
-import * as actions from './actions';
+// import { StellarServer, StellarStreamers } from 'stellar-toolkit';
+import { StellarServer } from 'stellar-toolkit';
 
-import { newStream, killStreams } from 'js/helpers/monoStreamer';
-import { setAccount } from 'js/business/account/actions';
+import { killStreams } from 'js/helpers/monoStreamer';
+// import { newStream, killStreams } from 'js/helpers/monoStreamer';
 import { selKeypair } from 'js/business/account/selectors';
+import * as actions from './actions';
 
 function traceError(e) {
   console.error(e);
@@ -26,7 +27,7 @@ const stellarStreamerMiddleware = store => next => (action) => {
 
       try {
         StellarServer.getAccount(keypair.publicKey())
-          .then(a => store.dispatch(setAccount(a)));
+          .then(a => store.dispatch(actions.setAccount(a)));
         // Stream account
         /*
         newStream('account',

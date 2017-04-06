@@ -20,5 +20,5 @@ export const selLoggedPrivate = createSelector(
 
 export const selBalances = createSelector(
   selAccount,
-  account => account && account.balances || [],
+  account => (account ? account.balances : []),
 );
