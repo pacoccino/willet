@@ -1,4 +1,4 @@
-import { StellarStreamers } from 'stellar-toolkit';
+import { StellarServer, StellarStreamers } from 'stellar-toolkit';
 import * as actions from './actions';
 
 import { newStream, killStreams } from 'js/helpers/monoStreamer';
@@ -25,12 +25,16 @@ const stellarStreamerMiddleware = store => next => (action) => {
       }
 
       try {
+        StellarServer.getAccount(keypair.publicKey())
+          .then(a => store.dispatch(setAccount(a)));
         // Stream account
+        /*
         newStream('account',
           StellarStreamers.AccountStream(keypair.publicKey(),
             (streamAccount) => {
               store.dispatch(setAccount(streamAccount));
             }));
+            */
       } catch (e) {
         traceError(e);
       }

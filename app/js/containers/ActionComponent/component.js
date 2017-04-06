@@ -4,20 +4,20 @@ import ExchangeComponent from '../ExchangeComponent';
 import SendComponent from '../SendComponent';
 import ReceiveComponent from '../ReceiveComponent';
 
-import { ACTION_MODES } from 'js/constants/misc';
+import { OPERATIONS } from 'js/business/operations/action-creators';
 
 function ActionComponent({ actionMode }) {
   let actionComponent = null;
   switch(actionMode) {
-    case ACTION_MODES.EXCHANGE: {
+    case OPERATIONS.EXCHANGE: {
       actionComponent = <ExchangeComponent/>;
       break;
     }
-    case ACTION_MODES.SEND: {
+    case OPERATIONS.SEND: {
       actionComponent = <SendComponent/>;
       break;
     }
-    case ACTION_MODES.RECEIVE: {
+    case OPERATIONS.RECEIVE: {
       actionComponent = <ReceiveComponent/>;
       break;
     }

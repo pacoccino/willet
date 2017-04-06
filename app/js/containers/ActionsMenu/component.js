@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import { ACTION_MODES } from 'js/constants/misc';
+import { OPERATIONS } from 'js/business/operations/action-creators';
 
 const styles = {
   container: {
@@ -15,20 +15,20 @@ function ActionsMenu({ setActionMode, actionMode }) {
   return (
     <div style={styles.container}>
       <button
-        onClick={() => setActionMode(ACTION_MODES.EXCHANGE)}
-        disabled={actionMode === ACTION_MODES.EXCHANGE}
+        onClick={() => setActionMode(OPERATIONS.EXCHANGE)}
+        disabled={actionMode === OPERATIONS.EXCHANGE}
       >
         Exchange
       </button>
       <button
-        onClick={() => setActionMode(ACTION_MODES.SEND)}
-        disabled={actionMode === ACTION_MODES.SEND}
+        onClick={() => setActionMode(OPERATIONS.SEND)}
+        disabled={actionMode === OPERATIONS.SEND}
       >
         Send
       </button>
       <button
-        onClick={() => setActionMode(ACTION_MODES.RECEIVE)}
-        disabled={actionMode === ACTION_MODES.RECEIVE}
+        onClick={() => setActionMode(OPERATIONS.RECEIVE)}
+        disabled={actionMode === OPERATIONS.RECEIVE}
       >
         Receive
       </button>

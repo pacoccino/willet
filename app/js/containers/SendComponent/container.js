@@ -3,7 +3,7 @@ import { reduxForm } from 'redux-form';
 
 import Component from './component';
 import { selBalances } from 'js/business/account/selectors';
-// import { setPublicAddress, unsetAccount } from 'js/business/account/action-creators';
+import { sendOperation } from 'js/business/operations/action-creators';
 
 const FORM_NAME = 'send-form';
 
@@ -13,6 +13,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onSubmit(values, d, props) {
+    dispatch(sendOperation(values));
     props.reset();
   },
 });
