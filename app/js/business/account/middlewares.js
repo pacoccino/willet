@@ -30,12 +30,12 @@ const stellarStreamerMiddleware = store => next => (action) => {
           .then(a => store.dispatch(actions.setAccount(a)));
         // Stream account
         /*
-        newStream('account',
-          StellarStreamers.AccountStream(keypair.publicKey(),
-            (streamAccount) => {
-              store.dispatch(setAccount(streamAccount));
-            }));
-            */
+         newStream('account',
+         StellarStreamers.AccountStream(keypair.publicKey(),
+         (streamAccount) => {
+         store.dispatch(setAccount(streamAccount));
+         }));
+         */
       } catch (e) {
         traceError(e);
       }

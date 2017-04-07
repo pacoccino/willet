@@ -3,8 +3,12 @@ import { connect } from 'react-redux';
 import { Keypair } from 'stellar-sdk'; // TODO REMOVE
 
 import { setKeypair } from 'js/business/account/actions';
+import { getKnownAnchors } from 'js/business/wilson/action-creators';
 
-const mapDispatchToProps = { setKeypair };
+const mapDispatchToProps = {
+  setKeypair,
+  getKnownAnchors,
+};
 
 class InitializerComponent extends React.Component {
   constructor() {
@@ -14,8 +18,13 @@ class InitializerComponent extends React.Component {
     };
   }
   componentWillMount() {
-    this.setState(() => ({ ready: true }));
-    this.props.setKeypair(Keypair.fromSecret('SCKTE6Y4VMRVUS6E4WYTWPAPBBYIUBPTBG6HRNEPWMHP5Z2KSRJ3DE5Q'));
+    Promise.all([
+      this.props.getKnownAnchors(),
+      this.props.setKeypair(Keypair.fromSecret('SAQHSZFSQIIVWH4DL2D5PRF6BARWUVDELSM5RZMRGYFDQA2P2QMNGPF7')),
+    ])
+      .then(() => {
+        this.setState(() => ({ ready: true }));
+      });
   }
 
   render() {
