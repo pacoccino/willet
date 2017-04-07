@@ -28,6 +28,4 @@ export const send = ({ formData, keypair, sourceAccount }) =>
       sourceAccount,
     }));
 
-export const exchange = () => {
-  return Promise.resolve()
-};
+export const exchange = () => Promise.resolve();

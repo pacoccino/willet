@@ -16,7 +16,7 @@ class AccountLoggerPublic extends React.Component {
   }
 
   validateAddress(address) {
-    return validateAddress(address).then(type => {
+    return validateAddress(address).then((type) => {
       this.setState({
         addressStatus: type,
         addressResolving: false,

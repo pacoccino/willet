@@ -33,6 +33,7 @@ class InitializerComponent extends React.Component {
 }
 
 InitializerComponent.propTypes = {
+  getKnownAnchors: React.PropTypes.func.isRequired,
   setKeypair: React.PropTypes.func.isRequired,
   children: React.PropTypes.node,
 };

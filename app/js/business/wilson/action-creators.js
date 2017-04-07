@@ -7,9 +7,9 @@ Wilson.setUrl('http://localhost:3000/wilson'); // TODO
 
 export const getKnownAnchors = () => (dispatch) => {
   dispatch(AsyncActions.startFetch(ASYNC_KNOWN_ANCHORS));
-  return Wilson.anchorList().then(anchorList => {
+  return Wilson.anchorList().then((anchorList) => {
     dispatch(AsyncActions.successFetch(ASYNC_KNOWN_ANCHORS, anchorList));
-  }).catch(e => {
+  }).catch((e) => {
     dispatch(AsyncActions.errorFetch(ASYNC_KNOWN_ANCHORS, e));
   });
 };

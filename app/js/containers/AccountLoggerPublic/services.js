@@ -11,10 +11,6 @@ export async function validateAddress(address) {
   }
 
   return StellarTools.resolveAddress(address)
-    .then(() => {
-      return 'federation';
-    })
-    .catch(() => {
-      return 'error';
-    });
+    .then(() => 'federation')
+    .catch(() => 'error');
 }

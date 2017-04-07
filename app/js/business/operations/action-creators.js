@@ -33,11 +33,11 @@ export const sendOperation = formData => (dispatch, getState) => {
   // TODO Manage native
 
   return send({ formData, keypair, sourceAccount })
-    .then(data => {
+    .then((data) => {
       dispatch(AsyncActions.successFetch(ASYNC_OPERATION, data));
       dispatch(delayResetOperation());
     })
-    .catch(error => {
+    .catch((error) => {
       console.error(error);
       dispatch(AsyncActions.errorFetch(ASYNC_OPERATION, error));
     });
@@ -51,11 +51,11 @@ export const exchangeOperation = formData => (dispatch, getState) => {
   const sourceAccount = selAccount(state);
 
   return exchange({ formData, keypair, sourceAccount })
-    .then(data => {
+    .then((data) => {
       dispatch(AsyncActions.successFetch(ASYNC_OPERATION, data));
       dispatch(delayResetOperation());
     })
-    .catch(error => {
+    .catch((error) => {
       console.error(error);
       dispatch(AsyncActions.errorFetch(ASYNC_OPERATION, error));
     });
@@ -73,10 +73,10 @@ export const getDepositAddress = asset => (dispatch, getState) => {
   // TODO Manage native
 
   return get({ asset, keypair })
-    .then(depositAddress => {
+    .then((depositAddress) => {
       dispatch(AsyncActions.successFetch(ASYNC_GET_DEPOSIT, depositAddress));
     })
-    .catch(error => {
+    .catch((error) => {
       console.error(error);
       dispatch(AsyncActions.errorFetch(ASYNC_GET_DEPOSIT, error));
     });

@@ -11,7 +11,7 @@ const styles = {
 function BalanceCurrency({ balance, knownAnchors }) {
   let assetSymbol = balance.asset_shortname;
   const knownAsset = findAsset(balance, knownAnchors);
-  if(knownAsset) {
+  if (knownAsset) {
     assetSymbol = knownAsset.symbol;
   }
   return (
