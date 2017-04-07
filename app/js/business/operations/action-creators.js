@@ -4,9 +4,9 @@ import {
 } from 'js/constants/asyncActions';
 import { AsyncActions } from 'js/helpers/asyncActions';
 import { setActionMode } from 'js/business/ui/actions';
-import { selKeypair } from 'js/business/account/selectors';
+import { selAccount, selKeypair } from 'js/business/account/selectors';
 
-import { Wilson } from 'stellar-toolkit';
+import { StellarOperations, Wilson } from 'stellar-toolkit';
 
 export const OPERATIONS = {
   SEND: 'send',
@@ -25,12 +25,38 @@ export const delayResetOperation = () => (dispatch) => {
   }, 5000);
 };
 
-export const sendOperation = formData => (dispatch) => {
+export const sendOperation = formData => (dispatch, getState) => {
   dispatch(AsyncActions.startFetch(ASYNC_OPERATION));
-  setTimeout(() => {
-    dispatch(AsyncActions.successFetch(ASYNC_OPERATION, `Send success :${JSON.stringify(formData)}`));
-    dispatch(delayResetOperation());
-  }, 2000);
+  const state = getState();
+  const keypair = selKeypair(state);
+  const sourceAccount = selAccount(state);
+
+  return Wilson.anchorWithdraw({
+    code: formData.asset.getCode(),
+    issuer: formData.asset.getIssuer(),
+    address: formData.destination,
+  })
+    .then(withdrawAddress =>
+      StellarOperations.sendPayment({
+        asset: formData.asset,
+        destination: withdrawAddress.account_id,
+        amount: formData.amount,
+        memo: {
+          type: withdrawAddress.memo_type,
+          value: withdrawAddress.memo,
+        },
+      })({
+        keypair,
+        sourceAccount,
+      }))
+    .then(data => {
+      dispatch(AsyncActions.successFetch(ASYNC_OPERATION, data));
+      dispatch(delayResetOperation());
+    })
+    .catch(error => {
+      console.error(error);
+      dispatch(AsyncActions.errorFetch(ASYNC_OPERATION, error));
+    });
 };
 
 
@@ -53,11 +79,14 @@ export const getDepositAddress = asset => (dispatch, getState) => {
   const keypair = selKeypair(state);
   // TODO Manage native
 
-  Wilson.anchorDeposit({
+  return Wilson.anchorDeposit({
     code: asset.getCode(),
     issuer: asset.getIssuer(),
     address: keypair.publicKey(),
   }).then(depositAddress => {
     dispatch(AsyncActions.successFetch(ASYNC_GET_DEPOSIT, depositAddress));
-  });
+  }).catch(error => {
+      console.error(error);
+      dispatch(AsyncActions.errorFetch(ASYNC_GET_DEPOSIT, error));
+    });
 };

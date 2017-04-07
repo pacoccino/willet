@@ -11,9 +11,9 @@ class LaunchedOperation extends React.Component {
     if (operation.isLoading) {
       operationInfo = <p>Processing ...</p>;
     } else if (operation.data) {
-      operationInfo = <p>{operation.data}</p>;
+      operationInfo = <p>Success !</p>;
     } else if (operation.error) {
-      operationInfo = <p>{operation.error}</p>;
+      operationInfo = <p>Error...</p>;
     }
 
     return (

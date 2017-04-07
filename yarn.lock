@@ -834,6 +834,12 @@ babel-plugin-transform-regenerator@^6.22.0:
   dependencies:
     regenerator-transform "0.9.8"
 
+babel-plugin-transform-runtime@^6.23.0:
+  version "6.23.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-runtime/-/babel-plugin-transform-runtime-6.23.0.tgz#88490d446502ea9b8e7efb0fe09ec4d99479b1ee"
+  dependencies:
+    babel-runtime "^6.22.0"
+
 babel-plugin-transform-strict-mode@^6.22.0:
   version "6.22.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-strict-mode/-/babel-plugin-transform-strict-mode-6.22.0.tgz#e008df01340fdc87e959da65991b7e05970c8c7c"
@@ -969,7 +975,7 @@ babel-runtime@^4.7.16:
   dependencies:
     core-js "^0.6.1"
 
-babel-runtime@^6.18.0, babel-runtime@^6.22.0:
+babel-runtime@^6.18.0, babel-runtime@^6.22.0, babel-runtime@^6.23.0:
   version "6.23.0"
   resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.23.0.tgz#0a9489f144de70efb3ce4300accdb329e2fc543b"
   dependencies:
@@ -5169,7 +5175,7 @@ stellar-base@^0.7.4:
   optionalDependencies:
     ed25519 "0.0.4"
 
-stellar-sdk@^0.7.2, stellar-sdk@^0.7.3:
+stellar-sdk@^0.7.3:
   version "0.7.3"
   resolved "https://registry.yarnpkg.com/stellar-sdk/-/stellar-sdk-0.7.3.tgz#78059afa29e1d1c3b97f01354414a90cbd09d929"
   dependencies:
@@ -5184,11 +5190,13 @@ stellar-sdk@^0.7.2, stellar-sdk@^0.7.3:
     toml "^2.3.0"
     urijs "1.18.4"
 
-stellar-toolkit@^0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/stellar-toolkit/-/stellar-toolkit-0.1.4.tgz#07ec08c5d732aa82da738cc011ee2b0f7a1f9708"
+stellar-toolkit@0.1.9:
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/stellar-toolkit/-/stellar-toolkit-0.1.9.tgz#a3013a5ed37cfb6cdbcc8c14a10e20d11a78e643"
   dependencies:
+    babel-plugin-transform-runtime "^6.23.0"
     babel-preset-latest "^6.24.0"
+    babel-runtime "^6.23.0"
     chai "^3.5.0"
     crypto-js "^3.1.9-1"
     decimal.js "^7.1.1"
