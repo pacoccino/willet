@@ -13,8 +13,18 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onSubmit(values, d, props) {
-    dispatch(exchangeOperation(values));
-    props.reset();
+    const asset_source = props.balances.find(b => b.asset_uuid === values.fromCurrency).asset;
+    const asset_destination = props.balances.find(b => b.asset_uuid === values.toCurrency).asset;
+    const formData = {
+      asset_source,
+      asset_destination,
+      amount_destination: values.fromAmount,
+      max_amount: values.toAmount,
+    };
+    return dispatch(exchangeOperation(formData))
+      .then(() => {
+        props.reset();
+      });
   },
 });
 

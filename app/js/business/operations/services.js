@@ -28,4 +28,14 @@ export const send = ({ formData, keypair, sourceAccount }) =>
       sourceAccount,
     }));
 
-export const exchange = () => Promise.resolve();
+export const exchange = ({ formData, keypair, sourceAccount }) =>
+  StellarOperations.sendPathPayment({
+    asset_source: formData.asset_source,
+    asset_destination: formData.asset_destination,
+    destination: keypair.publicKey(),
+    amount_destination: formData.amount_destination,
+    max_amount: formData.max_amount,
+  })({
+    keypair,
+    sourceAccount,
+  });
