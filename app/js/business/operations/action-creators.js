@@ -1,13 +1,13 @@
-// import * as StellarToolkit from 'stellar-toolkit';
-
 import {
   ASYNC_OPERATION,
   ASYNC_GET_DEPOSIT,
 } from 'js/constants/asyncActions';
 import { AsyncActions } from 'js/helpers/asyncActions';
 import { setActionMode } from 'js/business/ui/actions';
+import { selKeypair } from 'js/business/account/selectors';
 
-// const { StellarOperations, StellarServer, StellarTools } = StellarToolkit;
+import { Wilson } from 'stellar-toolkit';
+
 export const OPERATIONS = {
   SEND: 'send',
   RECEIVE: 'receive',
@@ -47,14 +47,17 @@ export const resetDepositAddress = () => (dispatch) => {
   dispatch(setActionMode(null));
 };
 
-export const getDepositAddress = asset => (dispatch) => {
+export const getDepositAddress = asset => (dispatch, getState) => {
   dispatch(AsyncActions.startFetch(ASYNC_GET_DEPOSIT));
-  setTimeout(() => {
-    const depositAddress = {
-      type: 'stellar',
-      address: 'GDG4LKMTODR227EQQXKHAWIOYBLNGXRJEW6TJTNQ766UUGVMFWDGAVT6',
-      asset,
-    };
+  const state = getState();
+  const keypair = selKeypair(state);
+  // TODO Manage native
+
+  Wilson.anchorDeposit({
+    code: asset.getCode(),
+    issuer: asset.getIssuer(),
+    address: keypair.publicKey(),
+  }).then(depositAddress => {
     dispatch(AsyncActions.successFetch(ASYNC_GET_DEPOSIT, depositAddress));
-  }, 2000);
+  });
 };

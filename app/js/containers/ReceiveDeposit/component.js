@@ -6,7 +6,7 @@ class ReceiveDeposit extends React.Component {
     return (
       <img
         src={`http://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=${depositAddress.type}:${depositAddress.address}`}
-        alt={`${depositAddress.type}:${depositAddress.address}`}
+        alt={`${depositAddress.type}:${depositAddress.deposit_address}`}
       />
     );
   }
@@ -27,7 +27,7 @@ class ReceiveDeposit extends React.Component {
       operationInfo = (
         <div>
           <p>Send a payment to :</p>
-          <p>{depositAddress.address}</p>
+          <p>{depositAddress.deposit_address}</p>
           {this.getQRCode(depositAddress)}
         </div>
       );
