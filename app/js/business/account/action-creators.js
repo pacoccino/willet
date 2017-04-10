@@ -8,26 +8,29 @@ import * as AccountActions from './actions';
 
 export const setPublicAddress = address => (dispatch) => {
   dispatch(AsyncActions.startLoading(ASYNC_FETCH_ACCOUNT));
-  const isSeed = StellarTools.validSeed(address);
 
-  if (isSeed) {
-    const keypair = StellarTools.KeypairInstance({ secretSeed: address });
+  return Promise.resolve(address).then(address => {
+    const isSeed = StellarTools.validSeed(address);
+    if (isSeed) {
+      return Keypair.fromSecret(address);
+    }
+    const isPublicKey = StellarTools.validPk(address);
+    if (isPublicKey) {
+      return Keypair.fromPublicKey(address);
+    }
+    return StellarTools.resolveAddress(address)
+      .then(resolved => {
+        dispatch(AccountActions.setFederationName(address));
+        return Keypair.fromPublicKey(resolved.account_id)
+      });
+  }).then(keypair => {
     dispatch(AccountActions.setKeypair(keypair));
     dispatch(AsyncActions.stopLoading(ASYNC_FETCH_ACCOUNT));
-    return Promise.resolve();
-  }
-
-  return StellarTools.resolveAddress(address)
-    .then((resolved) => {
-      const keypair = StellarTools.KeypairInstance({ publicKey: resolved.account_id });
-      dispatch(AccountActions.setKeypair(keypair));
-      dispatch(AsyncActions.stopLoading(ASYNC_FETCH_ACCOUNT));
-    })
-    .catch((e) => {
-      console.error(e);
-      dispatch(AsyncActions.stopLoading(ASYNC_FETCH_ACCOUNT));
-      throw e;
-    });
+  }).catch((e) => {
+    console.error(e);
+    dispatch(AsyncActions.stopLoading(ASYNC_FETCH_ACCOUNT));
+    throw e;
+  });
 };
 
 export const setPrivateSecret = secret => (dispatch, getState) => {
@@ -61,5 +64,5 @@ export const unsetPrivateSecret = () => (dispatch, getState) => {
 };
 
 export const unsetAccount = () => (dispatch) => {
-  dispatch(AccountActions.setKeypair(null));
+  dispatch(AccountActions.resetAccount());
 };

@@ -1,11 +1,11 @@
 import * as types from './actions';
 import { createReducer } from '../../helpers/redux';
 
-
 const initialState = {
   error: null,
   account: null,
   keypair: null,
+  stellar_address: null,
 };
 
 function resetAccount(state) {
@@ -13,6 +13,7 @@ function resetAccount(state) {
     ...state,
     account: null,
     keypair: null,
+    stellar_address: null,
   };
 }
 function setKeypair(state, action) {
@@ -27,8 +28,16 @@ function setAccount(state, action) {
     account: action.account,
   };
 }
+function setFederationName(state, action) {
+  return {
+    ...state,
+    stellar_address: action.stellar_address,
+  };
+}
+
 export default createReducer(initialState, {
   [types.RESET_ACCOUNT]: resetAccount,
   [types.SET_KEYPAIR]: setKeypair,
   [types.SET_ACCOUNT]: setAccount,
+  [types.SET_FEDERATION_ADDRESS]: setFederationName,
 });

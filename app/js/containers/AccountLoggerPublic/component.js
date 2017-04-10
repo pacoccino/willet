@@ -11,7 +11,6 @@ class AccountLoggerPublic extends React.Component {
       addressStatus: null,
       addressResolving: null,
     };
-
     this.debouncedValidate = debounce(this.validateAddress, 300);
   }
 
@@ -34,15 +33,17 @@ class AccountLoggerPublic extends React.Component {
       loggedPublic,
       unsetAccount,
       keypair,
+      federationName,
       handleSubmit,
       dirty,
       submitting,
     } = this.props;
 
     if (loggedPublic) {
+      const displayedName = federationName || keypair.publicKey();
       return (
         <div>
-          <p>{keypair.publicKey()}</p>
+          <p>{displayedName}</p>
           <button onClick={unsetAccount}>
             Disconnect
           </button>
@@ -77,6 +78,7 @@ AccountLoggerPublic.propTypes = {
   loggedPublic: PropTypes.bool,
   isAccountLoading: PropTypes.bool,
   keypair: PropTypes.object,
+  federationName: PropTypes.string,
   ...propTypes,
 };
 

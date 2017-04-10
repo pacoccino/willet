@@ -6,6 +6,7 @@ import { asyncIsLoadingSelector } from '../../helpers/asyncActions/selectors';
 import { ACCOUNT_STATE_KEY } from '../../constants/reducerKeys';
 
 export const selAccount = selectProperty([ACCOUNT_STATE_KEY, 'account'], null);
+export const selFederationName = selectProperty([ACCOUNT_STATE_KEY, 'stellar_address'], null);
 export const setAccountLoading = asyncIsLoadingSelector(ASYNC_FETCH_ACCOUNT);
 export const selKeypair = selectProperty([ACCOUNT_STATE_KEY, 'keypair'], null);
 

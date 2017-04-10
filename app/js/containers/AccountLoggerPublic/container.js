@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
-import { selLoggedPublic, setAccountLoading, selKeypair } from 'js/business/account/selectors';
+import { selLoggedPublic, setAccountLoading, selKeypair, selFederationName } from 'js/business/account/selectors';
 import { setPublicAddress, unsetAccount } from 'js/business/account/action-creators';
 import Component from './component';
 
@@ -11,6 +11,7 @@ const mapStateToProps = state => ({
   loggedPublic: selLoggedPublic(state),
   isAccountLoading: setAccountLoading(state),
   keypair: selKeypair(state),
+  federationName: selFederationName(state),
 });
 
 const mapDispatchToProps = dispatch => ({
