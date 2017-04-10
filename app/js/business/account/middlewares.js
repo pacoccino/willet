@@ -19,11 +19,11 @@ const stellarStreamerMiddleware = store => next => (action) => {
       break;
     }
     case actions.SET_ACCOUNT: {
-      if(!action.account) return;
+      if (!action.account) return;
       const state = store.getState();
       const knownAnchors = selKnownAnchors(state);
       // Add wilson info to balance and remove unknown assets
-      action.account.balances = action.account.balances.map(b =>
+      action.account.balances = action.account.balances.map(b => // eslint-disable no-param-reassign
         Object.assign({}, b, {
           knownAsset: findAsset(b, knownAnchors),
         }))

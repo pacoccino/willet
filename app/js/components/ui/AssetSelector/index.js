@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 export class AssetSelector extends React.Component {
   componentWillMount() {
-    if(this.props.assets.length) {
+    if (this.props.assets.length) {
       this.props.input.onChange(this.props.assets[0].uuid);
     }
   }
@@ -24,7 +24,7 @@ export class AssetSelector extends React.Component {
         {options.map(o =>
           <option value={o.value} key={o.value}>
             {o.label}
-          </option>
+          </option>,
         )}
       </select>
     );

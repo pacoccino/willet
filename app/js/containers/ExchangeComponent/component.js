@@ -10,18 +10,21 @@ class ExchangeComponent extends React.Component {
   }
 
   onChangeToAmount(e, newValue) {
-
     const {
       sourceAssetUuid,
       destinationAssetUuid,
     } = this.props.formValues;
     const account_id = this.props.account.id;
 
-    const sourceAsset = this.getExchangeableAssets().find(a => a.uuid === sourceAssetUuid);
-    const destinationAsset = this.getExchangeableAssets().find(a => a.uuid === destinationAssetUuid);
+    const sourceAsset = this.getExchangeableAssets()
+      .find(a => a.uuid === sourceAssetUuid);
+    const destinationAsset = this.getExchangeableAssets()
+      .find(a => a.uuid === destinationAssetUuid);
 
     StellarStats.getExchangeRateFromAutoPath({
-      account_id, sourceAsset, destinationAsset,
+      account_id,
+      sourceAsset,
+      destinationAsset,
       destinationAmount: newValue,
     }).then(r => this.props.change('sendMax', r.sendMax));
   }

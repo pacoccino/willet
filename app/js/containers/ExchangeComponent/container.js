@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getFormValues,  reduxForm } from 'redux-form';
+import { getFormValues, reduxForm } from 'redux-form';
 
 import { selAccount, selBalances } from 'js/business/account/selectors';
 import { exchangeOperation } from 'js/business/operations/action-creators';
@@ -15,8 +15,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onSubmit(values, d, props) {
-    const asset_source = props.balances.find(b => b.asset.uuid === values.sourceAssetUuid).asset;
-    const asset_destination = props.balances.find(b => b.asset.uuid === values.destinationAssetUuid).asset;
+    const asset_source = props.balances
+      .find(b => b.asset.uuid === values.sourceAssetUuid).asset;
+    const asset_destination = props.balances
+      .find(b => b.asset.uuid === values.destinationAssetUuid).asset;
     const formData = {
       asset_source,
       asset_destination,
