@@ -9,7 +9,7 @@ const styles = {
 };
 
 function BalanceCurrency({ balance, knownAnchors }) {
-  let assetSymbol = balance.asset_shortname;
+  let assetSymbol = balance.asset.shortName;
   const knownAsset = findAsset(balance, knownAnchors);
   if (knownAsset) {
     assetSymbol = knownAsset.symbol;

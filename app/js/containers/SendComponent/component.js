@@ -6,10 +6,10 @@ class SendComponent extends React.Component {
     return this.props.balances.map(
       balance =>
         <option
-          key={balance.asset_uuid}
-          value={balance.asset_uuid}
+          key={balance.asset.uuid}
+          value={balance.asset.uuid}
         >
-          {balance.asset_shortname}
+          {balance.asset.shortName}
         </option>,
     );
   }

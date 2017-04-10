@@ -5190,9 +5190,9 @@ stellar-sdk@^0.7.3:
     toml "^2.3.0"
     urijs "1.18.4"
 
-stellar-toolkit@0.1.9:
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/stellar-toolkit/-/stellar-toolkit-0.1.9.tgz#a3013a5ed37cfb6cdbcc8c14a10e20d11a78e643"
+stellar-toolkit@0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/stellar-toolkit/-/stellar-toolkit-0.2.0.tgz#63433d9b1f91fa57f2474c632ca37e7f768cb4cc"
   dependencies:
     babel-plugin-transform-runtime "^6.23.0"
     babel-preset-latest "^6.24.0"
