@@ -1,9 +1,9 @@
-import { StellarTools } from 'stellar-toolkit';
+import { StellarTools, StellarAccountManager } from 'stellar-toolkit';
 import { Keypair } from 'stellar-sdk';
 
 import { AsyncActions } from 'js/helpers/asyncActions';
 import { ASYNC_FETCH_ACCOUNT } from 'js/constants/asyncActions';
-import { selKeypair } from 'js/business/account/selectors';
+import { selKeypair, selAccount } from 'js/business/account/selectors';
 import * as AccountActions from './actions';
 
 export const setPublicAddress = address => (dispatch) => {
@@ -32,13 +32,21 @@ export const setPublicAddress = address => (dispatch) => {
 
 export const setPrivateSecret = secret => (dispatch, getState) => {
   const state = getState();
+  const account = selAccount(state);
   const currentKeypair = selKeypair(state);
   try {
-    const newKeypair = Keypair.fromSecret(secret);
-    if (currentKeypair && newKeypair.publicKey() !== currentKeypair.publicKey()) {
-      throw new Error('Keypair from secret is different from current account');
+    const isSeed = StellarTools.validSeed(secret);
+    if(isSeed) {
+      const newKeypair = Keypair.fromSecret(secret);
+      if (currentKeypair && newKeypair.publicKey() !== currentKeypair.publicKey()) {
+        throw new Error('Keypair from secret is different from current account');
+      }
+      return dispatch(AccountActions.setKeypair(newKeypair));
     }
-    dispatch(AccountActions.setKeypair(newKeypair));
+
+    const seed = StellarAccountManager.extractSeed(account, secret);
+    const newKeypair = Keypair.fromSecret(seed);
+    return dispatch(AccountActions.setKeypair(newKeypair));
   } catch (e) {
     console.error(e);
     throw e;
