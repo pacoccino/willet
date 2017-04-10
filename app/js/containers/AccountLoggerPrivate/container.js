@@ -16,8 +16,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch(unsetPrivateSecret());
   },
   onSubmit(values, d, props) {
-    props.reset();
-    return dispatch(setPrivateSecret(values.secret));
+    return dispatch(setPrivateSecret(values.secret)).then(() => {
+      props.reset();
+    });
   },
 });
 

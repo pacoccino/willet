@@ -6,7 +6,7 @@ import ReceiveDeposit from '../ReceiveDeposit';
 
 class ReceiveComponent extends React.Component {
   getReceivableAssets() {
-    return this.props.balances.filter(b => !!b.knownAsset).map(b => b.asset);
+    return this.props.balances.map(b => b.asset);
   }
 
   render() {

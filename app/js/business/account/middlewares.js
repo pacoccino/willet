@@ -22,10 +22,12 @@ const stellarStreamerMiddleware = store => next => (action) => {
       if(!action.account) return;
       const state = store.getState();
       const knownAnchors = selKnownAnchors(state);
+      // Add wilson info to balance and remove unknown assets
       action.account.balances = action.account.balances.map(b =>
         Object.assign({}, b, {
           knownAsset: findAsset(b, knownAnchors),
-        }));
+        }))
+        .filter(b => !!b.knownAsset);
       break;
     }
     case actions.SET_KEYPAIR: {

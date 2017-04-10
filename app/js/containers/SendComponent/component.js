@@ -5,7 +5,7 @@ import { AssetSelector } from 'js/components/ui/AssetSelector';
 
 class SendComponent extends React.Component {
   getSendableAssets() {
-    return this.props.balances.filter(b => !!b.knownAsset).map(b => b.asset);
+    return this.props.balances.map(b => b.asset);
   }
 
   render() {
