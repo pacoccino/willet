@@ -9,6 +9,7 @@ export const get = ({ asset, keypair }) =>
     address: keypair.publicKey(),
   });
 
+// TODO allow to send to stellar account
 export const send = ({ formData, keypair, sourceAccount }) =>
   Wilson.anchorWithdraw({
     code: formData.asset.getCode(),

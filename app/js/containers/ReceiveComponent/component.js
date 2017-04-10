@@ -1,19 +1,12 @@
 import React, { PropTypes } from 'react';
 import { Field, propTypes } from 'redux-form';
+import { AssetSelector } from 'js/components/ui/AssetSelector';
 
 import ReceiveDeposit from '../ReceiveDeposit';
 
 class ReceiveComponent extends React.Component {
   getReceivableAssets() {
-    return this.props.balances.map(
-      balance =>
-        <option
-          key={balance.asset.uuid}
-          value={balance.asset.uuid}
-        >
-          {balance.asset.shortName}
-        </option>,
-    );
+    return this.props.balances.filter(b => !!b.knownAsset).map(b => b.asset);
   }
 
   render() {
@@ -33,10 +26,9 @@ class ReceiveComponent extends React.Component {
           <label htmlFor="currency">Currency</label>
           <Field
             name="currency"
-            component="select"
-          >
-            {this.getReceivableAssets()}
-          </Field>
+            component={AssetSelector}
+            assets={this.getReceivableAssets()}
+          />
           <button type="submit" disabled={submitting}>
             Generate address
           </button>
