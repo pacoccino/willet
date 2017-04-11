@@ -29,10 +29,9 @@ export const sendOperation = formData => (dispatch, getState) => {
   dispatch(AsyncActions.startFetch(ASYNC_OPERATION));
   const state = getState();
   const keypair = selKeypair(state);
-  const sourceAccount = selAccount(state);
   // TODO Manage native
 
-  return send({ formData, keypair, sourceAccount })
+  return send({ formData, keypair })
     .then((data) => {
       dispatch(AsyncActions.successFetch(ASYNC_OPERATION, data));
       dispatch(delayResetOperation());
@@ -48,9 +47,8 @@ export const exchangeOperation = formData => (dispatch, getState) => {
   dispatch(AsyncActions.startFetch(ASYNC_OPERATION));
   const state = getState();
   const keypair = selKeypair(state);
-  const sourceAccount = selAccount(state);
 
-  return exchange({ formData, keypair, sourceAccount })
+  return exchange({ formData, keypair })
     .then((data) => {
       dispatch(AsyncActions.successFetch(ASYNC_OPERATION, data));
       dispatch(delayResetOperation());

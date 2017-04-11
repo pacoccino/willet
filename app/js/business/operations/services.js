@@ -10,7 +10,7 @@ export const get = ({ asset, keypair }) =>
   });
 
 // TODO allow to send to stellar account
-export const send = ({ formData, keypair, sourceAccount }) =>
+export const send = ({ formData, keypair }) =>
   Wilson.anchorWithdraw({
     code: formData.asset.getCode(),
     issuer: formData.asset.getIssuer(),
@@ -24,19 +24,13 @@ export const send = ({ formData, keypair, sourceAccount }) =>
         type: withdrawAddress.memo_type,
         value: withdrawAddress.memo,
       },
-    })({
-      keypair,
-      sourceAccount,
-    }));
+    })(keypair));
 
-export const exchange = ({ formData, keypair, sourceAccount }) =>
+export const exchange = ({ formData, keypair }) =>
   StellarOperations.sendPathPayment({
     asset_source: formData.asset_source,
     asset_destination: formData.asset_destination,
     destination: keypair.publicKey(),
     amount_destination: formData.amount_destination,
     max_amount: formData.max_amount,
-  })({
-    keypair,
-    sourceAccount,
-  });
+  })(keypair);
