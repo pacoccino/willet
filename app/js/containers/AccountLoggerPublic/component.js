@@ -11,6 +11,7 @@ class AccountLoggerPublic extends React.Component {
       addressStatus: null,
       addressResolving: null,
     };
+    // Validation disabled as requiring only our federation username
     this.debouncedValidate = debounce(this.validateAddress, 300);
   }
 
@@ -22,6 +23,7 @@ class AccountLoggerPublic extends React.Component {
       });
     });
   }
+
   onChange(e, value) {
     this.setState({ addressResolving: true, addressStatus: null });
     this.debouncedValidate(value);
@@ -56,10 +58,9 @@ class AccountLoggerPublic extends React.Component {
         <form onSubmit={handleSubmit}>
           <p>Username</p>
           <Field
-            name="publicAddress"
+            name="username"
             component="input"
             type="text"
-            onChange={::this.onChange}
           />
           <button type="submit" disabled={submitting}>
             Login

@@ -1,12 +1,32 @@
 import { StellarTools, StellarAccountManager } from 'stellar-toolkit';
 import { Keypair } from 'stellar-sdk';
+import { FEDERATION_DOMAIN } from 'js/config';
 
 import { AsyncActions } from 'js/helpers/asyncActions';
 import { ASYNC_FETCH_ACCOUNT } from 'js/constants/asyncActions';
 import { selKeypair, selAccount } from 'js/business/account/selectors';
 import * as AccountActions from './actions';
 
-export const setPublicAddress = addressToResolve => (dispatch) => {
+export const setUsername = username => (dispatch) => {
+  dispatch(AsyncActions.startLoading(ASYNC_FETCH_ACCOUNT));
+  const stellar_address = `${username}*${FEDERATION_DOMAIN}`;
+
+  return StellarTools.resolveAddress(stellar_address)
+    .then((resolved) => {
+      const keypair = Keypair.fromPublicKey(resolved.account_id);
+      dispatch(AccountActions.setFederationName(address));
+      dispatch(AccountActions.setKeypair(keypair));
+      dispatch(AsyncActions.stopLoading(ASYNC_FETCH_ACCOUNT));
+      return keypair;
+    })
+    .catch((e) => {
+      console.error(e);
+      dispatch(AsyncActions.stopLoading(ASYNC_FETCH_ACCOUNT));
+      throw e;
+    });
+};
+
+export const setPublicAddressOmni = addressToResolve => (dispatch) => {
   dispatch(AsyncActions.startLoading(ASYNC_FETCH_ACCOUNT));
 
   return Promise.resolve(addressToResolve).then((address) => {
