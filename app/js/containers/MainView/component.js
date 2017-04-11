@@ -1,4 +1,6 @@
 import React, { PropTypes } from 'react';
+import * as routes from 'js/constants/routes';
+import { Link } from 'react-router-dom';
 
 import AccountLoggerPublic from '../AccountLoggerPublic';
 import AccountLoggerPrivate from '../AccountLoggerPrivate';
@@ -21,6 +23,7 @@ function MainView({ account, loggedPrivate, loggedPublic, operationLaunched }) {
   const offlineView = (
     <div>
       <AccountLoggerPublic />
+      <Link to={routes.Register}>Register</Link>
     </div>
   );
   const publicView = (

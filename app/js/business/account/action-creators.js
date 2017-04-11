@@ -1,4 +1,4 @@
-import { StellarTools, StellarAccountManager } from 'stellar-toolkit';
+import { StellarTools, StellarAccountManager, Federation } from 'stellar-toolkit';
 import { Keypair } from 'stellar-sdk';
 import { FEDERATION_DOMAIN } from 'js/config';
 
@@ -14,7 +14,7 @@ export const setUsername = username => (dispatch) => {
   return StellarTools.resolveAddress(stellar_address)
     .then((resolved) => {
       const keypair = Keypair.fromPublicKey(resolved.account_id);
-      dispatch(AccountActions.setFederationName(address));
+      dispatch(AccountActions.setFederationName(username));
       dispatch(AccountActions.setKeypair(keypair));
       dispatch(AsyncActions.stopLoading(ASYNC_FETCH_ACCOUNT));
       return keypair;
@@ -53,7 +53,7 @@ export const setPublicAddressOmni = addressToResolve => (dispatch) => {
   });
 };
 
-export const setPrivateSecret = secret => (dispatch, getState) => {
+export const setPrivateSecret = secret => async (dispatch, getState) => {
   const state = getState();
   const account = selAccount(state);
   const currentKeypair = selKeypair(state);
@@ -86,3 +86,11 @@ export const unsetPrivateSecret = () => (dispatch, getState) => {
 export const unsetAccount = () => (dispatch) => {
   dispatch(AccountActions.resetAccount());
 };
+
+export const createAccount = ({ username, password }) => dispatch =>
+  Federation.federationCreate({
+    stellar_address: `${username}*${FEDERATION_DOMAIN}`,
+    password,
+  }).then(() => {
+
+  });
