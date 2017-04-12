@@ -1,0 +1,43 @@
+@import '~styles/attributes';
+
+.container {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+
+  .title {
+    font-size: 5rem;
+  }
+  .subtitle {
+    font-size: 2rem;
+    color: $c-rose;
+    text-align: center;
+  }
+}
+
+.description {
+  display: flex;
+  justify-content: center;
+  .text {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+}
+
+.goBackContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  .text {
+    font-size: 0.8rem;
+  }
+}

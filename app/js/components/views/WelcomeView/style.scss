@@ -1,11 +1,13 @@
 @import '~styles/attributes';
 
 .container {
+  display: flex;
   flex-grow: 1;
   flex-direction: column;
 }
 
 .titleContainer {
+  display: flex;
   flex-grow: 1;
   flex-direction: column;
   justify-content: center;
@@ -23,9 +25,10 @@
 }
 
 .gotoContainer {
+  display: flex;
   flex-grow: 0;
   flex-direction: column;
-  bottom: 1rem;
+  bottom: 0;
   justify-content: center;
   .text {
     text-align: center;
@@ -38,8 +41,8 @@
 
 .aboutContainer {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
+  top: 0;
+  left: 0;
   .text {
     font-size: 0.8rem;
   }
@@ -48,8 +51,8 @@
 
 .loginContainer {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 0;
+  right: 0;
   .text {
     font-size: 0.8rem;
   }

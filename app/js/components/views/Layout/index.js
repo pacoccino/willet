@@ -4,7 +4,9 @@ import styles from './style.scss';
 
 const Layout = ({ children }) =>
   <div className={styles.layoutContainer}>
-    {children}
+    <div className={styles.margin}>
+      {children}
+    </div>
   </div>;
 
 Layout.propTypes = {
