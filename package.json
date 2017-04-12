@@ -1,6 +1,6 @@
 {
   "name": "willet",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Online multi-cryptocurrencies wallet",
   "scripts": {
     "dev": "webpack-dev-server --devtool source-map --inline --content-base public --history-api-fallback --config webpack.config.js",
