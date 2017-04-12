@@ -28,6 +28,9 @@ module.exports = createConfig([
   addPlugins(plugins.basePlugins),
   defineConstants({
     'process.env.NODE_ENV': process.env.NODE_ENV || 'development',
+    'process.env.FEDERATION_DOMAIN': process.env.FEDERATION_DOMAIN,
+    'process.env.STELLAR_NETWORK': process.env.STELLAR_NETWORK,
+    'process.env.API_SERVER': process.env.API_SERVER,
   }),
   resolveAliases({
     styles: appDir('styles'),

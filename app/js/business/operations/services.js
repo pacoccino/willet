@@ -1,7 +1,5 @@
 import { StellarOperations, Wilson } from 'stellar-toolkit';
 
-// TODO get source account at sending
-
 export const get = ({ asset, keypair }) =>
   Wilson.anchorDeposit({
     code: asset.getCode(),
@@ -9,7 +7,6 @@ export const get = ({ asset, keypair }) =>
     address: keypair.publicKey(),
   });
 
-// TODO allow to send to stellar account
 export const send = ({ formData, keypair }) =>
   Wilson.anchorWithdraw({
     code: formData.asset.getCode(),

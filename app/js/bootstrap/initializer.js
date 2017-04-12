@@ -15,19 +15,26 @@ class InitializerComponent extends React.Component {
     super();
     this.state = {
       ready: false,
+      error: null,
     };
   }
   componentWillMount() {
     Promise.all([
       this.props.getKnownAnchors(),
-      this.props.setKeypair(Keypair.fromSecret('SAQHSZFSQIIVWH4DL2D5PRF6BARWUVDELSM5RZMRGYFDQA2P2QMNGPF7')),
     ])
       .then(() => {
+        this.props.setKeypair(Keypair.fromSecret('SAQHSZFSQIIVWH4DL2D5PRF6BARWUVDELSM5RZMRGYFDQA2P2QMNGPF7'));
         this.setState(() => ({ ready: true }));
-      });
+      })
+      .catch(error => {
+        this.setState(() => ({ error }));
+      })
   }
 
   render() {
+    if(this.state.error) {
+      return <div>There was an error while loading the application.</div>;
+    }
     return this.state.ready ? this.props.children : <div>Loading</div>;
   }
 }
