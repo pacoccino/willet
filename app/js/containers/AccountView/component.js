@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 
+import ChangePassword from '../ChangePassword';
+
 const styles = {
   container: {
     display: 'flex',
@@ -18,6 +20,7 @@ function AccountView({ account, username }) {
     <div style={styles.container}>
       <p>{username}</p>
       <p>{account.id}</p>
+      <ChangePassword />
     </div>
   );
 }

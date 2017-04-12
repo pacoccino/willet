@@ -3,7 +3,7 @@ import { Keypair } from 'stellar-sdk';
 import config from 'js/config';
 
 import { AsyncActions } from 'js/helpers/asyncActions';
-import { ASYNC_FETCH_ACCOUNT } from 'js/constants/asyncActions';
+import { ASYNC_FETCH_ACCOUNT, ASYNC_CHANGE_PASSWORD } from 'js/constants/asyncActions';
 import { selKeypair, selAccount } from 'js/business/account/selectors';
 import * as AccountActions from './actions';
 
@@ -94,3 +94,19 @@ export const createAccount = ({ username, password }) => dispatch =>
   }).then(() => {
 
   });
+
+export const changePassword = ({ password }) => (dispatch, getState) => {
+  dispatch(AsyncActions.startLoading(ASYNC_CHANGE_PASSWORD));
+  const state = getState();
+  const currentKeypair = selKeypair(state);
+  const seed = currentKeypair.secret();
+
+  return StellarAccountManager.setAccountSeed(seed, password)
+    .then(() => {
+      dispatch(AsyncActions.stopLoading(ASYNC_CHANGE_PASSWORD));
+    }).catch((e) => {
+      console.error(e);
+      dispatch(AsyncActions.stopLoading(ASYNC_CHANGE_PASSWORD));
+      throw e;
+    });
+};
