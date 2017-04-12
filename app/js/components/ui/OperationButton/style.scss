@@ -1,0 +1,27 @@
+@import '~styles/attributes';
+
+.baseContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em;
+  border-radius: 10px;
+}
+
+.container{
+  composes: baseContainer;
+
+  background-color: $c-white;
+  color: $c-dark;
+
+  border: 2px solid $c-dark;
+}
+
+.disabledContainer {
+  composes: baseContainer;
+
+  background-color: $c-dark;
+  color: $c-white;
+
+  border: 2px solid $c-white;
+}

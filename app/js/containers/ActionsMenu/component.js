@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 
 import { OPERATIONS } from 'js/business/operations/action-creators';
+import OperationButton from 'js/components/ui/OperationButton';
 
 const styles = {
   container: {
@@ -14,24 +15,21 @@ const styles = {
 function ActionsMenu({ setActionMode, actionMode }) {
   return (
     <div style={styles.container}>
-      <button
+      <OperationButton
         onClick={() => setActionMode(OPERATIONS.EXCHANGE)}
         disabled={actionMode === OPERATIONS.EXCHANGE}
-      >
-        Exchange
-      </button>
-      <button
+        label="Exchange"
+      />
+      <OperationButton
         onClick={() => setActionMode(OPERATIONS.SEND)}
         disabled={actionMode === OPERATIONS.SEND}
-      >
-        Send
-      </button>
-      <button
+        label="Send"
+      />
+      <OperationButton
         onClick={() => setActionMode(OPERATIONS.RECEIVE)}
         disabled={actionMode === OPERATIONS.RECEIVE}
-      >
-        Receive
-      </button>
+        label="Receive"
+      />
     </div>
   );
 }

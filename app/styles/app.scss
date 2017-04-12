@@ -1,7 +1,14 @@
+@import 'reset';
+@import 'attributes';
+
 body {
-  background-color: #FFFFFF;
+  background-color: $c-dark;
+  color: $c-white;
+  font-family: $f-main;
 }
-html {font-size: 12px;}
+html {
+  font-size: $f-main-size;
+}
 
 #app {
   height: 100%;
