@@ -11,22 +11,33 @@ import { history } from './store';
 import Layout from '../components/views/Layout';
 import MainView from '../containers/MainView';
 import RegisterView from '../containers/RegisterView';
+import AccountView from '../containers/AccountView';
 import * as routes from '../constants/routes';
+import TopMenu from 'js/components/ui/TopMenu';
 
 const RouterContainer = ({ loggedPublic }) =>
   <ConnectedRouter history={history}>
     <Layout>
       {
         loggedPublic ?
-          <Route
-            component={MainView}
-            path={routes.Root}
-          />
+          <div>
+            <TopMenu />
+            <Switch>
+              <Route exact
+                     component={MainView}
+                     path={routes.Root}
+              />
+              <Route
+                component={AccountView}
+                path={routes.Account}
+              />
+            </Switch>
+          </div>
           :
           <Switch>
             <Route exact
-              component={MainView}
-              path={routes.Root}
+                   component={MainView}
+                   path={routes.Root}
             />
             <Route
               component={RegisterView}
