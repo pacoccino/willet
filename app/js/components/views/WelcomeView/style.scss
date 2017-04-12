@@ -1,0 +1,56 @@
+@import '~styles/attributes';
+
+.container {
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.titleContainer {
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.title {
+  font-size: 10rem;
+}
+.subtitle {
+  font-size: 2rem;
+  color: $c-rose;
+  text-align: center;
+}
+
+.gotoContainer {
+  flex-grow: 0;
+  flex-direction: column;
+  bottom: 1rem;
+  justify-content: center;
+  .text {
+    text-align: center;
+  }
+  .arrow {
+    text-align: center;
+  }
+}
+
+
+.aboutContainer {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  .text {
+    font-size: 0.8rem;
+  }
+}
+
+
+.loginContainer {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  .text {
+    font-size: 0.8rem;
+  }
+}

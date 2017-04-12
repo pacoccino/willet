@@ -10,11 +10,11 @@ html {
   font-size: $f-main-size;
 }
 
-#app {
-  height: 100%;
-  width: 100%;
+div {
+  display: flex;
 }
-.layout-container {
-  height: 100%;
-  width: 100%;
+
+a, a:hover, a:visited {
+  color: $c-white;
+  text-decoration: none;
 }

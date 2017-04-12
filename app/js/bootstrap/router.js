@@ -8,8 +8,8 @@ import { selLoggedPublic, selLoggedPrivate } from 'js/business/account/selectors
 
 import { history } from './store';
 
-import WelcomeView from '../components/views/WelcomeView';
 import Layout from '../components/views/Layout';
+import WelcomeView from '../components/views/WelcomeView';
 import MainView from '../containers/MainView';
 import OperationView from '../containers/OperationView';
 import RegisterView from '../containers/RegisterView';
