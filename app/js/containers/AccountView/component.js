@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 
 import ChangePassword from '../ChangePassword';
+import ChangeName from '../ChangeName';
 
 const styles = {
   container: {
@@ -12,22 +13,66 @@ const styles = {
   },
 };
 
-function AccountView({ account, username }) {
-  if (!account) {
-    return <div>Loading</div>;
+class AccountView extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      showSeed: false,
+    };
   }
-  return (
-    <div style={styles.container}>
-      <p>{username}</p>
-      <p>{account.id}</p>
-      <ChangePassword />
-    </div>
-  );
+
+  switchSeed() {
+    this.setState(state => ({
+      ...state,
+      showSeed: !state.showSeed,
+    }));
+  }
+
+  renderSeed() {
+    if(this.state.showSeed) {
+      return (
+        <div>
+          {this.props.keypair.secret()}
+          <button onClick={::this.switchSeed}>
+            Hide seed
+          </button>
+        </div>
+      );
+    }
+    return (
+      <div>
+        <button onClick={::this.switchSeed}>
+          Show seed
+        </button>
+      </div>
+    );
+  }
+  render() {
+    const { account, username, loggedPrivate } = this.props;
+    if (!account) {
+      return <div>Loading</div>;
+    }
+    return (
+      <div style={styles.container}>
+        <p>{username}</p>
+        <p>{account.id}</p>
+        {loggedPrivate &&
+        <div>
+          {this.renderSeed()}
+          <ChangeName />
+          <ChangePassword />
+        </div>
+        }
+      </div>
+    );
+  }
 }
 
 AccountView.propTypes = {
   account: PropTypes.object,
-  username: PropTypes.object,
+  keypair: PropTypes.object,
+  loggedPrivate: PropTypes.bool,
+  username: PropTypes.string,
 };
 
 export default AccountView;

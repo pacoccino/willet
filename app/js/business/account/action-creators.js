@@ -1,15 +1,15 @@
 import { StellarTools, StellarAccountManager, Federation } from 'stellar-toolkit';
 import { Keypair } from 'stellar-sdk';
-import config from 'js/config';
 
 import { AsyncActions } from 'js/helpers/asyncActions';
 import { ASYNC_FETCH_ACCOUNT, ASYNC_CHANGE_PASSWORD } from 'js/constants/asyncActions';
 import { selKeypair, selAccount } from 'js/business/account/selectors';
 import * as AccountActions from './actions';
+import { getStellarAddress } from './services';
 
 export const setUsername = username => (dispatch) => {
   dispatch(AsyncActions.startLoading(ASYNC_FETCH_ACCOUNT));
-  const stellar_address = `${username}*${config.FEDERATION_DOMAIN}`;
+  const stellar_address = getStellarAddress(username);
 
   return StellarTools.resolveAddress(stellar_address)
     .then((resolved) => {
@@ -89,7 +89,7 @@ export const unsetAccount = () => (dispatch) => {
 
 export const createAccount = ({ username, password }) => dispatch =>
   Federation.federationCreate({
-    stellar_address: `${username}*${config.FEDERATION_DOMAIN}`,
+    stellar_address: getStellarAddress(username),
     password,
   }).then(() => {
 
@@ -103,6 +103,23 @@ export const changePassword = ({ password }) => (dispatch, getState) => {
 
   return StellarAccountManager.setAccountSeed(seed, password)
     .then(() => {
+      dispatch(AsyncActions.stopLoading(ASYNC_CHANGE_PASSWORD));
+    }).catch((e) => {
+      console.error(e);
+      dispatch(AsyncActions.stopLoading(ASYNC_CHANGE_PASSWORD));
+      throw e;
+    });
+};
+export const changeUsername = (username) => (dispatch, getState) => {
+  dispatch(AsyncActions.startLoading(ASYNC_CHANGE_PASSWORD));
+  const state = getState();
+  const keypair = selKeypair(state);
+  const stellar_address = getStellarAddress(username);
+
+  return Federation.federationRegister({
+    stellar_address,
+    keypair,
+  }).then(() => {
       dispatch(AsyncActions.stopLoading(ASYNC_CHANGE_PASSWORD));
     }).catch((e) => {
       console.error(e);

@@ -1,10 +1,12 @@
 import { connect } from 'react-redux';
 
-import { selAccount, selFederationName } from 'js/business/account/selectors';
+import { selAccount, selKeypair, selFederationName, selLoggedPrivate } from 'js/business/account/selectors';
 import Component from './component';
 
 const mapStateToProps = state => ({
   account: selAccount(state),
+  loggedPrivate: selLoggedPrivate(state),
+  keypair: selKeypair(state),
   username: selFederationName(state),
 });
 
