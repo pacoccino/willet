@@ -25,7 +25,16 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
+function validate(values) {
+  const errors = {};
+  if(!values.username) {
+    errors.username = 'This field could not be empty';
+  }
+  return errors;
+}
+
 export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
   form: FORM_NAME,
   initialValues: {},
+  validate,
 })(Component));

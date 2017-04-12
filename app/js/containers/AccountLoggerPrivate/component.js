@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Field, propTypes } from 'redux-form';
+import Input from 'js/components/ui/Input';
 
 class AccountLoggerPrivate extends React.Component {
   render() {
@@ -29,11 +30,11 @@ class AccountLoggerPrivate extends React.Component {
     return (
       <div>
         <form onSubmit={handleSubmit}>
-          <p>Password</p>
           <Field
             name="secret"
-            component="input"
+            component={Input}
             type="text"
+            label="Password"
           />
           <button type="submit" disabled={pristine || submitting}>
             Set

@@ -18,7 +18,27 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
+const PASSWORD_MIN_LENGTH = 2;
+
+function validate(values) {
+  const errors = {};
+  if(!values.username) {
+    errors.username = 'You must enter a username';
+  }
+  if(!values.password) {
+    errors.password = 'You must enter a password';
+  }
+  if(values.password !== values.password_bis) {
+    errors.password_bis = 'Password mismatch';
+  }
+  if(values.password && values.password.length < PASSWORD_MIN_LENGTH) {
+    errors.password = 'Password too short';
+  }
+  return errors;
+}
+
 export default connect(null, mapDispatchToProps)(reduxForm({
   form: FORM_NAME,
   initialValues: {},
+  validate,
 })(Component));

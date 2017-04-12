@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { Field, propTypes } from 'redux-form';
 
 import { AssetSelector } from 'js/components/ui/AssetSelector';
+import Input from 'js/components/ui/Input';
 
 class SendComponent extends React.Component {
   getSendableAssets() {
@@ -18,11 +19,11 @@ class SendComponent extends React.Component {
     return (
       <div>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="amount">Amount</label>
           <Field
             name="amount"
-            component="input"
+            component={Input}
             type="number"
+            label="Amount"
           />
           <label htmlFor="currency">Currency</label>
           <Field
@@ -30,11 +31,11 @@ class SendComponent extends React.Component {
             component={AssetSelector}
             assets={this.getSendableAssets()}
           />
-          <label htmlFor="destination">Destination</label>
           <Field
             name="destination"
-            component="input"
+            component={Input}
             type="text"
+            label="Destination"
           />
           <button type="submit" disabled={pristine || submitting}>
             Send

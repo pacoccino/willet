@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { Field, propTypes } from 'redux-form';
 import { StellarStats } from 'stellar-toolkit';
 import { AssetSelector } from 'js/components/ui/AssetSelector';
+import Input from 'js/components/ui/Input';
 
 class ExchangeComponent extends React.Component {
 
@@ -39,11 +40,11 @@ class ExchangeComponent extends React.Component {
     return (
       <div>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="sendMax">From Amount</label>
           <Field
             name="sendMax"
-            component="input"
+            component={Input}
             type="number"
+            label="From Amount"
           />
           <label htmlFor="sourceAsset">From Currency</label>
           <Field
@@ -51,12 +52,12 @@ class ExchangeComponent extends React.Component {
             component={AssetSelector}
             assets={this.getExchangeableAssets()}
           />
-          <label htmlFor="destinationAmount">To Amount</label>
           <Field
             name="destinationAmount"
-            component="input"
+            component={Input}
             type="number"
             onChange={::this.onChangeToAmount}
+            label="To Amount"
           />
           <label htmlFor="destinationAsset">To Currency</label>
           <Field

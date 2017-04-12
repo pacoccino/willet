@@ -1,5 +1,6 @@
 import React from 'react';
 import { Field, propTypes } from 'redux-form';
+import Input from 'js/components/ui/Input';
 
 const styles = {
   container: {
@@ -15,17 +16,23 @@ function RegisterView({ handleSubmit, pristine, submitting }) {
   return (
     <div style={styles.container}>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username</label>
         <Field
           name="username"
-          component="input"
+          component={Input}
           type="text"
+          label="Username"
         />
-        <label htmlFor="password">Password</label>
         <Field
           name="password"
-          component="input"
+          component={Input}
           type="password"
+          label="Password"
+        />
+        <Field
+          name="password_bis"
+          component={Input}
+          type="password"
+          label="Password (again)"
         />
         <button type="submit" disabled={pristine || submitting}>
           Create

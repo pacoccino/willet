@@ -32,7 +32,19 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
+function validate(values) {
+  const errors = {};
+  if(!values.max_amount) {
+    errors.max_amount = 'You must enter a source amount';
+  }
+  if(!values.amount_destination) {
+    errors.amount_destination = 'You must enter a destination amount';
+  }
+  return errors;
+}
+
 export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
   form: FORM_NAME,
   initialValues: {},
+  validate,
 })(Component));

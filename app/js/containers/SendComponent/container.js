@@ -27,7 +27,16 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
+function validate(values) {
+  const errors = {};
+  if(!values.amount) {
+    errors.amount = 'You must enter an amount';
+  }
+  return errors;
+}
+
 export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
   form: FORM_NAME,
   initialValues: {},
+  validate,
 })(Component));

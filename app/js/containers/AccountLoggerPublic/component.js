@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react';
 import { Field, propTypes } from 'redux-form';
 import { debounce } from 'lodash';
 
+import Input from 'js/components/ui/Input';
+
 import { validateAddress } from './services';
 
 class AccountLoggerPublic extends React.Component {
@@ -56,11 +58,11 @@ class AccountLoggerPublic extends React.Component {
     return (
       <div>
         <form onSubmit={handleSubmit}>
-          <p>Username</p>
           <Field
             name="username"
-            component="input"
+            component={Input}
             type="text"
+            label="username"
           />
           <button type="submit" disabled={submitting}>
             Login
