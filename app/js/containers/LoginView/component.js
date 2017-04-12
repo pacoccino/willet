@@ -3,7 +3,7 @@ import { Field, propTypes } from 'redux-form';
 
 import Input from 'js/components/ui/Input';
 
-class AccountLoggerPublic extends React.Component {
+class LoginView extends React.Component {
   render() {
     const {
       isAccountLoading,
@@ -23,13 +23,13 @@ class AccountLoggerPublic extends React.Component {
             name="username"
             component={Input}
             type="text"
-            label="username"
+            label="Login"
           />
           <Field
             name="password"
             component={Input}
             type="password"
-            label="password"
+            label="Password"
           />
           <button type="submit" disabled={submitting}>
             Login
@@ -40,7 +40,7 @@ class AccountLoggerPublic extends React.Component {
   }
 }
 
-AccountLoggerPublic.propTypes = {
+LoginView.propTypes = {
   unsetAccount: PropTypes.func.isRequired,
   loggedPublic: PropTypes.bool,
   isAccountLoading: PropTypes.bool,
@@ -49,4 +49,4 @@ AccountLoggerPublic.propTypes = {
   ...propTypes,
 };
 
-export default AccountLoggerPublic;
+export default LoginView;

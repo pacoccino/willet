@@ -17,8 +17,10 @@
 
 .title {
   font-size: 10rem;
+  @include noselect();
 }
 .subtitle {
+  @include noselect();
   font-size: 2rem;
   color: $c-rose;
   text-align: center;

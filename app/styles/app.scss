@@ -15,3 +15,16 @@ a, a:hover, a:visited {
   color: $c-white;
   text-decoration: none;
 }
+
+input[type="text"], input[type="password"] {
+  display: block;
+  margin: 0;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+  outline: none;
+}

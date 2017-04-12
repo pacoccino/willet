@@ -2,6 +2,7 @@
 $c-dark: #27272D;
 $c-white: #FFF;
 $c-rose: #E36DBE;
+$c-red: #d6114d;
 
 
 // Fonts
@@ -9,3 +10,31 @@ $f-main: 'Lato', sans-serif;
 $f-secondary: 'Titillium Web', sans-serif;
 
 $f-main-size: 20px;
+
+// Mixins
+
+@mixin noselect() {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+@mixin placeholder($color) {
+  ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    $color;
+  }
+  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    $color;
+    opacity:  1;
+  }
+  ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    $color;
+    opacity:  1;
+  }
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color:    $color;
+  }
+}

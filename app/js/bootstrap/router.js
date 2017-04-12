@@ -57,6 +57,7 @@ const RouterContainer = ({ loggedPublic }) =>
                 path={routes.Receive}
                 mode={OPERATIONS.RECEIVE}
               />
+              <Redirect from="*" to={routes.Root} />
             </Switch>
           </div>
           :
@@ -79,9 +80,9 @@ const RouterContainer = ({ loggedPublic }) =>
               component={LoginView}
               path={routes.Login}
             />
+            <Redirect from="*" to={routes.Root} />
           </Switch>
       }
-      <Redirect from="*" to={routes.Root} />
     </Layout>
   </ConnectedRouter>;
 

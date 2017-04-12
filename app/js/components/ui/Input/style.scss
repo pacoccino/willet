@@ -1,0 +1,43 @@
+@import '~styles/attributes';
+
+.container {
+  border: 1px solid $c-rose;
+  border-radius: 8px;
+  padding: 10px 6px;
+  margin: 10px;
+  width: 300px;
+}
+
+.topC {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .label {
+    color: $c-rose;
+    font-size: 0.65rem;
+  }
+  .error {
+    color: $c-red;
+    font-size: 0.65rem;
+  }
+}
+
+.input {
+  display: block;
+  width: 100%;
+  color: $c-rose;
+  background-color: transparent;
+  text-align: center;
+  font-size: 0.7rem;
+
+  height: 20px;
+  padding: 5px 10px;
+  border: none;
+  transition: border 0.3s;
+  @include placeholder($c-rose);
+}
+
+input:focus {
+}
+
