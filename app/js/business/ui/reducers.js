@@ -1,7 +1,5 @@
-/* eslint new-cap: 0 */
-
-import * as types from './actions';
 import { createReducer } from 'js/helpers/redux';
+import * as types from './actions';
 
 const initialState = {
   actionMode: null,

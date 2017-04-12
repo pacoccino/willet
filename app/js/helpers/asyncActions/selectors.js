@@ -1,3 +1,4 @@
+import { createSelector } from 'reselect';
 import { ASYNC_STATE_KEY } from './index';
 import { selectProperty } from '../redux';
 
@@ -22,6 +23,12 @@ export const asyncErrorSelector = actionName =>
     [ASYNC_STATE_KEY, 'actions', actionName, 'error'],
     null,
   );
+export const asyncStartedSelector = actionName =>
+  createSelector(
+    asyncSelector(actionName),
+    data => !!(data.isLoading || data.data || data.error),
+  );
+
 export const getAsyncState = (state, actionName) =>
   asyncSelector(actionName)(state);
 

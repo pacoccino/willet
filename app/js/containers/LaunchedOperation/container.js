@@ -1,15 +1,15 @@
 import { connect } from 'react-redux';
 
-import { setActionMode } from 'js/business/ui/actions';
-import { selActionMode } from 'js/business/ui/selectors';
+import { selOperation } from 'js/business/operations/selectors';
+import { resetOperation } from 'js/business/operations/action-creators';
 import Component from './component';
 
 const mapStateToProps = state => ({
-  actionMode: selActionMode(state),
+  operation: selOperation(state),
 });
 
 const mapDispatchToProps = {
-  setActionMode,
+  close: resetOperation,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component);

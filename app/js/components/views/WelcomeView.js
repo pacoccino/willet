@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 
-const styles = {
-};
-
-
 class WelcomeScreen extends Component {
   render() {
     return (

@@ -1,18 +1,11 @@
 import React, { PropTypes } from 'react';
 import { Field, propTypes } from 'redux-form';
 
-class Component extends React.Component {
+import { AssetSelector } from 'js/components/ui/AssetSelector';
 
+class SendComponent extends React.Component {
   getSendableAssets() {
-    return this.props.balances.map(
-      balance =>
-        <option
-          key={balance.asset_uuid}
-          value={balance.asset_uuid}
-        >
-          {balance.asset_shortname}
-        </option>
-    );
+    return this.props.balances.map(b => b.asset);
   }
 
   render() {
@@ -34,10 +27,9 @@ class Component extends React.Component {
           <label htmlFor="currency">Currency</label>
           <Field
             name="currency"
-            component="select"
-          >
-            {this.getSendableAssets()}
-          </Field>
+            component={AssetSelector}
+            assets={this.getSendableAssets()}
+          />
           <label htmlFor="destination">Destination</label>
           <Field
             name="destination"
@@ -53,9 +45,9 @@ class Component extends React.Component {
   }
 }
 
-Component.propTypes = {
+SendComponent.propTypes = {
   balances: PropTypes.array.isRequired,
   ...propTypes,
 };
 
-export default Component;
+export default SendComponent;

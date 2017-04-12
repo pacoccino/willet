@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
-import Component from './component';
 import { selAccount, selLoggedPublic, selBalances } from 'js/business/account/selectors';
+import Component from './component';
 
 const mapStateToProps = state => ({
   accountLoaded: !!selAccount(state),

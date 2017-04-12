@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
-import Component from './component';
 import { selBalances } from 'js/business/account/selectors';
-// import { setPublicAddress, unsetAccount } from 'js/business/account/action-creators';
+import { sendOperation } from 'js/business/operations/action-creators';
+
+import Component from './component';
 
 const FORM_NAME = 'send-form';
 
@@ -13,7 +14,16 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onSubmit(values, d, props) {
-    props.reset();
+    const asset = props.balances.find(b => b.asset.uuid === values.currency).asset;
+    const formData = {
+      asset,
+      amount: values.amount,
+      destination: values.destination,
+    };
+    return dispatch(sendOperation(formData))
+      .then(() => {
+        props.reset();
+      });
   },
 });
 

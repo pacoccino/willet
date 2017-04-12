@@ -1,6 +1,6 @@
 {
   "name": "willet",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Online multi-cryptocurrencies wallet",
   "scripts": {
     "dev": "webpack-dev-server --devtool source-map --inline --content-base public --history-api-fallback --config webpack.config.js",
@@ -52,6 +52,7 @@
     "eslint-plugin-react": "^6.9.0",
     "express": "^4.14.0",
     "express-http-proxy": "^0.10.1",
+    "history": "^4.6.1",
     "html-webpack-plugin": "^2.22.0",
     "intl": "^1.2.5",
     "isomorphic-fetch": "^2.2.1",
@@ -69,8 +70,8 @@
     "redux-form": "^6.6.1",
     "redux-thunk": "^2.2.0",
     "reselect": "^2.5.4",
-    "stellar-sdk": "^0.7.2",
-    "stellar-toolkit": "^0.1.4",
+    "stellar-sdk": "^0.7.3",
+    "stellar-toolkit": "^0.3.3",
     "webpack": "^2.2.0",
     "webpack-dev-server": "2.2.0"
   }

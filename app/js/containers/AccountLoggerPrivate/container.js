@@ -1,13 +1,14 @@
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
-import Component from './component';
-import { selLoggedPrivate } from 'js/business/account/selectors';
+import { selAccount, selLoggedPrivate } from 'js/business/account/selectors';
 import { setPrivateSecret, unsetPrivateSecret } from 'js/business/account/action-creators';
+import Component from './component';
 
 const FORM_NAME = 'login-private';
 
 const mapStateToProps = state => ({
+  account: selAccount(state),
   loggedPrivate: selLoggedPrivate(state),
 });
 
@@ -16,8 +17,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch(unsetPrivateSecret());
   },
   onSubmit(values, d, props) {
-    dispatch(setPrivateSecret(values.secret));
-    props.reset();
+    return dispatch(setPrivateSecret(values.secret)).then(() => {
+      props.reset();
+    });
   },
 });
 

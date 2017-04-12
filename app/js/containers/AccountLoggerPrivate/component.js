@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
 import { Field, propTypes } from 'redux-form';
 
-class Component extends React.Component {
+class AccountLoggerPrivate extends React.Component {
   render() {
     const {
+      account,
       loggedPrivate,
       handleSubmit,
       unsetPrivateSecret,
@@ -11,7 +12,11 @@ class Component extends React.Component {
       submitting,
     } = this.props;
 
-    if(loggedPrivate) {
+    if(!account) {
+      return <div>Loading...</div>
+    }
+
+    if (loggedPrivate) {
       return (
         <div>
           <button onClick={unsetPrivateSecret}>
@@ -39,10 +44,11 @@ class Component extends React.Component {
   }
 }
 
-Component.propTypes = {
+AccountLoggerPrivate.propTypes = {
+  account: PropTypes.object,
   loggedPrivate: PropTypes.bool,
   isAccountLoading: PropTypes.bool,
   ...propTypes,
 };
 
-export default Component;
+export default AccountLoggerPrivate;

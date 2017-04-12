@@ -4,6 +4,8 @@ export const ASYNC_FETCH_START = 'async-action:fetch-start';
 export const ASYNC_FETCH_SUCCESS = 'async-action:fetch-success';
 export const ASYNC_FETCH_ERROR = 'async-action:fetch-error';
 export const ASYNC_RESET_ACTION = 'async-action:reset';
+
+const PROD = process.env.NODE_ENV === 'production';
 /**
  * Start the specified async action
  *
@@ -49,7 +51,7 @@ export function successFetch(actionName, data) {
   };
 }
 export function errorFetch(actionName, error) {
-  console.trace(error);
+  !PROD && console.trace(error);
   return {
     type: ASYNC_FETCH_ERROR,
     actionName,

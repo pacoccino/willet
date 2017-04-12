@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
+import { selLoggedPublic, setAccountLoading, selKeypair, selFederationName } from 'js/business/account/selectors';
+import { setUsername, unsetAccount } from 'js/business/account/action-creators';
 import Component from './component';
-import { selLoggedPublic, setAccountLoading, selKeypair } from 'js/business/account/selectors';
-import { setPublicAddress, unsetAccount } from 'js/business/account/action-creators';
 
 const FORM_NAME = 'login-public';
 
@@ -11,6 +11,7 @@ const mapStateToProps = state => ({
   loggedPublic: selLoggedPublic(state),
   isAccountLoading: setAccountLoading(state),
   keypair: selKeypair(state),
+  federationName: selFederationName(state),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -18,8 +19,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch(unsetAccount());
   },
   onSubmit(values, d, props) {
-    dispatch(setPublicAddress(values.publicAddress));
-    props.reset();
+    return dispatch(setUsername(values.username)).then(() => {
+      props.reset();
+    });
   },
 });
 

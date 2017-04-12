@@ -11,8 +11,8 @@ const styles = {
   },
 };
 
-function Component({ loggedPublic, accountLoaded, balances }) {
-  if(loggedPublic && !accountLoaded) {
+function BalancesViewer({ loggedPublic, accountLoaded, balances }) {
+  if (loggedPublic && !accountLoaded) {
     return (
       <div>
         <p>Loading balances...</p>
@@ -24,17 +24,17 @@ function Component({ loggedPublic, accountLoaded, balances }) {
       {
         balances.map(
           (balance, i) =>
-            <BalanceCurrency key={i} balance={balance} />
+            <BalanceCurrency key={i} balance={balance} />,
         )
       }
     </div>
   );
 }
 
-Component.propTypes = {
+BalancesViewer.propTypes = {
   balances: PropTypes.array.isRequired,
   accountLoaded: PropTypes.bool.isRequired,
   loggedPublic: PropTypes.bool.isRequired,
 };
 
-export default Component;
+export default BalancesViewer;
