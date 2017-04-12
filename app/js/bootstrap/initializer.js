@@ -20,10 +20,10 @@ class InitializerComponent extends React.Component {
   }
   componentWillMount() {
     Promise.all([
-      this.props.getKnownAnchors(),
+      // this.props.getKnownAnchors(),
     ])
       .then(() => {
-        this.props.setKeypair(Keypair.fromSecret('SAQHSZFSQIIVWH4DL2D5PRF6BARWUVDELSM5RZMRGYFDQA2P2QMNGPF7'));
+        // this.props.setKeypair(Keypair.fromSecret('SAQHSZFSQIIVWH4DL2D5PRF6BARWUVDELSM5RZMRGYFDQA2P2QMNGPF7'));
         this.setState(() => ({ ready: true }));
       })
       .catch(error => {

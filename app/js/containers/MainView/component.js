@@ -6,7 +6,7 @@ import AccountLoggerPublic from '../AccountLoggerPublic';
 import AccountLoggerPrivate from '../AccountLoggerPrivate';
 import BalancesViewer from '../BalancesViewer';
 import ActionsMenu from '../ActionsMenu';
-import ActionComponent from '../ActionComponent';
+import ActionComponent from '../OperationView';
 import LaunchedOperation from '../LaunchedOperation';
 
 const styles = {
@@ -46,7 +46,7 @@ function MainView({ account, loggedPrivate, loggedPublic, operationLaunched }) {
             :
             <div>
               <ActionsMenu />
-              <ActionComponent />
+              <OperationView />
             </div>
         )
       }

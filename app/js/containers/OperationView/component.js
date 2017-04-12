@@ -6,9 +6,9 @@ import ExchangeComponent from '../ExchangeComponent';
 import SendComponent from '../SendComponent';
 import ReceiveComponent from '../ReceiveComponent';
 
-function ActionComponent({ actionMode }) {
+function OperationView({ mode }) {
   let actionComponent = null;
-  switch (actionMode) {
+  switch (mode) {
     case OPERATIONS.EXCHANGE: {
       actionComponent = <ExchangeComponent />;
       break;
@@ -29,8 +29,8 @@ function ActionComponent({ actionMode }) {
   );
 }
 
-ActionComponent.propTypes = {
-  actionMode: PropTypes.string,
+OperationView.propTypes = {
+  mode: PropTypes.string,
 };
 
-export default ActionComponent;
+export default OperationView;

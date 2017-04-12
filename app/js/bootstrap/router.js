@@ -8,12 +8,16 @@ import { selLoggedPublic, selLoggedPrivate } from 'js/business/account/selectors
 
 import { history } from './store';
 
+import WelcomeView from '../components/views/WelcomeView';
 import Layout from '../components/views/Layout';
 import MainView from '../containers/MainView';
+import OperationView from '../containers/OperationView';
 import RegisterView from '../containers/RegisterView';
 import AccountView from '../containers/AccountView';
 import * as routes from '../constants/routes';
 import TopMenu from 'js/components/ui/TopMenu';
+
+import { OPERATIONS } from 'js/business/operations/action-creators';
 
 const RouterContainer = ({ loggedPublic }) =>
   <ConnectedRouter history={history}>
@@ -23,21 +27,42 @@ const RouterContainer = ({ loggedPublic }) =>
           <div>
             <TopMenu />
             <Switch>
-              <Route exact
-                     component={MainView}
-                     path={routes.Root}
+              <Route
+                exact
+                component={MainView}
+                path={routes.Root}
               />
               <Route
                 component={AccountView}
                 path={routes.Account}
               />
+              <Route
+                component={MainView}
+                path={routes.Wallet}
+              />
+              <Route
+                component={OperationView}
+                path={routes.Send}
+                mode={OPERATIONS.SEND}
+              />
+              <Route
+                component={OperationView}
+                path={routes.Exchange}
+                mode={OPERATIONS.EXCHANGE}
+              />
+              <Route
+                component={OperationView}
+                path={routes.Receive}
+                mode={OPERATIONS.RECEIVE}
+              />
             </Switch>
           </div>
           :
           <Switch>
-            <Route exact
-                   component={MainView}
-                   path={routes.Root}
+            <Route
+              exact
+              component={WelcomeView}
+              path={routes.Root}
             />
             <Route
               component={RegisterView}

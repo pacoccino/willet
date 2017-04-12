@@ -1,0 +1,16 @@
+@import '~styles/attributes';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 3em;
+}
+.subtitle {
+  font-size: 2em;
+  color: $c-rose;
+}
