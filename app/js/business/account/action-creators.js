@@ -1,6 +1,6 @@
 import { StellarTools, StellarAccountManager, Federation } from 'stellar-toolkit';
 import { Keypair } from 'stellar-sdk';
-import { FEDERATION_DOMAIN } from 'js/config';
+import config from 'js/config';
 
 import { AsyncActions } from 'js/helpers/asyncActions';
 import { ASYNC_FETCH_ACCOUNT } from 'js/constants/asyncActions';
@@ -9,7 +9,7 @@ import * as AccountActions from './actions';
 
 export const setUsername = username => (dispatch) => {
   dispatch(AsyncActions.startLoading(ASYNC_FETCH_ACCOUNT));
-  const stellar_address = `${username}*${FEDERATION_DOMAIN}`;
+  const stellar_address = `${username}*${config.FEDERATION_DOMAIN}`;
 
   return StellarTools.resolveAddress(stellar_address)
     .then((resolved) => {
@@ -89,7 +89,7 @@ export const unsetAccount = () => (dispatch) => {
 
 export const createAccount = ({ username, password }) => dispatch =>
   Federation.federationCreate({
-    stellar_address: `${username}*${FEDERATION_DOMAIN}`,
+    stellar_address: `${username}*${config.FEDERATION_DOMAIN}`,
     password,
   }).then(() => {
 
