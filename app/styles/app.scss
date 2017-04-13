@@ -16,6 +16,10 @@ a, a:hover, a:visited {
   text-decoration: none;
 }
 
+p {
+  font-family: $f-secondary;
+  font-size: 0.9em;
+}
 input[type="text"],
 input[type="password"],
 input[type="number"]

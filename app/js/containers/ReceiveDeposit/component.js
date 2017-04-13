@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 
+import Loader from 'js/components/ui/Loader';
+
 class ReceiveDeposit extends React.Component {
 
   getQRCode(depositAddress) {
@@ -19,7 +21,10 @@ class ReceiveDeposit extends React.Component {
 
     let operationInfo = null;
     if (depositData.isLoading) {
-      operationInfo = <p>Retrieving deposit address ...</p>;
+      operationInfo = <div>
+        <p>Retrieving deposit address ...</p>
+        <Loader/>
+        </div>;
     } else if (depositData.error) {
       operationInfo = <p>{depositData.error}</p>;
     } else if (depositData.data) {

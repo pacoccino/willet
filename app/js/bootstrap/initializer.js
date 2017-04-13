@@ -4,6 +4,7 @@ import { Keypair } from 'stellar-sdk'; // TODO REMOVE
 
 import { setKeypair, setFederationName } from 'js/business/account/actions';
 import { getKnownAnchors } from 'js/business/wilson/action-creators';
+import Loader from 'js/components/ui/Loader';
 
 const mapDispatchToProps = {
   setKeypair,
@@ -37,7 +38,7 @@ class InitializerComponent extends React.Component {
     if(this.state.error) {
       return <div>There was an error while loading the application.</div>;
     }
-    return this.state.ready ? this.props.children : <div>Loading</div>;
+    return this.state.ready ? this.props.children : <Loader />;
   }
 }
 

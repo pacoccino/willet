@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Field, propTypes } from 'redux-form';
 import Input from 'js/components/ui/Input';
+import Loader from 'js/components/ui/Loader';
 
 class AccountLoggerPrivate extends React.Component {
   render() {
@@ -14,7 +15,7 @@ class AccountLoggerPrivate extends React.Component {
     } = this.props;
 
     if(!account) {
-      return <div>Loading...</div>
+      return <Loader/>;
     }
 
     if (loggedPrivate) {

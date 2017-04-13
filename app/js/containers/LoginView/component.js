@@ -3,6 +3,8 @@ import { Field, propTypes } from 'redux-form';
 
 import Input from 'js/components/ui/Input';
 import Button from 'js/components/ui/Button';
+import Loader from 'js/components/ui/Loader';
+
 import styles from './style.scss';
 
 class LoginView extends React.Component {
@@ -43,6 +45,7 @@ class LoginView extends React.Component {
         {submitting &&
           <p className={styles.loading}>
             Logging in ...
+            <Loader/>
           </p>
         }
         {(!submitting && submitFailed) &&

@@ -1,5 +1,7 @@
 @import '~styles/attributes';
 
+$loader-color: $c-white;
+
 .spinner {
   margin: 100px auto;
   width: 50px;
@@ -9,10 +11,11 @@
 }
 
 .spinner > div {
-  background-color: #333;
+  background-color: $loader-color;
   height: 100%;
   width: 6px;
   display: inline-block;
+  margin: 0 3px 0 0;
 
   -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
   animation: sk-stretchdelay 1.2s infinite ease-in-out;

@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 
 import Separator from 'js/components/ui/Separator';
+import Loader from 'js/components/ui/Loader';
 import BalanceCurrency from '../BalanceCurrency';
 import styles from './style.scss';
 
@@ -8,11 +9,7 @@ import ActionsMenu from '../ActionsMenu';
 
 function BalancesViewer({ loggedPublic, accountLoaded, balances }) {
   if (loggedPublic && !accountLoaded) {
-    return (
-      <div>
-        <p>Loading balances...</p>
-      </div>
-    );
+    return <Loader />;
   }
   return (
     <div className={styles.container}>

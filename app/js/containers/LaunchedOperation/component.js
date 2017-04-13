@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import Loader from 'js/components/ui/Loader';
 
 class LaunchedOperation extends React.Component {
   render() {
@@ -9,7 +10,10 @@ class LaunchedOperation extends React.Component {
 
     let operationInfo = null;
     if (operation.isLoading) {
-      operationInfo = <p>Processing ...</p>;
+      operationInfo = <div>
+        <p>Processing ...</p>
+        <Loader/>
+      </div>;
     } else if (operation.data) {
       operationInfo = <p>Success !</p>;
     } else if (operation.error) {

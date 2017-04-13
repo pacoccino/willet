@@ -2,11 +2,11 @@ import React, { PropTypes } from 'react';
 
 import Separator from 'js/components/ui/Separator';
 import OperationButton from 'js/components/ui/OperationButton';
+import Loader from 'js/components/ui/Loader';
 
 import ChangePassword from '../ChangePassword';
 import ChangeName from '../ChangeName';
 import styles from './style.scss';
-
 
 class AccountView extends React.Component {
   constructor() {
@@ -44,7 +44,7 @@ class AccountView extends React.Component {
   render() {
     const { account, username, loggedPrivate } = this.props;
     if (!account) {
-      return <div>Loading</div>;
+      return <Loader/>;
     }
     return (
       <div style={styles.container}>
