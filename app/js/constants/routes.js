@@ -6,5 +6,4 @@ export const About = '/about';
 
 export const Account = '/account';
 
-export const Wallets = '/wallets';
 export const Operation_G = operation => `/operation/${operation}`;

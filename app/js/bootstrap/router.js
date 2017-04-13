@@ -33,10 +33,6 @@ const RouterContainer = ({ loggedPublic }) =>
                 path={routes.Root}
               />
               <Route
-                component={WalletsView}
-                path={routes.Wallets}
-              />
-              <Route
                 component={AccountView}
                 path={routes.Account}
               />
@@ -50,9 +46,9 @@ const RouterContainer = ({ loggedPublic }) =>
               />
               <Route
                 component={() => <OperationView mode={OPERATIONS.RECEIVE}/>}
-                patg={routes.Operation_G(OPERATIONS.RECEIVE)}
+                path={routes.Operation_G(OPERATIONS.RECEIVE)}
               />
-              <Redirect from="*" to={routes.Wallets} />
+              <Redirect to={routes.Root} />
             </Switch>
           </div>
           :

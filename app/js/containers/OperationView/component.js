@@ -31,11 +31,11 @@ function OperationView({ mode, operationLaunched }) {
   }
   return (
     <div className={styles.container}>
-      <div className={styles.content}>
-        {actionComponent}
-      </div>
       <div className={styles.actionsContainer}>
         <ActionsMenu mode={mode} />
+      </div>
+      <div className={styles.content}>
+        {actionComponent}
       </div>
     </div>
   );
