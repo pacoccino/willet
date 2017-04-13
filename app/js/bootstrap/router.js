@@ -7,6 +7,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import { selLoggedPublic, selLoggedPrivate } from 'js/business/account/selectors';
 
 import { history } from './store';
+import * as routes from '../constants/routes';
 
 import Layout from '../components/views/Layout';
 import WelcomeView from '../components/views/WelcomeView';
@@ -16,8 +17,6 @@ import OperationView from '../containers/OperationView';
 import RegisterView from '../containers/RegisterView';
 import LoginView from '../containers/LoginView';
 import AccountView from '../containers/AccountView';
-import * as routes from '../constants/routes';
-import TopMenu from 'js/components/ui/TopMenu';
 
 import { OPERATIONS } from 'js/business/operations/action-creators';
 
@@ -27,7 +26,6 @@ const RouterContainer = ({ loggedPublic }) =>
       {
         loggedPublic ?
           <div>
-            <TopMenu />
             <Switch>
               <Route
                 exact
@@ -43,19 +41,16 @@ const RouterContainer = ({ loggedPublic }) =>
                 path={routes.Wallet}
               />
               <Route
-                component={OperationView}
-                path={routes.Send}
-                mode={OPERATIONS.SEND}
+                component={() => <OperationView mode={OPERATIONS.SEND}/>}
+                path={routes.Operation_G(OPERATIONS.SEND)}
               />
               <Route
-                component={OperationView}
-                path={routes.Exchange}
-                mode={OPERATIONS.EXCHANGE}
+                component={() => <OperationView mode={OPERATIONS.EXCHANGE}/>}
+                path={routes.Operation_G(OPERATIONS.EXCHANGE)}
               />
               <Route
-                component={OperationView}
-                path={routes.Receive}
-                mode={OPERATIONS.RECEIVE}
+                component={() => <OperationView mode={OPERATIONS.RECEIVE}/>}
+                patg={routes.Operation_G(OPERATIONS.RECEIVE)}
               />
               <Redirect from="*" to={routes.Root} />
             </Switch>

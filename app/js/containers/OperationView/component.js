@@ -5,8 +5,12 @@ import { OPERATIONS } from 'js/business/operations/action-creators';
 import ExchangeComponent from '../ExchangeComponent';
 import SendComponent from '../SendComponent';
 import ReceiveComponent from '../ReceiveComponent';
+import LaunchedOperation from '../LaunchedOperation';
 
-function OperationView({ mode }) {
+function OperationView({ mode, operationLaunched }) {
+  if(operationLaunched) {
+    return <LaunchedOperation />;
+  }
   let actionComponent = null;
   switch (mode) {
     case OPERATIONS.EXCHANGE: {

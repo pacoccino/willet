@@ -1,0 +1,26 @@
+@import '~styles/attributes';
+
+.container {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.category {
+  padding-bottom: 15px;
+  border-bottom: 1px solid $c-white;
+  width: 100%;
+  .text {
+    font-size: 1.5rem;
+    color: $c-white;
+  }
+}
+
+.balances {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}

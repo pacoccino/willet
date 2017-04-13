@@ -7,6 +7,4 @@ export const About = '/about';
 export const Account = '/account';
 
 export const Wallet = '/wallet';
-export const Exchange = '/operation/exchange';
-export const Send = '/operation/send';
-export const Receive = '/operation/receive';
+export const Operation_G = operation => `/operation/${operation}`;

@@ -1,9 +1,13 @@
 // Colors
 $c-dark: #27272D;
 $c-white: #FFF;
+$c-grey: #dcc7da;
 $c-rose: #E36DBE;
 $c-red: #d6114d;
 $c-green: #25cf41;
+
+$c-c-eth: #92CDFF;
+$c-c-btc: #FFCC66;
 
 // Shades
 
@@ -29,20 +33,4 @@ $f-main-size: 20px;
   -ms-user-select: none;
   user-select: none;
   cursor: default;
-}
-@mixin placeholder($color) {
-  ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    color:    $color;
-  }
-  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color:    $color;
-    opacity:  1;
-  }
-  ::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color:    $color;
-    opacity:  1;
-  }
-  :-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color:    $color;
-  }
 }

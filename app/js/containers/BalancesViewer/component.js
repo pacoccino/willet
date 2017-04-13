@@ -1,15 +1,7 @@
 import React, { PropTypes } from 'react';
 
 import BalanceCurrency from '../BalanceCurrency';
-
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-};
+import styles from './style.scss';
 
 function BalancesViewer({ loggedPublic, accountLoaded, balances }) {
   if (loggedPublic && !accountLoaded) {
@@ -20,13 +12,18 @@ function BalancesViewer({ loggedPublic, accountLoaded, balances }) {
     );
   }
   return (
-    <div style={styles.container}>
-      {
-        balances.map(
-          (balance, i) =>
-            <BalanceCurrency key={i} balance={balance} />,
-        )
-      }
+    <div className={styles.container}>
+      <div className={styles.category}>
+        <span className={styles.text}>Your wallets</span>
+      </div>
+      <div className={styles.balances}>
+        {
+          balances.map(
+            (balance, i) =>
+              <BalanceCurrency key={i} balance={balance} />,
+          )
+        }
+      </div>
     </div>
   );
 }

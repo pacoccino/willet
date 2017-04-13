@@ -1,10 +1,13 @@
 import React, { PropTypes } from 'react';
 
+import TopBar from 'js/containers/TopBar';
+
 import styles from './style.scss';
 
 const Layout = ({ children }) =>
   <div className={styles.layoutContainer}>
     <div className={styles.margin}>
+      <TopBar />
       {children}
     </div>
   </div>;

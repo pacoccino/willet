@@ -1,0 +1,43 @@
+@import '~styles/attributes';
+
+.container {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.text {
+  font-size: 0.8rem;
+}
+.topLeft {
+
+}
+
+.topRight {
+}
+
+.goback {
+  cursor: pointer;
+  composes: text;
+}
+
+.account {
+  cursor: pointer;
+  composes: text;
+  line-height: 34px;
+  margin-right: 10px;
+}
+
+.signin {
+  cursor: pointer;
+  composes: text;
+}
+
+.userIcon {
+  height: 34px;
+  width: 34px;
+  vertical-align: middle;
+}

@@ -16,7 +16,10 @@ a, a:hover, a:visited {
   text-decoration: none;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"],
+input[type="password"],
+input[type="number"]
+{
   display: block;
   margin: 0;
   appearance: none;
@@ -25,10 +28,9 @@ input[type="text"], input[type="password"] {
   box-sizing: border-box;
 }
 
-input[type="text"]:focus, input[type="password"]:focus {
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus
+{
   outline: none;
-}
-
-div {
-  box-sizing: border-box;
 }

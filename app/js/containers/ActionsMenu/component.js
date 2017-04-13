@@ -12,21 +12,21 @@ const styles = {
   },
 };
 
-function ActionsMenu({ setActionMode, actionMode }) {
+function ActionsMenu({ goToOperation, actionMode }) {
   return (
     <div style={styles.container}>
       <OperationButton
-        onClick={() => setActionMode(OPERATIONS.EXCHANGE)}
+        onClick={() => goToOperation(OPERATIONS.EXCHANGE)}
         disabled={actionMode === OPERATIONS.EXCHANGE}
         label="Exchange"
       />
       <OperationButton
-        onClick={() => setActionMode(OPERATIONS.SEND)}
+        onClick={() => goToOperation(OPERATIONS.SEND)}
         disabled={actionMode === OPERATIONS.SEND}
         label="Send"
       />
       <OperationButton
-        onClick={() => setActionMode(OPERATIONS.RECEIVE)}
+        onClick={() => goToOperation(OPERATIONS.RECEIVE)}
         disabled={actionMode === OPERATIONS.RECEIVE}
         label="Receive"
       />
@@ -36,7 +36,7 @@ function ActionsMenu({ setActionMode, actionMode }) {
 
 ActionsMenu.propTypes = {
   actionMode: PropTypes.string,
-  setActionMode: PropTypes.func.isRequired,
+  goToOperation: PropTypes.func.isRequired,
 };
 
 export default ActionsMenu;
