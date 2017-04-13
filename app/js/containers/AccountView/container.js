@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 
 import { selAccount, selKeypair, selFederationName, selLoggedPrivate } from 'js/business/account/selectors';
+import { unsetAccount } from 'js/business/account/action-creators';
 import Component from './component';
 
 const mapStateToProps = state => ({
@@ -10,4 +11,8 @@ const mapStateToProps = state => ({
   username: selFederationName(state),
 });
 
-export default connect(mapStateToProps, null)(Component);
+const mapDispatchToProps = {
+  unsetAccount,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Component);

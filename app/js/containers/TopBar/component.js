@@ -17,7 +17,7 @@ class TopBar extends React.Component {
     return (
       <div onClick={goBack} className={styles.gobackContainer}>
         <img src={leftArrow} className={styles.leftArrow} />
-        <span className={styles.gobackText}>Wallets</span>
+        <span className={styles.gobackText}>Home</span>
       </div>
     );
   }

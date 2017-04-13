@@ -42,12 +42,13 @@ class AccountView extends React.Component {
     );
   }
   render() {
-    const { account, username, loggedPrivate } = this.props;
+    const { account, unsetAccount } = this.props;
     if (!account) {
       return <Loader/>;
     }
     return (
       <div style={styles.container}>
+        <OperationButton onClick={unsetAccount} label="Disconnect" />
         <Separator label="Username" />
         <div className={styles.categoryContent}>
           <ChangeName />
@@ -66,9 +67,9 @@ class AccountView extends React.Component {
 }
 
 AccountView.propTypes = {
+  unsetAccount: PropTypes.func.isRequired,
   account: PropTypes.object,
   keypair: PropTypes.object,
-  loggedPrivate: PropTypes.bool,
   username: PropTypes.string,
 };
 

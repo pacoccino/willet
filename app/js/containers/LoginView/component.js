@@ -34,29 +34,29 @@ class LoginView extends React.Component {
             label="Password"
             placeholder="****"
           />
-          <Button
-            onClick={handleSubmit}
-            disabled={pristine || submitting}
-            className={styles.btn}
-          >
-            Login
-          </Button>
+
+          {submitting ?
+            <p className={styles.loading}>
+              <Loader/>
+              Logging in ...
+            </p>
+            :
+            <Button
+              onClick={handleSubmit}
+              disabled={pristine || submitting}
+              className={styles.btn}
+            />
+          }
         </form>
-        {submitting &&
-          <p className={styles.loading}>
-            Logging in ...
-            <Loader/>
-          </p>
-        }
         {(!submitting && submitFailed) &&
-          <p className={styles.error}>
-            Invalid credentials
-          </p>
+        <p className={styles.error}>
+          Invalid credentials
+        </p>
         }
         {(!submitting && submitSucceeded) &&
-          <p className={styles.success}>
-            Login success !
-          </p>
+        <p className={styles.success}>
+          Login success !
+        </p>
         }
       </div>
     );
