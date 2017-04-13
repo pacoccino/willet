@@ -1,8 +1,11 @@
 @import '~styles/attributes';
 
 .container {
-  position: absolute;
-  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
   display: flex;
   flex-grow: 1;
   flex-direction: row;
@@ -19,9 +22,19 @@
 .topRight {
 }
 
-.goback {
+.gobackContainer {
   cursor: pointer;
+  .leftArrow {
+    height: 14px;
+    width: 14px;
+    vertical-align: middle;
+    padding: 8px;
+  }
+}
+
+.gobackText {
   composes: text;
+  line-height: 34px;
 }
 
 .account {

@@ -12,7 +12,7 @@ import * as routes from '../constants/routes';
 import Layout from '../components/views/Layout';
 import WelcomeView from '../components/views/WelcomeView';
 import AboutView from '../components/views/AboutView';
-import MainView from '../containers/MainView';
+import WalletsView from '../containers/WalletsView';
 import OperationView from '../containers/OperationView';
 import RegisterView from '../containers/RegisterView';
 import LoginView from '../containers/LoginView';
@@ -29,16 +29,16 @@ const RouterContainer = ({ loggedPublic }) =>
             <Switch>
               <Route
                 exact
-                component={MainView}
+                component={WalletsView}
                 path={routes.Root}
+              />
+              <Route
+                component={WalletsView}
+                path={routes.Wallets}
               />
               <Route
                 component={AccountView}
                 path={routes.Account}
-              />
-              <Route
-                component={MainView}
-                path={routes.Wallet}
               />
               <Route
                 component={() => <OperationView mode={OPERATIONS.SEND}/>}
@@ -52,7 +52,7 @@ const RouterContainer = ({ loggedPublic }) =>
                 component={() => <OperationView mode={OPERATIONS.RECEIVE}/>}
                 patg={routes.Operation_G(OPERATIONS.RECEIVE)}
               />
-              <Redirect from="*" to={routes.Root} />
+              <Redirect from="*" to={routes.Wallets} />
             </Switch>
           </div>
           :

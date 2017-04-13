@@ -34,7 +34,6 @@
   padding: 5px 10px;
   border: none;
   transition: border 0.3s;
-  @include placeholder($c-rose);
 }
 
 input:focus {

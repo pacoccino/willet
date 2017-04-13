@@ -3,7 +3,8 @@ import * as routes from 'js/constants/routes';
 import { Link } from 'react-router-dom';
 
 import styles from './style.scss';
-import userIcon from './usericon.svg';
+import userIcon from 'styles/icons/user-icon.svg';
+import leftArrow from 'styles/icons/left-arrow.svg';
 
 class TopBar extends React.Component {
 
@@ -14,8 +15,9 @@ class TopBar extends React.Component {
     const goBack = () => this.context.router.history.replace(routes.Root);
     // const goBack = () => this.context.router.history.goBack();
     return (
-      <div onClick={goBack} className={styles.goback}>
-        Go back
+      <div onClick={goBack} className={styles.gobackContainer}>
+        <img src={leftArrow} className={styles.leftArrow} />
+        <span className={styles.gobackText}>Go back</span>
       </div>
     );
   }

@@ -3,6 +3,8 @@ import React, { PropTypes } from 'react';
 import BalanceCurrency from '../BalanceCurrency';
 import styles from './style.scss';
 
+import ActionsMenu from '../ActionsMenu';
+
 function BalancesViewer({ loggedPublic, accountLoaded, balances }) {
   if (loggedPublic && !accountLoaded) {
     return (
@@ -13,16 +15,21 @@ function BalancesViewer({ loggedPublic, accountLoaded, balances }) {
   }
   return (
     <div className={styles.container}>
-      <div className={styles.category}>
-        <span className={styles.text}>Your wallets</span>
+      <div className={styles.content}>
+        <div className={styles.category}>
+          <span className={styles.text}>Your wallets</span>
+        </div>
+        <div className={styles.balances}>
+          {
+            balances.map(
+              (balance, i) =>
+                <BalanceCurrency key={i} balance={balance} />,
+            )
+          }
+        </div>
       </div>
-      <div className={styles.balances}>
-        {
-          balances.map(
-            (balance, i) =>
-              <BalanceCurrency key={i} balance={balance} />,
-          )
-        }
+      <div className={styles.actionsContainer}>
+        <ActionsMenu />
       </div>
     </div>
   );

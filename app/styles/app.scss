@@ -34,3 +34,13 @@ input[type="number"]:focus
 {
   outline: none;
 }
+
+:global {
+  #app {
+    position: relative !important;
+    padding-top: 60px;
+    padding-bottom: 50px;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+}

@@ -6,8 +6,8 @@ import styles from './style.scss';
 
 const Layout = ({ children }) =>
   <div className={styles.layoutContainer}>
-    <div className={styles.margin}>
-      <TopBar />
+    <TopBar />
+    <div className={styles.content}>
       {children}
     </div>
   </div>;
