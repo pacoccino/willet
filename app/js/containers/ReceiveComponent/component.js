@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Field, propTypes } from 'redux-form';
-import { AssetSelector } from 'js/components/ui/AssetSelector';
+import AssetSelector from 'js/components/ui/AssetSelector';
 
 import ReceiveDeposit from '../ReceiveDeposit';
 

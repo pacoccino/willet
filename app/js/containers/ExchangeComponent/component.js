@@ -1,8 +1,13 @@
 import React, { PropTypes } from 'react';
 import { Field, propTypes } from 'redux-form';
 import { StellarStats } from 'stellar-toolkit';
-import { AssetSelector } from 'js/components/ui/AssetSelector';
-import Input from 'js/components/ui/Input';
+import AssetSelector from 'js/components/ui/AssetSelector';
+import AssetIcon from 'js/components/ui/AssetIcon';
+import Button from 'js/components/ui/Button';
+
+import exchangeIcon from 'styles/icons/exchange.svg';
+
+import styles from './style.scss';
 
 class ExchangeComponent extends React.Component {
 
@@ -38,36 +43,58 @@ class ExchangeComponent extends React.Component {
     } = this.props;
 
     return (
-      <div>
+      <div className={styles.container}>
         <form onSubmit={handleSubmit}>
-          <Field
-            name="sendMax"
-            component={Input}
-            type="number"
-            label="From Amount"
-          />
-          <label htmlFor="sourceAsset">From Currency</label>
-          <Field
-            name="sourceAssetUuid"
-            component={AssetSelector}
-            assets={this.getExchangeableAssets()}
-          />
-          <Field
-            name="destinationAmount"
-            component={Input}
-            type="number"
-            onChange={::this.onChangeToAmount}
-            label="To Amount"
-          />
-          <label htmlFor="destinationAsset">To Currency</label>
-          <Field
-            name="destinationAssetUuid"
-            component={AssetSelector}
-            assets={this.getExchangeableAssets()}
-          />
-          <button type="submit" disabled={pristine || submitting}>
-            Exchange
-          </button>
+          <div className={styles.row}>
+            <div className={styles.asset}>
+              <Field
+                name="sourceAssetUuid"
+                component={AssetSelector}
+                assets={this.getExchangeableAssets()}
+              />
+            </div>
+            <div className={styles.amount}>
+              <Field
+                name="sendMax"
+                component="input"
+                type="number"
+                placeholder="0"
+              />
+            </div>
+            <div className={styles.assetIcon}>
+              <AssetIcon input={{}} knownAsset={{symbol: 'B', code: 'BTC'}}/>
+            </div>
+          </div>
+          <div className={styles.separator}>
+            <div className={styles.line}/>
+            <div className={styles.circle}>
+              <img src={exchangeIcon} className={styles.exchangeIcon} />
+            </div>
+          </div>
+          <div className={styles.row}>
+            <div className={styles.asset}>
+              <Field
+                name="destinationAssetUuid"
+                component={AssetSelector}
+                assets={this.getExchangeableAssets()}
+              />
+            </div>
+            <div className={styles.amount}>
+              <Field
+                name="destinationAmount"
+                component="input"
+                type="number"
+                placeholder="0"
+                onChange={::this.onChangeToAmount}
+              />
+            </div>
+            <div className={styles.assetIcon}>
+              <AssetIcon input={{}} knownAsset={{symbol: 'B', code: 'BTC'}}/>
+            </div>
+          </div>
+          <div className={styles.submit}>
+            <Button label="Exchange" disabled={pristine || submitting} />
+          </div>
         </form>
       </div>
     );
