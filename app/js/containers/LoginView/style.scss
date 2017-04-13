@@ -1,0 +1,26 @@
+@import '~styles/attributes';
+
+.container {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  margin: 0 auto;
+}
+
+.error {
+  font-size: 0.6rem;
+  color: $c-red;
+}
+.success {
+  font-size: 0.6rem;
+  color: $c-green;
+}
+.loading {
+  font-size: 0.6rem;
+  color: $c-white;
+}

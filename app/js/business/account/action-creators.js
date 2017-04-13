@@ -1,4 +1,4 @@
-import { StellarTools, StellarAccountManager, Federation } from 'stellar-toolkit';
+import { StellarServer, StellarTools, StellarAccountManager, Federation } from 'stellar-toolkit';
 import { Keypair } from 'stellar-sdk';
 
 import { AsyncActions } from 'js/helpers/asyncActions';
@@ -6,6 +6,34 @@ import { ASYNC_FETCH_ACCOUNT, ASYNC_CHANGE_PASSWORD } from 'js/constants/asyncAc
 import { selKeypair, selAccount } from 'js/business/account/selectors';
 import * as AccountActions from './actions';
 import { getStellarAddress } from './services';
+
+export const login = ({ username, password }) => (dispatch) => {
+  dispatch(AsyncActions.startLoading(ASYNC_FETCH_ACCOUNT));
+  const stellar_address = getStellarAddress(username);
+
+  return StellarTools.resolveAddress(stellar_address)
+    .then(resolved => resolved.account_id)
+    .then(publicKey => StellarServer.getAccount(publicKey))
+    .then(account => {
+      dispatch(AccountActions.setAccount(account));
+      const isSeed = StellarTools.validSeed(password);
+      let keypair;
+      if (isSeed) {
+        keypair = Keypair.fromSecret(secret);
+      } else {
+        const seed = StellarAccountManager.extractSeed(account, password);
+        keypair = Keypair.fromSecret(seed);
+      }
+      dispatch(AccountActions.setKeypair(keypair));
+      dispatch(AsyncActions.stopLoading(ASYNC_FETCH_ACCOUNT));
+      return keypair;
+    })
+    .catch((e) => {
+      console.error(e);
+      dispatch(AsyncActions.stopLoading(ASYNC_FETCH_ACCOUNT));
+      throw e;
+    });
+};
 
 export const setUsername = username => (dispatch) => {
   dispatch(AsyncActions.startLoading(ASYNC_FETCH_ACCOUNT));

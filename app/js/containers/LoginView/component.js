@@ -2,50 +2,65 @@ import React, { PropTypes } from 'react';
 import { Field, propTypes } from 'redux-form';
 
 import Input from 'js/components/ui/Input';
+import Button from 'js/components/ui/Button';
+import styles from './style.scss';
 
 class LoginView extends React.Component {
   render() {
     const {
-      isAccountLoading,
-      loggedPublic,
-      unsetAccount,
-      keypair,
-      federationName,
       handleSubmit,
-      dirty,
+      pristine,
       submitting,
+      submitSucceeded,
+      submitFailed,
     } = this.props;
 
     return (
-      <div>
+      <div className={styles.container}>
         <form onSubmit={handleSubmit}>
           <Field
             name="username"
             component={Input}
             type="text"
             label="Login"
+            placeholder="wilson"
           />
           <Field
             name="password"
             component={Input}
             type="password"
             label="Password"
+            placeholder="****"
           />
-          <button type="submit" disabled={submitting}>
+          <Button
+            onClick={handleSubmit}
+            disabled={pristine || submitting}
+            className={styles.btn}
+          >
             Login
-          </button>
+          </Button>
         </form>
+        {submitting &&
+          <p className={styles.loading}>
+            Logging in ...
+          </p>
+        }
+        {submitFailed &&
+          <p className={styles.error}>
+            Invalid credentials
+          </p>
+        }
+        {submitSucceeded &&
+          <p className={styles.success}>
+            Login success !
+          </p>
+        }
       </div>
     );
   }
 }
 
 LoginView.propTypes = {
-  unsetAccount: PropTypes.func.isRequired,
-  loggedPublic: PropTypes.bool,
-  isAccountLoading: PropTypes.bool,
-  keypair: PropTypes.object,
-  federationName: PropTypes.string,
   ...propTypes,
 };
 

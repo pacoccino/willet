@@ -3,6 +3,14 @@ $c-dark: #27272D;
 $c-white: #FFF;
 $c-rose: #E36DBE;
 $c-red: #d6114d;
+$c-green: #25cf41;
+
+// Shades
+
+$c-rose-d-2: darken($c-rose, 20%);
+$c-rose-d-4: darken($c-rose, 40%);
+$c-rose-l-2: lighten($c-rose, 20%);
+$c-rose-l-4: lighten($c-rose, 40%);
 
 
 // Fonts
