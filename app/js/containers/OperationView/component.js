@@ -2,10 +2,13 @@ import React, { PropTypes } from 'react';
 
 import { OPERATIONS } from 'js/business/operations/action-creators';
 
+import styles from './style.scss';
+
 import ExchangeComponent from '../ExchangeComponent';
 import SendComponent from '../SendComponent';
 import ReceiveComponent from '../ReceiveComponent';
 import LaunchedOperation from '../LaunchedOperation';
+import ActionsMenu from '../ActionsMenu';
 
 function OperationView({ mode, operationLaunched }) {
   if(operationLaunched) {
@@ -27,8 +30,13 @@ function OperationView({ mode, operationLaunched }) {
     }
   }
   return (
-    <div>
-      {actionComponent}
+    <div className={styles.container}>
+      <div className={styles.content}>
+        {actionComponent}
+      </div>
+      <div className={styles.actionsContainer}>
+        <ActionsMenu mode={mode} />
+      </div>
     </div>
   );
 }

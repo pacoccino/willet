@@ -2,6 +2,7 @@ import React from 'react';
 import classnames from 'classnames/bind';
 
 import styles from './style.scss';
+import OkButton from 'styles/icons/button-ok.svg';
 
 const cx = classnames.bind(styles);
 const Button = ({ onClick, disabled, className }) => (
@@ -11,8 +12,8 @@ const Button = ({ onClick, disabled, className }) => (
       container: !disabled,
       disabledC: disabled,
     })}
-    onClick={onClick}>
-    o
+    onClick={!disabled && onClick}>
+    <img src={OkButton} className={styles.icon} />
   </div>
 );
 

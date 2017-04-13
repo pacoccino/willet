@@ -1,0 +1,33 @@
+@import '~styles/attributes';
+
+.container {
+  margin: 20px;
+}
+
+.title {
+  font-size: 0.7rem;
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.message {
+  font-size: 0.7rem;
+  text-align: center;
+  display: block;
+}
+.messageSuccess {
+  composes: message;
+  color: $c-green;
+}
+
+.messageError {
+  composes: message;
+  color: $c-red;
+}

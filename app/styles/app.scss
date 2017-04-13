@@ -36,6 +36,9 @@ input[type="number"]:focus
 }
 
 :global {
+  * {
+    box-sizing: border-box;
+  }
   #app {
     position: relative !important;
     padding-top: 60px;

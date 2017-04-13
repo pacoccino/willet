@@ -1,14 +1,25 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import styles from './style.scss';
 
-const OperationButton = ({ onClick, label, disabled }) => (
+const OperationButton = ({ activated, onClick, label, disabled }) => (
   <div
-    className={disabled ? styles.disabledContainer : styles.container}
-    onClick={onClick}
+    className={
+      styles.container + ' ' +
+      (activated ? styles.activated : '') + ' '
+    }
+    onClick={!disabled && onClick}
   >
     {label}
   </div>
 );
+
+
+OperationButton.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired,
+  activated: PropTypes.bool,
+  disabled: PropTypes.bool,
+};
 
 export default OperationButton;

@@ -1,10 +1,17 @@
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
+import { selFederationName } from 'js/business/account/selectors';
 import { changeUsername } from 'js/business/account/action-creators';
 import Component from './component';
 
 const FORM_NAME = 'change-username-form';
+
+const mapStateToProps = state => ({
+  initialValues: {
+    username: selFederationName(state),
+  },
+});
 
 const mapDispatchToProps = dispatch => ({
   onSubmit(values, d, props) {
@@ -23,8 +30,7 @@ function validate(values) {
   return errors;
 }
 
-export default connect(null, mapDispatchToProps)(reduxForm({
+export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
   form: FORM_NAME,
-  initialValues: {},
   validate,
 })(Component));

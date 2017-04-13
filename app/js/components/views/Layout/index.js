@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 
 import TopBar from 'js/containers/TopBar';
+import BottomBar from 'js/components/ui/BottomBar';
 
 import styles from './style.scss';
 
@@ -10,6 +11,7 @@ const Layout = ({ children }) =>
     <div className={styles.content}>
       {children}
     </div>
+    <BottomBar />
   </div>;
 
 Layout.propTypes = {

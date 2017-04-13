@@ -1,28 +1,31 @@
 @import '~styles/attributes';
 
-.baseContainer {
+.container{
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0.5rem;
-  border-radius: 10px;
+  border-radius: 25px;
   cursor: pointer;
-}
-
-.container{
-  composes: baseContainer;
-
+  height: 40px;
+  min-width: 120px;
+  font-size: 0.7rem;
+  margin: 8px;
   background-color: $c-white;
   color: $c-dark;
 
   border: 2px solid $c-dark;
-}
 
-.disabledContainer {
-  composes: baseContainer;
+  &.disabled {
+    background-color: $c-dark;
+    color: $c-white;
 
-  background-color: $c-dark;
-  color: $c-white;
+    border: 2px solid $c-white;
+  }
+  &.activated {
+    background-color: $c-dark;
+    color: $c-white;
 
-  border: 2px solid $c-white;
+    border: 2px solid $c-white;
+  }
 }

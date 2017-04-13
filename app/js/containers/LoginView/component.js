@@ -45,12 +45,12 @@ class LoginView extends React.Component {
             Logging in ...
           </p>
         }
-        {submitFailed &&
+        {(!submitting && submitFailed) &&
           <p className={styles.error}>
             Invalid credentials
           </p>
         }
-        {submitSucceeded &&
+        {(!submitting && submitSucceeded) &&
           <p className={styles.success}>
             Login success !
           </p>

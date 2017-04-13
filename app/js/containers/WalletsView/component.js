@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 
+import Separator from 'js/components/ui/Separator';
 import BalanceCurrency from '../BalanceCurrency';
 import styles from './style.scss';
 
@@ -16,9 +17,7 @@ function BalancesViewer({ loggedPublic, accountLoaded, balances }) {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        <div className={styles.category}>
-          <span className={styles.text}>Your wallets</span>
-        </div>
+        <Separator label="Your wallets" />
         <div className={styles.balances}>
           {
             balances.map(

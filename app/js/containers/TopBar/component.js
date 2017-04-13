@@ -17,7 +17,7 @@ class TopBar extends React.Component {
     return (
       <div onClick={goBack} className={styles.gobackContainer}>
         <img src={leftArrow} className={styles.leftArrow} />
-        <span className={styles.gobackText}>Go back</span>
+        <span className={styles.gobackText}>Wallets</span>
       </div>
     );
   }
@@ -35,6 +35,7 @@ class TopBar extends React.Component {
     return (
       <Link to={routes.Login}>
         <span className={styles.signin}>Sign up / Sign In</span>
+        <img src={userIcon} className={styles.userIcon} />
       </Link>
     );
   }

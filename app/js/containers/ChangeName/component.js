@@ -1,35 +1,39 @@
 import React from 'react';
 import { Field, propTypes } from 'redux-form';
 import Input from 'js/components/ui/Input';
+import Button from 'js/components/ui/Button';
 
-const styles = {
-  container: {
-  },
-};
+import styles from './style.scss';
 
-function ChangePassword({ handleSubmit, pristine, submitting, submitSucceeded, submitFailed }) {
+function ChangeName({ handleSubmit, pristine, submitting, submitSucceeded, submitFailed }) {
   return (
-    <div style={styles.container}>
-      <p>Change username: </p>
+    <div className={styles.container}>
+      <span className={styles.title}>Change username</span>
       <form onSubmit={handleSubmit}>
-        <Field
-          name="username"
-          component={Input}
-          type="text"
-          label="Username"
-        />
-        <button type="submit" disabled={pristine || submitting}>
-          Change
-        </button>
+        <div className={styles.form}>
+          <Field
+            name="username"
+            component={Input}
+            type="text"
+            label="Username"
+          />
+          {!(pristine || submitting) &&
+          <Button disabled={pristine || submitting} onClick={handleSubmit}/>
+          }
+        </div>
       </form>
-      {submitSucceeded && <p>Username successfully changed !</p>}
-      {submitFailed && <p>There was an error while changing your username...</p>}
+      {submitSucceeded &&
+      <span className={styles.messageSuccess}>Username successfully changed !</span>
+      }
+      {submitFailed &&
+      <span className={styles.messageError}>There was an error while changing your username...</span>
+      }
     </div>
   );
 }
 
-ChangePassword.propTypes = {
+ChangeName.propTypes = {
   ...propTypes,
 };
 
-export default ChangePassword;
+export default ChangeName;

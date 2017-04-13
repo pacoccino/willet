@@ -1,0 +1,11 @@
+@import '~styles/attributes';
+
+.container {
+  padding-bottom: 15px;
+  border-bottom: 1px solid $c-white;
+  width: 100%;
+  .text {
+    font-size: 1.5rem;
+    color: $c-white;
+  }
+}

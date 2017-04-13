@@ -38,12 +38,6 @@ class AboutView extends Component {
             Willet is a wonderful crypto-currency wallet <br/>
           </span>
         </div>
-
-        <div className={styles.goBackContainer}>
-          <Link to={routes.Root}>
-            <span className={styles.text}>Go back</span>
-          </Link>
-        </div>
       </div>
     );
   }

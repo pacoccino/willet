@@ -1,5 +1,7 @@
 import { StellarServer, StellarTools, StellarAccountManager, Federation } from 'stellar-toolkit';
 import { Keypair } from 'stellar-sdk';
+import * as routes from 'js/constants/routes';
+import { push } from 'react-router-redux';
 
 import { AsyncActions } from 'js/helpers/asyncActions';
 import { ASYNC_FETCH_ACCOUNT, ASYNC_CHANGE_PASSWORD } from 'js/constants/asyncActions';
@@ -15,7 +17,6 @@ export const login = ({ username, password }) => (dispatch) => {
     .then(resolved => resolved.account_id)
     .then(publicKey => StellarServer.getAccount(publicKey))
     .then(account => {
-      dispatch(AccountActions.setAccount(account));
       const isSeed = StellarTools.validSeed(password);
       let keypair;
       if (isSeed) {
@@ -24,7 +25,12 @@ export const login = ({ username, password }) => (dispatch) => {
         const seed = StellarAccountManager.extractSeed(account, password);
         keypair = Keypair.fromSecret(seed);
       }
+
+      dispatch(AccountActions.setAccount(account));
+      dispatch(AccountActions.setFederationName(username));
       dispatch(AccountActions.setKeypair(keypair));
+
+      dispatch(push(routes.Root));
       dispatch(AsyncActions.stopLoading(ASYNC_FETCH_ACCOUNT));
       return keypair;
     })
@@ -148,7 +154,8 @@ export const changeUsername = (username) => (dispatch, getState) => {
     stellar_address,
     keypair,
   }).then(() => {
-      dispatch(AsyncActions.stopLoading(ASYNC_CHANGE_PASSWORD));
+    dispatch(AccountActions.setFederationName(username));
+    dispatch(AsyncActions.stopLoading(ASYNC_CHANGE_PASSWORD));
     }).catch((e) => {
       console.error(e);
       dispatch(AsyncActions.stopLoading(ASYNC_CHANGE_PASSWORD));

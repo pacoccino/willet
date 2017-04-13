@@ -1,17 +1,12 @@
 import React, { PropTypes } from 'react';
 
+import Separator from 'js/components/ui/Separator';
+import OperationButton from 'js/components/ui/OperationButton';
+
 import ChangePassword from '../ChangePassword';
 import ChangeName from '../ChangeName';
+import styles from './style.scss';
 
-const styles = {
-  container: {
-    display: 'flex',
-    minHeight: '100%',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-};
 
 class AccountView extends React.Component {
   constructor() {
@@ -32,19 +27,18 @@ class AccountView extends React.Component {
     if(this.state.showSeed) {
       return (
         <div>
+          <OperationButton onClick={::this.switchSeed} activated label="Hide credentials" />
+          <span className={styles.credentialPub}>
+          {this.props.keypair.publicKey()}
+          </span>
+          <span className={styles.credentialPriv}>
           {this.props.keypair.secret()}
-          <button onClick={::this.switchSeed}>
-            Hide seed
-          </button>
+          </span>
         </div>
       );
     }
     return (
-      <div>
-        <button onClick={::this.switchSeed}>
-          Show seed
-        </button>
-      </div>
+      <OperationButton onClick={::this.switchSeed} label="Show credentials" />
     );
   }
   render() {
@@ -54,15 +48,18 @@ class AccountView extends React.Component {
     }
     return (
       <div style={styles.container}>
-        <p>{username}</p>
-        <p>{account.id}</p>
-        {loggedPrivate &&
-        <div>
-          {this.renderSeed()}
+        <Separator label="Username" />
+        <div className={styles.categoryContent}>
           <ChangeName />
+        </div>
+
+        <Separator label="Password" />
+        <div className={styles.categoryContent}>
           <ChangePassword />
         </div>
-        }
+
+        <Separator label="Credentials" />
+        {this.renderSeed()}
       </div>
     );
   }
