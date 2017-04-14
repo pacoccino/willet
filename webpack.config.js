@@ -45,6 +45,7 @@ const webpackConfig = createConfig([
     'process.env.FEDERATION_DOMAIN': process.env.FEDERATION_DOMAIN,
     'process.env.STELLAR_NETWORK': process.env.STELLAR_NETWORK,
     'process.env.API_SERVER': process.env.API_SERVER,
+    'process.env.DEMO': process.env.DEMO,
   }),
   resolveAliases({
     styles: appDir('styles'),

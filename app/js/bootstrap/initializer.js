@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Keypair } from 'stellar-sdk'; // TODO REMOVE
 
 import { setKeypair, setFederationName } from 'js/business/account/actions';
 import { getKnownAnchors } from 'js/business/wilson/action-creators';

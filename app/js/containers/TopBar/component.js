@@ -6,6 +6,8 @@ import styles from './style.scss';
 import userIcon from 'styles/icons/user-icon.svg';
 import leftArrow from 'styles/icons/left-arrow.svg';
 
+import config from 'js/config';
+
 class TopBar extends React.Component {
 
   renderGoBack() {
@@ -40,6 +42,11 @@ class TopBar extends React.Component {
     );
   }
   render() {
+
+    if(config.DEMO) {
+      return null;
+    }
+
     const {
       loggedPublic,
     } = this.props;
