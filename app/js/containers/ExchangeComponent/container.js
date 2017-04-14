@@ -7,11 +7,24 @@ import Component from './component';
 
 const FORM_NAME = 'exchange-form';
 
-const mapStateToProps = state => ({
-  account: selAccount(state),
-  balances: selBalances(state),
-  formValues: getFormValues(FORM_NAME)(state),
-});
+const mapStateToProps = state => {
+  const formValues = getFormValues(FORM_NAME)(state);
+  const balances = selBalances(state);
+
+  const selectedAssets = {
+    sourceAsset: balances
+      .find(a => a.asset.uuid === formValues.sourceAssetUuid),
+    destinationAsset: balances
+      .find(a => a.asset.uuid === formValues.destinationAssetUuid),
+  };
+
+  return {
+    account: selAccount(state),
+    balances,
+    formValues,
+    selectedAssets,
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   onSubmit(values, d, props) {

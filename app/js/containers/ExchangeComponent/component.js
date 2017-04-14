@@ -17,15 +17,10 @@ class ExchangeComponent extends React.Component {
 
   onChangeToAmount(e, newValue) {
     const {
-      sourceAssetUuid,
-      destinationAssetUuid,
-    } = this.props.formValues;
+      sourceAsset,
+      destinationAsset,
+    } = this.props.selectedAssets;
     const account_id = this.props.account.id;
-
-    const sourceAsset = this.getExchangeableAssets()
-      .find(a => a.uuid === sourceAssetUuid);
-    const destinationAsset = this.getExchangeableAssets()
-      .find(a => a.uuid === destinationAssetUuid);
 
     StellarStats.getExchangeRateFromAutoPath({
       account_id,
@@ -40,8 +35,8 @@ class ExchangeComponent extends React.Component {
       handleSubmit,
       pristine,
       submitting,
+      selectedAssets,
     } = this.props;
-
     return (
       <div className={styles.container}>
         <form onSubmit={handleSubmit}>
@@ -53,6 +48,7 @@ class ExchangeComponent extends React.Component {
                 assets={this.getExchangeableAssets()}
               />
             </div>
+            {selectedAssets.sourceAsset &&
             <div className={styles.amount}>
               <Field
                 name="sendMax"
@@ -61,9 +57,12 @@ class ExchangeComponent extends React.Component {
                 placeholder="0"
               />
             </div>
+            }
+            {selectedAssets.sourceAsset &&
             <div className={styles.assetIcon}>
-              <AssetIcon input={{}} knownAsset={{symbol: 'B', code: 'BTC'}}/>
+              <AssetIcon knownAsset={selectedAssets.sourceAsset.knownAsset}/>
             </div>
+            }
           </div>
           <div className={styles.separator}>
             <div className={styles.line}/>
@@ -79,6 +78,7 @@ class ExchangeComponent extends React.Component {
                 assets={this.getExchangeableAssets()}
               />
             </div>
+            {selectedAssets.destinationAsset &&
             <div className={styles.amount}>
               <Field
                 name="destinationAmount"
@@ -88,9 +88,12 @@ class ExchangeComponent extends React.Component {
                 onChange={::this.onChangeToAmount}
               />
             </div>
+            }
+            {selectedAssets.destinationAsset &&
             <div className={styles.assetIcon}>
-              <AssetIcon input={{}} knownAsset={{symbol: 'B', code: 'BTC'}}/>
+              <AssetIcon knownAsset={selectedAssets.destinationAsset.knownAsset}/>
             </div>
+            }
           </div>
           <div className={styles.submit}>
             <Button label="Exchange" disabled={pristine || submitting} />
