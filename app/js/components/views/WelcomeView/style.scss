@@ -4,21 +4,30 @@
   display: flex;
   flex-grow: 1;
   flex-direction: column;
-}
-
-.titleContainer {
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: auto;
+}
+
+.titleContainer {
+  position: relative;
 }
 
 .title {
   font-size: 10rem;
   @include noselect();
 }
+.alpha {
+  position: absolute;
+  top: 14px;
+  right: -33px;
+  font-family: $f-secondary;
+  font-size: 0.9rem;
+  color: $c-green;
+  text-transform: uppercase;
+  @include noselect();
+}
+
 .subtitle {
   @include noselect();
   font-size: 2rem;
@@ -30,6 +39,7 @@
 .bottomText {
   margin-top: 100px;
   font-size: 0.8em;
+  @include noselect();
 }
 .gotoContainer {
   display: flex;

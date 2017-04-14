@@ -10,8 +10,10 @@ class WelcomeScreen extends Component {
   render() {
     return (
       <div className={styles.container}>
-        <div className={styles.titleContainer}>
-          <span className={styles.title}>Willet</span>
+          <div className={styles.titleContainer}>
+            <span className={styles.title}>Willet</span>
+            <span className={styles.alpha}>Alpha</span>
+          </div>
           <span className={styles.subtitle}>The Intergalactic Wallet</span>
           {
             config.DEMO ?
@@ -23,7 +25,6 @@ class WelcomeScreen extends Component {
                 <p className={styles.bottomText}>Launch the experience</p>
               </div>
           }
-        </div>
       </div>
     );
   }
