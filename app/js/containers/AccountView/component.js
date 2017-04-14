@@ -28,9 +28,11 @@ class AccountView extends React.Component {
       return (
         <div>
           <OperationButton onClick={::this.switchSeed} active label="Hide credentials" />
+          <p>Account ID:</p>
           <span className={styles.credentialPub}>
           {this.props.keypair.publicKey()}
           </span>
+          <p>Seed:</p>
           <span className={styles.credentialPriv}>
           {this.props.keypair.secret()}
           </span>
@@ -47,7 +49,7 @@ class AccountView extends React.Component {
       return <Loader/>;
     }
     return (
-      <div style={styles.container}>
+      <div className={styles.container}>
         <OperationButton onClick={unsetAccount} label="Disconnect" />
         <Separator label="Username" />
         <div className={styles.categoryContent}>
@@ -59,7 +61,7 @@ class AccountView extends React.Component {
           <ChangePassword />
         </div>
 
-        <Separator label="Credentials" />
+        <Separator label="Account details" />
         {this.renderSeed()}
       </div>
     );

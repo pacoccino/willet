@@ -10,10 +10,12 @@ class LaunchedOperation extends React.Component {
 
     let operationInfo = null;
     if (operation.isLoading) {
-      operationInfo = <div>
-        <p>Processing ...</p>
-        <Loader/>
-      </div>;
+      operationInfo = (
+        <div>
+          <Loader/>
+          <p>Processing ...</p>
+        </div>
+      );
     } else if (operation.data) {
       operationInfo = <p>Success !</p>;
     } else if (operation.error) {

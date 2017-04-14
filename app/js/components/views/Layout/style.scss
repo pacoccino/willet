@@ -8,6 +8,6 @@
 }
 
 .content {
-  height: $content-height;
+  min-height: $content-height;
   padding: $vertical-padding $horizontal-padding;
 }

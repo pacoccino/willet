@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, propTypes } from 'redux-form';
 import Input from 'js/components/ui/Input';
-import Button from 'js/components/ui/Button';
+import Button from 'js/components/ui/OperationButton';
 
 import styles from './style.scss';
 
@@ -24,7 +24,12 @@ function ChangePassword({ handleSubmit, pristine, submitting, submitSucceeded, s
             label="Password (again)"
           />
           {!(pristine || submitting) &&
-          <Button disabled={pristine || submitting} onClick={handleSubmit}/>
+          <Button
+            onClick={handleSubmit}
+            label="Change password"
+            disabled={pristine || submitting}
+            primary active
+            />
           }
         </div>
       </form>

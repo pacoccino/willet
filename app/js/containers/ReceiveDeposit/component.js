@@ -21,10 +21,12 @@ class ReceiveDeposit extends React.Component {
 
     let operationInfo = null;
     if (depositData.isLoading) {
-      operationInfo = <div>
-        <p>Retrieving deposit address ...</p>
-        <Loader/>
-        </div>;
+      operationInfo = (
+        <div>
+          <Loader/>
+          <p>Retrieving deposit address ...</p>
+        </div>
+      );
     } else if (depositData.error) {
       operationInfo = <p>{depositData.error}</p>;
     } else if (depositData.data) {

@@ -17,9 +17,9 @@ function RegisterView({
   if(submitting) {
     return (
       <div className={styles.container}>
+        <Loader />
         <p className={styles.message}>Creating account ...</p>
         <p className={styles.message}>This may take some time, please leave this tab open.</p>
-        <Loader />
       </div>
     );
   }
@@ -38,24 +38,30 @@ function RegisterView({
   }
   return (
     <div className={styles.container}>
+      <p className={styles.title}>
+        Sign up
+      </p>
       <form onSubmit={handleSubmit}>
         <Field
           name="username"
           component={Input}
           type="text"
           label="Username"
+          placeholder="wilson"
         />
         <Field
           name="password"
           component={Input}
           type="password"
           label="Password"
+          placeholder="****"
         />
         <Field
           name="password_bis"
           component={Input}
           type="password"
           label="Password (again)"
+          placeholder="****"
         />
         <OperationButton
           onClick={handleSubmit}
@@ -75,6 +81,14 @@ function RegisterView({
             </p>
           </div>
         }
+      <p className={styles.login}>
+        Already have an account ?
+      </p>
+      <OperationButton
+        onClick={goToLogin}
+        label="Sign in"
+        primary active
+      />
     </div>
   );
 }

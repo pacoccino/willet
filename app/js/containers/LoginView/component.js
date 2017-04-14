@@ -20,20 +20,25 @@ class LoginView extends React.Component {
 
     if(submitting) {
       return (
-        <p className={styles.loading}>
-          <Loader/>
-          Logging in ...
-        </p>
+        <div>
+          <Loader />
+          <p className={styles.loading}>
+            Logging in ...
+          </p>
+        </div>
       );
     }
     return (
       <div className={styles.container}>
+        <p className={styles.title}>
+          Sign in
+        </p>
         <form onSubmit={handleSubmit}>
           <Field
             name="username"
             component={Input}
             type="text"
-            label="Login"
+            label="Username"
             placeholder="wilson"
           />
           <Field

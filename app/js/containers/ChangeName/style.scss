@@ -11,10 +11,11 @@
 
 .form {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
   justify-content: center;
   flex-wrap: wrap;
+  width: 300px;
 }
 
 .message {
