@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { propTypes } from 'redux-form';
 import { StellarStats } from 'stellar-toolkit';
 import CurrencyAmount from 'js/components/ui/CurrencyAmount';
-import Button from 'js/components/ui/Button';
+import OperationButton from 'js/components/ui/OperationButton';
 
 import exchangeIcon from 'styles/icons/exchange.svg';
 
@@ -55,9 +55,12 @@ class ExchangeComponent extends React.Component {
             balance={selectedBalances.destinationBalance}
             formPrefix="destination"
           />
-          <div className={styles.submit}>
-            <Button label="Exchange" disabled={pristine || submitting} />
-          </div>
+          <OperationButton
+            onClick={handleSubmit}
+            label="Exchange"
+            disabled={pristine || submitting}
+            primary active
+          />
         </form>
       </div>
     );

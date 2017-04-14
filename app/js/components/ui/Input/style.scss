@@ -1,7 +1,7 @@
 @import '~styles/attributes';
 
 .container {
-  border-bottom: 1px solid $c-rose;
+  border-bottom: 1px solid $c-white;
   margin: 0 15px;
   padding: 10px 5px;
 }
@@ -13,7 +13,7 @@
   margin-bottom: 10px;
 
   .label {
-    color: $c-rose-l-2;
+    color: $c-rose;
     font-size: 0.65rem;
   }
   .error {

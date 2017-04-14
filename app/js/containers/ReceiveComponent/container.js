@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { reduxForm } from 'redux-form';
+import { getFormValues, reduxForm } from 'redux-form';
 
 import { selBalances } from 'js/business/account/selectors';
 import { selDepositAddressLaunched } from 'js/business/operations/selectors';
@@ -8,14 +8,23 @@ import Component from './component';
 
 const FORM_NAME = 'receive-form';
 
-const mapStateToProps = state => ({
-  balances: selBalances(state),
-  getDepositLaunched: selDepositAddressLaunched(state),
-});
+const mapStateToProps = state => {
+  const formValues = getFormValues(FORM_NAME)(state);
+  const balances = selBalances(state);
+
+  const balance = formValues && balances
+      .find(a => a.asset.uuid === formValues.assetUuid);
+
+  return {
+    getDepositLaunched: selDepositAddressLaunched(state),
+    balances,
+    balance,
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   onSubmit(values, d, props) {
-    const asset = props.balances.find(b => b.asset.uuid === values.currency).asset;
+    const asset = props.balances.find(b => b.asset.uuid === values.assetUuid).asset;
     return dispatch(getDepositAddress(asset))
       .then(() => {
         props.reset();
