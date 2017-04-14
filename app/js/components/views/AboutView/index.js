@@ -35,7 +35,7 @@ class AboutView extends Component {
           </h1>
 
           <p>
-            The wallet runs thanks to the Stellar Network. All of the datas are stored on the blockchain and most of the operation are run directly through your browser. We do not hold any secret keys and will never be able to act on your wallets. Only non-sensitive data are stored on our servers (such as public username resolution).
+            The wallet runs thanks to the <a href="https://www.stellar.org/">Stellar Network</a>. All of the datas are stored on the blockchain and most of the operation are run directly through your browser. We do not hold any secret keys and will never be able to act on your wallets. Only non-sensitive data are stored on our servers (such as public username resolution).
           </p>
 
           <h1>
