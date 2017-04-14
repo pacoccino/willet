@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { setKeypair, setFederationName } from 'js/business/account/actions';
 import { getKnownAnchors } from 'js/business/wilson/action-creators';
 import Loader from 'js/components/ui/Loader';
+import config from 'js/config';
 
 const mapDispatchToProps = {
   setKeypair,
@@ -21,7 +22,7 @@ class InitializerComponent extends React.Component {
   }
   componentWillMount() {
     Promise.all([
-      this.props.getKnownAnchors(),
+      config.DEMO ? null : this.props.getKnownAnchors(),
     ])
       .then(() => {
         this.setState(() => ({ ready: true }));
