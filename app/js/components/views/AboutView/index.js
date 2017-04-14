@@ -78,6 +78,7 @@ class AboutView extends Component {
 
           <p>
             <a href="https://ngfar.io">https://ngfar.io</a>
+            <br/>
             <a href="mailto:pakokrew@gmail.com">pakokrew@gmail.com</a>
           </p>
         </div>
