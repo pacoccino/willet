@@ -3,6 +3,7 @@ import { Field, propTypes } from 'redux-form';
 
 import Input from 'js/components/ui/Input';
 import Button from 'js/components/ui/Button';
+import OperationButton from 'js/components/ui/OperationButton';
 import Loader from 'js/components/ui/Loader';
 
 import styles from './style.scss';
@@ -10,6 +11,7 @@ import styles from './style.scss';
 class LoginView extends React.Component {
   render() {
     const {
+      goToRegister,
       handleSubmit,
       pristine,
       submitting,
@@ -17,6 +19,14 @@ class LoginView extends React.Component {
       submitFailed,
     } = this.props;
 
+    if(submitting) {
+      return (
+        <p className={styles.loading}>
+          <Loader/>
+          Logging in ...
+        </p>
+      );
+    }
     return (
       <div className={styles.container}>
         <form onSubmit={handleSubmit}>
@@ -34,30 +44,31 @@ class LoginView extends React.Component {
             label="Password"
             placeholder="****"
           />
-
-          {submitting ?
-            <p className={styles.loading}>
-              <Loader/>
-              Logging in ...
-            </p>
-            :
-            <Button
-              onClick={handleSubmit}
-              disabled={pristine || submitting}
-              className={styles.btn}
-            />
-          }
+          <OperationButton
+            disabled={pristine || submitting}
+            onClick={handleSubmit}
+            label="Sign in"
+            primary active
+          />
         </form>
-        {(!submitting && submitFailed) &&
+        {submitFailed &&
         <p className={styles.error}>
           Invalid credentials
         </p>
         }
-        {(!submitting && submitSucceeded) &&
+        {submitSucceeded &&
         <p className={styles.success}>
           Login success !
         </p>
         }
+        <p className={styles.register}>
+          Doesn't have an account ?
+        </p>
+        <OperationButton
+          onClick={goToRegister}
+          label="Sign up"
+          primary active
+        />
       </div>
     );
   }
@@ -65,6 +76,7 @@ class LoginView extends React.Component {
 
 LoginView.propTypes = {
   ...propTypes,
+  goToRegister: PropTypes.func.isRequired,
 };
 
 export default LoginView;

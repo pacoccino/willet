@@ -1,9 +1,9 @@
 @import '~styles/attributes';
 
 .container {
-  border: 1px solid $c-rose;
-  border-radius: 8px;
-  padding: 10px 6px;
+  border-bottom: 1px solid $c-rose;
+  //border-radius: 8px;
+  padding: 5px 6px;
   margin: 10px;
   width: 300px;
 }
@@ -12,6 +12,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom: 10px;
 
   .label {
     color: $c-rose;

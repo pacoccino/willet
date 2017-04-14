@@ -1,9 +1,11 @@
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
+import { push } from 'react-router-redux';
 
 import { selLoggedPublic, setAccountLoading, selKeypair, selFederationName } from 'js/business/account/selectors';
 import { login } from 'js/business/account/action-creators';
 import Component from './component';
+import * as routes from 'js/constants/routes';
 
 const FORM_NAME = 'login';
 
@@ -16,6 +18,9 @@ const mapDispatchToProps = dispatch => ({
       props.reset();
     });
   },
+  goToRegister() {
+    dispatch(push(routes.Register))
+  }
 });
 
 function validate(values) {

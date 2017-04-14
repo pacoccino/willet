@@ -46,8 +46,8 @@ input[type="number"]:focus
   }
   #app {
     position: relative !important;
-    padding-top: 60px;
-    padding-bottom: 50px;
+    padding-top: $header-height;
+    padding-bottom: $footer-height;
     overflow-x: hidden;
     min-height: 100vh;
   }

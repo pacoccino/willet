@@ -22,6 +22,7 @@
 .subtitle {
   @include noselect();
   font-size: 2rem;
+  font-family: $f-secondary;
   color: $c-rose;
   text-align: center;
 }

@@ -12,18 +12,24 @@ const mapDispatchToProps = dispatch => ({
   onSubmit(values, d, props) {
     return dispatch(createAccount(values))
       .then(() => {
-        dispatch(push(routes.Root));
         props.reset();
       });
   },
+  goToLogin() {
+    dispatch(push(routes.Login));
+  }
 });
 
-const PASSWORD_MIN_LENGTH = 2;
+const USERNAME_MIN_LENGTH = 4;
+const PASSWORD_MIN_LENGTH = 6;
 
 function validate(values) {
   const errors = {};
   if(!values.username) {
     errors.username = 'You must enter a username';
+  }
+  if(values.username && values.username.length < USERNAME_MIN_LENGTH) {
+    errors.username = `Username must be at least ${PASSWORD_MIN_LENGTH} characters`;
   }
   if(!values.password) {
     errors.password = 'You must enter a password';
@@ -32,7 +38,7 @@ function validate(values) {
     errors.password_bis = 'Password mismatch';
   }
   if(values.password && values.password.length < PASSWORD_MIN_LENGTH) {
-    errors.password = 'Password too short';
+    errors.password = `Password must be at least ${PASSWORD_MIN_LENGTH} characters`;
   }
   return errors;
 }

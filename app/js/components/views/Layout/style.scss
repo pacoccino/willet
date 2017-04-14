@@ -1,3 +1,5 @@
+@import '~styles/attributes';
+
 .layoutContainer {
   //height: 100%;
   //width: 100%;
@@ -6,5 +8,6 @@
 }
 
 .content {
-  padding: 50px;
+  height: $content-height;
+  padding: $vertical-padding $horizontal-padding;
 }

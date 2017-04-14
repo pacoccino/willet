@@ -27,7 +27,7 @@ class AccountView extends React.Component {
     if(this.state.showSeed) {
       return (
         <div>
-          <OperationButton onClick={::this.switchSeed} activated label="Hide credentials" />
+          <OperationButton onClick={::this.switchSeed} active label="Hide credentials" />
           <span className={styles.credentialPub}>
           {this.props.keypair.publicKey()}
           </span>

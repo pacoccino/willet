@@ -1,20 +1,43 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Field, propTypes } from 'redux-form';
 import Input from 'js/components/ui/Input';
+import Loader from 'js/components/ui/Loader';
+import OperationButton from 'js/components/ui/OperationButton';
 
-const styles = {
-  container: {
-    display: 'flex',
-    minHeight: '100%',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-};
+import styles from './style.scss';
 
-function RegisterView({ handleSubmit, pristine, submitting }) {
+function RegisterView({
+                        handleSubmit,
+                        pristine,
+                        submitting,
+                        submitSucceeded,
+                        submitFailed,
+                        goToLogin,
+                      }) {
+  if(submitting) {
+    return (
+      <div className={styles.container}>
+        <p className={styles.message}>Creating account ...</p>
+        <p className={styles.message}>This may take some time, please leave this tab open.</p>
+        <Loader />
+      </div>
+    );
+  }
+  if(submitSucceeded) {
+    return (
+      <div className={styles.container}>
+        <p className={styles.message}>Account successfully created !</p>
+        <p className={styles.message}>Please take care of your Username and Password, as there is no way to recover them for the moment.</p>
+        <OperationButton
+          onClick={goToLogin}
+          label="Sign in"
+          primary
+        />
+      </div>
+    );
+  }
   return (
-    <div style={styles.container}>
+    <div className={styles.container}>
       <form onSubmit={handleSubmit}>
         <Field
           name="username"
@@ -34,16 +57,31 @@ function RegisterView({ handleSubmit, pristine, submitting }) {
           type="password"
           label="Password (again)"
         />
-        <button type="submit" disabled={pristine || submitting}>
-          Create
-        </button>
+        <OperationButton
+          onClick={handleSubmit}
+          disabled={pristine || submitting}
+          label="Create account"
+          primary active
+        />
       </form>
+      {
+        submitFailed &&
+          <div>
+            <p className={styles.messageError}>
+              There was and error while creating your account.
+            </p>
+            <p className={styles.messageError}>
+              Please try again later...
+            </p>
+          </div>
+        }
     </div>
   );
 }
 
 RegisterView.propTypes = {
   ...propTypes,
+  goToLogin: PropTypes.func.isRequired,
 };
 
 export default RegisterView;

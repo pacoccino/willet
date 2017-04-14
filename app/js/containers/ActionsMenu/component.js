@@ -17,19 +17,19 @@ function ActionsMenu({ goToOperation, mode }) {
     <div style={styles.container}>
       <OperationButton
         onClick={() => goToOperation(OPERATIONS.EXCHANGE)}
-        activated={mode === OPERATIONS.EXCHANGE}
+        active={mode === OPERATIONS.EXCHANGE}
         disabled={mode === OPERATIONS.EXCHANGE}
         label="Exchange"
       />
       <OperationButton
         onClick={() => goToOperation(OPERATIONS.SEND)}
-        activated={mode === OPERATIONS.SEND}
+        active={mode === OPERATIONS.SEND}
         disabled={mode === OPERATIONS.SEND}
         label="Send"
       />
       <OperationButton
         onClick={() => goToOperation(OPERATIONS.RECEIVE)}
-        activated={mode === OPERATIONS.RECEIVE}
+        active={mode === OPERATIONS.RECEIVE}
         disabled={mode === OPERATIONS.RECEIVE}
         label="Receive"
       />

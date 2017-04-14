@@ -36,7 +36,11 @@ class InitializerComponent extends React.Component {
 
   render() {
     if(this.state.error) {
-      return <div>There was an error while loading the application.</div>;
+      return (
+        <p style={{textAlign: 'center'}}>
+          There was an error while loading the application.
+        </p>
+      );
     }
     return this.state.ready ? this.props.children : <Loader />;
   }

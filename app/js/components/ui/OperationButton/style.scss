@@ -14,18 +14,27 @@
   background-color: $c-white;
   color: $c-dark;
 
-  border: 2px solid $c-dark;
+  border: 0 solid $c-dark;
 
-  &.disabled {
-    background-color: $c-dark;
-    color: $c-white;
+  &.primary {
+    background-color: $c-rose;
+    color: $c-dark;
 
-    border: 2px solid $c-white;
+    border: 0 solid $c-dark;
   }
+
   &.activated {
     background-color: $c-dark;
     color: $c-white;
 
     border: 2px solid $c-white;
+
+    &.primary {
+      background-color: $c-dark;
+      color: $c-rose;
+
+      border: 2px solid $c-rose;
+    }
   }
+
 }
