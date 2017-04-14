@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import { Field, propTypes } from 'redux-form';
 
 import Input from 'js/components/ui/Input';
-import Button from 'js/components/ui/Button';
 import OperationButton from 'js/components/ui/OperationButton';
 import Loader from 'js/components/ui/Loader';
 
@@ -62,7 +61,7 @@ class LoginView extends React.Component {
         </p>
         }
         <p className={styles.register}>
-          Doesn't have an account ?
+          Don't have an account ?
         </p>
         <OperationButton
           onClick={goToRegister}

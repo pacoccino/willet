@@ -11,32 +11,32 @@ const mapStateToProps = state => {
   const formValues = getFormValues(FORM_NAME)(state);
   const balances = selBalances(state);
 
-  const selectedAssets = {
-    sourceAsset: balances
-      .find(a => a.asset.uuid === formValues.sourceAssetUuid),
-    destinationAsset: balances
-      .find(a => a.asset.uuid === formValues.destinationAssetUuid),
+  const selectedBalances = {
+    sourceBalance: formValues && formValues.source && balances
+      .find(a => a.asset.uuid === formValues.source.assetUuid),
+    destinationBalance: formValues && formValues.destination && balances
+      .find(a => a.asset.uuid === formValues.destination.assetUuid),
   };
 
   return {
     account: selAccount(state),
     balances,
     formValues,
-    selectedAssets,
+    selectedBalances,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   onSubmit(values, d, props) {
     const asset_source = props.balances
-      .find(b => b.asset.uuid === values.sourceAssetUuid).asset;
+      .find(b => b.asset.uuid === values.source.assetUuid).asset;
     const asset_destination = props.balances
-      .find(b => b.asset.uuid === values.destinationAssetUuid).asset;
+      .find(b => b.asset.uuid === values.destination.assetUuid).asset;
     const formData = {
       asset_source,
       asset_destination,
-      amount_destination: values.destinationAmount,
-      max_amount: values.sendMax,
+      max_amount: values.source.amount,
+      amount_destination: values.destination.amount,
     };
     return dispatch(exchangeOperation(formData))
       .then(() => {
@@ -58,6 +58,9 @@ function validate(values) {
 
 export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
   form: FORM_NAME,
-  initialValues: {},
+  initialValues: {
+    source: {},
+    destination: {},
+  },
   validate,
 })(Component));

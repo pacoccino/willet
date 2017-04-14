@@ -2,10 +2,8 @@
 
 .container {
   border-bottom: 1px solid $c-rose;
-  //border-radius: 8px;
-  padding: 5px 6px;
-  margin: 10px;
-  width: 300px;
+  margin: 0 15px;
+  padding: 10px 5px;
 }
 
 .topC {
@@ -15,7 +13,7 @@
   margin-bottom: 10px;
 
   .label {
-    color: $c-rose;
+    color: $c-rose-l-2;
     font-size: 0.65rem;
   }
   .error {
@@ -38,4 +36,3 @@
 
 input:focus {
 }
-

@@ -26,6 +26,7 @@ Input.propTypes = {
   placeholder: React.PropTypes.string,
   type: React.PropTypes.string,
   input: React.PropTypes.object.isRequired,
+  white: React.PropTypes.bool,
 };
 
 export default Input;

@@ -5,7 +5,10 @@
   flex-grow: 1;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+
+  align-items: stretch;
+  width: 300px;
+  margin: 50px auto;
 }
 
 .btn {
@@ -23,6 +26,7 @@
 .register {
   font-size: 0.7rem;
   margin: 15px 0;
+  text-align: center;
 }
 .loading {
   font-size: 0.6rem;

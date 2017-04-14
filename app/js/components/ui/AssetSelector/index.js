@@ -4,8 +4,14 @@ import styles from './style.scss';
 
 export default class AssetSelector extends React.Component {
   componentWillMount() {
-    if (this.props.assets.length) {
-      this.props.input.onChange(this.props.assets[0].uuid);
+    this.selectFirstAsset(this.props)
+  }
+  componentWillReceiveProps(newProps) {
+    this.selectFirstAsset(newProps);
+  }
+  selectFirstAsset(props) {
+    if (props.assets.length && !props.input.value) {
+      props.input.onChange(props.assets[0].uuid);
     }
   }
   render() {
