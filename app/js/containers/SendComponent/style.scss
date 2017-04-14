@@ -1,0 +1,11 @@
+@import '~styles/attributes';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  align-items: stretch;
+  width: 400px;
+  margin: 50px auto;
+}

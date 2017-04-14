@@ -1,0 +1,13 @@
+@import '~styles/attributes';
+
+.layoutContainer {
+  //height: 100%;
+  //width: 100%;
+  //box-sizing: border-box;
+  //margin: 20px;
+}
+
+.content {
+  min-height: $content-height;
+  padding: $vertical-padding $horizontal-padding;
+}

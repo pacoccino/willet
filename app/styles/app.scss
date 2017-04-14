@@ -1,13 +1,54 @@
-body {
-  background-color: #FFFFFF;
-}
-html {font-size: 12px;}
+@import 'reset';
+@import 'attributes';
 
-#app {
-  height: 100%;
-  width: 100%;
+body {
+  background-color: $c-dark;
+  color: $c-white;
+  font-family: $f-main;
 }
-.layout-container {
-  height: 100%;
-  width: 100%;
+
+html {
+  font-size: $f-main-size;
+}
+
+a, a:hover, a:visited {
+  color: $c-white;
+  text-decoration: none;
+}
+
+p {
+  font-family: $f-secondary;
+  font-size: 0.9em;
+}
+input[type="text"],
+input[type="password"],
+input[type="number"]
+{
+  display: block;
+  margin: 0;
+  appearance: none;
+  box-shadow: none;
+  border: none;
+  border-radius: none;
+  box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus
+{
+  outline: none;
+}
+
+:global {
+  * {
+    box-sizing: border-box;
+  }
+  #app {
+    position: relative !important;
+    padding-top: $header-height;
+    padding-bottom: $footer-height;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
 }

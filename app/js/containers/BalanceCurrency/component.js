@@ -1,22 +1,21 @@
 import React, { PropTypes } from 'react';
+import DecJS from 'decimal.js';
 
+import AssetIcon from 'js/components/ui/AssetIcon';
 import { findAsset } from 'js/business/wilson/services';
+import styles from './style.scss';
 
-const styles = {
-  container: {
-    padding: '2em',
-  },
-};
+const toDP = b => (new DecJS(b)).toDP().toString();
 
 function BalanceCurrency({ balance, knownAnchors }) {
-  let assetSymbol = balance.asset.shortName;
   const knownAsset = findAsset(balance, knownAnchors);
-  if (knownAsset) {
-    assetSymbol = knownAsset.symbol;
-  }
+  const amount = toDP(balance.balance);
+  const code = balance.asset_code;
   return (
-    <div style={styles.container}>
-      <p><b>{balance.balance}</b> {assetSymbol}</p>
+    <div className={styles.container}>
+      <span className={styles.amount}>{amount}</span>
+      <AssetIcon knownAsset={knownAsset} />
+      <span className={styles.code + ' ' + styles['code-'+code]}>{code}</span>
     </div>
   );
 }

@@ -1,9 +1,17 @@
 import React, { PropTypes } from 'react';
 
-export class AssetSelector extends React.Component {
+import styles from './style.scss';
+
+export default class AssetSelector extends React.Component {
   componentWillMount() {
-    if (this.props.assets.length) {
-      this.props.input.onChange(this.props.assets[0].uuid);
+    this.selectFirstAsset(this.props)
+  }
+  componentWillReceiveProps(newProps) {
+    this.selectFirstAsset(newProps);
+  }
+  selectFirstAsset(props) {
+    if (props.assets.length && !props.input.value) {
+      props.input.onChange(props.assets[0].uuid);
     }
   }
   render() {
@@ -20,10 +28,14 @@ export class AssetSelector extends React.Component {
     // }
 
     return (
-      <select value={value} onChange={onChange}>
+      <select
+        value={value}
+        onChange={onChange}
+        className={styles.select}
+      >
         {options.map(o =>
           <option value={o.value} key={o.value}>
-            {o.label}
+            {o.label.toUpperCase()}
           </option>,
         )}
       </select>

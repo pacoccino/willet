@@ -1,0 +1,30 @@
+@import '~styles/attributes';
+
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 60px;
+  padding-bottom: 5px;
+  margin: 15px;
+  border-bottom: 1px solid $c-white;
+}
+
+.asset {
+  flex: 0 0;
+  line-height: 50px;
+}
+
+.amount {
+  flex: 1 1;
+  input {
+    width: 100%;
+    background-color: $c-dark;
+    color: $c-white;
+    font-size: 1.3em;
+    text-align: right;
+    height: 50px;
+  }
+}
+.assetIcon {
+  flex: 0 0;
+}

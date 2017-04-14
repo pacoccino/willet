@@ -1,0 +1,36 @@
+@import '~styles/attributes';
+
+.container {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: center;
+
+  align-items: stretch;
+  width: 300px;
+  margin: 30px auto;
+}
+
+.message {
+  font-size: 0.8em;
+  text-align: center;
+}
+
+.messageError {
+  composes: message;
+  color: $c-red;
+}
+
+.login {
+  font-size: 0.7rem;
+  margin-top: 25px;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.title {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 15px;
+}

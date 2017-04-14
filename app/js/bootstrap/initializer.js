@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Keypair } from 'stellar-sdk'; // TODO REMOVE
 
-import { setKeypair } from 'js/business/account/actions';
+import { setKeypair, setFederationName } from 'js/business/account/actions';
 import { getKnownAnchors } from 'js/business/wilson/action-creators';
+import Loader from 'js/components/ui/Loader';
 
 const mapDispatchToProps = {
   setKeypair,
+  setFederationName,
   getKnownAnchors,
 };
 
@@ -23,7 +24,6 @@ class InitializerComponent extends React.Component {
       this.props.getKnownAnchors(),
     ])
       .then(() => {
-        this.props.setKeypair(Keypair.fromSecret('SAQHSZFSQIIVWH4DL2D5PRF6BARWUVDELSM5RZMRGYFDQA2P2QMNGPF7'));
         this.setState(() => ({ ready: true }));
       })
       .catch(error => {
@@ -33,9 +33,13 @@ class InitializerComponent extends React.Component {
 
   render() {
     if(this.state.error) {
-      return <div>There was an error while loading the application.</div>;
+      return (
+        <p style={{textAlign: 'center'}}>
+          There was an error while loading the application.
+        </p>
+      );
     }
-    return this.state.ready ? this.props.children : <div>Loading</div>;
+    return this.state.ready ? this.props.children : <Loader />;
   }
 }
 

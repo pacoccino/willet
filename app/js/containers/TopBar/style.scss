@@ -1,0 +1,58 @@
+@import '~styles/attributes';
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  background: linear-gradient(to bottom, $c-dark 0%, $c-dark 30%, rgba($c-dark,0.5) 70%, rgba(0,0,0,0) 100%);;
+}
+
+.text {
+  font-size: 0.8rem;
+}
+.topLeft {
+
+}
+
+.topRight {
+}
+
+.gobackContainer {
+  cursor: pointer;
+  .leftArrow {
+    height: 14px;
+    width: 14px;
+    vertical-align: middle;
+    margin: 8px;
+  }
+}
+
+.gobackText {
+  composes: text;
+  line-height: 34px;
+}
+
+.account {
+  cursor: pointer;
+  composes: text;
+  line-height: 34px;
+  text-transform: uppercase;
+}
+
+.signin {
+  cursor: pointer;
+  composes: text;
+}
+
+.userIcon {
+  margin-left: 10px;
+  height: 34px;
+  width: 34px;
+  vertical-align: middle;
+}

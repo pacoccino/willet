@@ -1,7 +1,12 @@
 import React, { PropTypes } from 'react';
-import { Field, propTypes } from 'redux-form';
+import { propTypes } from 'redux-form';
 import { StellarStats } from 'stellar-toolkit';
-import { AssetSelector } from 'js/components/ui/AssetSelector';
+import CurrencyAmount from 'js/components/ui/CurrencyAmount';
+import OperationButton from 'js/components/ui/OperationButton';
+
+import exchangeIcon from 'styles/icons/exchange.svg';
+
+import styles from './style.scss';
 
 class ExchangeComponent extends React.Component {
 
@@ -11,20 +16,15 @@ class ExchangeComponent extends React.Component {
 
   onChangeToAmount(e, newValue) {
     const {
-      sourceAssetUuid,
-      destinationAssetUuid,
-    } = this.props.formValues;
+      sourceBalance,
+      destinationBalance,
+    } = this.props.selectedBalances;
     const account_id = this.props.account.id;
-
-    const sourceAsset = this.getExchangeableAssets()
-      .find(a => a.uuid === sourceAssetUuid);
-    const destinationAsset = this.getExchangeableAssets()
-      .find(a => a.uuid === destinationAssetUuid);
 
     StellarStats.getExchangeRateFromAutoPath({
       account_id,
-      sourceAsset,
-      destinationAsset,
+      sourceAsset: sourceBalance,
+      destinationAsset: destinationBalance,
       destinationAmount: newValue,
     }).then(r => this.props.change('sendMax', r.sendMax));
   }
@@ -34,39 +34,33 @@ class ExchangeComponent extends React.Component {
       handleSubmit,
       pristine,
       submitting,
+      selectedBalances,
     } = this.props;
-
     return (
-      <div>
+      <div className={styles.container}>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="sendMax">From Amount</label>
-          <Field
-            name="sendMax"
-            component="input"
-            type="number"
-          />
-          <label htmlFor="sourceAsset">From Currency</label>
-          <Field
-            name="sourceAssetUuid"
-            component={AssetSelector}
+          <CurrencyAmount
             assets={this.getExchangeableAssets()}
+            balance={selectedBalances.sourceBalance}
+            formPrefix="source"
           />
-          <label htmlFor="destinationAmount">To Amount</label>
-          <Field
-            name="destinationAmount"
-            component="input"
-            type="number"
-            onChange={::this.onChangeToAmount}
-          />
-          <label htmlFor="destinationAsset">To Currency</label>
-          <Field
-            name="destinationAssetUuid"
-            component={AssetSelector}
+          <div className={styles.separator}>
+            <div className={styles.line}/>
+            <div className={styles.circle}>
+              <img src={exchangeIcon} className={styles.exchangeIcon} />
+            </div>
+          </div>
+          <CurrencyAmount
             assets={this.getExchangeableAssets()}
+            balance={selectedBalances.destinationBalance}
+            formPrefix="destination"
           />
-          <button type="submit" disabled={pristine || submitting}>
-            Exchange
-          </button>
+          <OperationButton
+            onClick={handleSubmit}
+            label="Exchange"
+            disabled={pristine || submitting}
+            primary active
+          />
         </form>
       </div>
     );
@@ -76,6 +70,7 @@ class ExchangeComponent extends React.Component {
 ExchangeComponent.propTypes = {
   balances: PropTypes.array.isRequired,
   formValues: PropTypes.object,
+  selectedBalances: PropTypes.object,
   ...propTypes,
 };
 

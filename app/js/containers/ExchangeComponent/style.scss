@@ -1,0 +1,80 @@
+@import '~styles/attributes';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  align-items: stretch;
+  width: 400px;
+  margin: 50px auto;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  width: 400px;
+  height: 60px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid $c-white;
+}
+
+.asset {
+  flex: 0 0;
+  line-height: 50px;
+}
+.amount {
+  flex: 1 1;
+  input {
+    width: 100%;
+    background-color: $c-dark;
+    color: $c-white;
+    font-size: 1.3em;
+    text-align: right;
+    height: 50px;
+  }
+}
+.assetIcon {
+  flex: 0 0;
+}
+
+$separatorcolor: lighten($c-dark, 20%);
+.separator {
+  position: relative;
+  height: 120px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0;
+  .line {
+    position: absolute;
+    top: 60px;
+    height: 1px;
+    width: 100%;
+    background-color: $separatorcolor;
+  }
+  .circle {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 60px;
+    border-radius: 60px;
+    border: none;
+    background-color: $separatorcolor;
+  }
+  .exchangeIcon {
+    height: 35px;
+    width: 35px;
+    opacity: 0.5;
+  }
+}
+
+.submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}

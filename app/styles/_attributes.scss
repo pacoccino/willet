@@ -1,0 +1,45 @@
+// Sizes
+
+$header-height: 60px;
+$footer-height: 60px;
+$horizontal-padding: 50px;
+$vertical-padding: 20px;
+
+$content-height: calc(100vh - #{$header-height} - 2*#{$vertical-padding});
+
+// Colors
+$c-dark: #27272D;
+$c-white: #FFF;
+$c-grey: #dcc7da;
+$c-rose: #E36DBE;
+$c-red: #d6114d;
+$c-green: #25cf41;
+
+$c-c-eth: #92CDFF;
+$c-c-btc: #FFCC66;
+
+// Shades
+
+$c-rose-d-2: darken($c-rose, 20%);
+$c-rose-d-4: darken($c-rose, 40%);
+$c-rose-l-2: lighten($c-rose, 20%);
+$c-rose-l-4: lighten($c-rose, 40%);
+
+
+// Fonts
+$f-main: 'Lato', sans-serif;
+$f-secondary: 'Titillium Web', sans-serif;
+
+$f-main-size: 20px;
+
+// Mixins
+
+@mixin noselect() {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+}

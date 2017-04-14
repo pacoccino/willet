@@ -1,0 +1,58 @@
+@import '~styles/attributes';
+
+.container {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.4rem;
+  margin-bottom: 3rem;
+
+  .title {
+    font-size: 5rem;
+  }
+  .subtitle {
+    font-size: 2rem;
+    color: $c-rose;
+    text-align: center;
+  }
+}
+
+.description {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: stretch;
+  max-width: 700px;
+  .text {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+}
+
+h1 {
+  font-size: 1.2em;
+  color: darken($c-white, 30%);
+  margin-left: 1rem;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 0.8em;
+  color: $c-white;
+  text-align: justify;
+  line-height: 1.1rem;
+}
+
+a {
+  display: block;
+  text-align: center;
+}

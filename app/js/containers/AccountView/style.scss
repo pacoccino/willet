@@ -1,0 +1,23 @@
+@import '~styles/attributes';
+
+.container {
+}
+
+.categoryContent {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.credentialPub {
+  font-size: 0.7em;
+  display: block;
+  color: $c-green;
+  text-align: center;
+}
+.credentialPriv {
+  font-size: 0.7em;
+  display: block;
+  text-align: center;
+  color: $c-red;
+}

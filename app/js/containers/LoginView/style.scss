@@ -1,0 +1,43 @@
+@import '~styles/attributes';
+
+.container {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: center;
+
+  align-items: stretch;
+  width: 300px;
+  margin: 30px auto;
+}
+
+.btn {
+  margin: 20px auto;
+}
+
+.error {
+  font-size: 0.6rem;
+  color: $c-red;
+}
+.success {
+  font-size: 0.6rem;
+  color: $c-green;
+}
+.register {
+  font-size: 0.7rem;
+  margin-top: 25px;
+  margin-bottom: 0;
+  text-align: center;
+}
+.loading {
+  font-size: 0.6rem;
+  text-align: center;
+  color: $c-white;
+}
+
+.title {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 15px;
+}

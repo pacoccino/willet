@@ -39,6 +39,7 @@
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "chai": "^3.5.0",
+    "classnames": "^2.2.5",
     "clipboard": "^1.5.16",
     "copy-webpack-plugin": "^4.0.1",
     "cross-env": "^3.0.0",

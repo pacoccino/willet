@@ -4,6 +4,7 @@ const config = {
   FEDERATION_DOMAIN: process.env.FEDERATION_DOMAIN || 'stellar-wilson.herokuapp.com',
   STELLAR_NETWORK: process.env.STELLAR_NETWORK || 'test',
   API_SERVER: process.env.API_SERVER || 'http://localhost:3000',
+  DEMO: !!process.env.DEMO || false,
 };
 
 StellarServer.switchNetwork(config.STELLAR_NETWORK);

@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 
 import { OPERATIONS } from 'js/business/operations/action-creators';
+import OperationButton from 'js/components/ui/OperationButton';
 
 const styles = {
   container: {
@@ -11,34 +12,34 @@ const styles = {
   },
 };
 
-function ActionsMenu({ setActionMode, actionMode }) {
+function ActionsMenu({ goToOperation, mode }) {
   return (
     <div style={styles.container}>
-      <button
-        onClick={() => setActionMode(OPERATIONS.EXCHANGE)}
-        disabled={actionMode === OPERATIONS.EXCHANGE}
-      >
-        Exchange
-      </button>
-      <button
-        onClick={() => setActionMode(OPERATIONS.SEND)}
-        disabled={actionMode === OPERATIONS.SEND}
-      >
-        Send
-      </button>
-      <button
-        onClick={() => setActionMode(OPERATIONS.RECEIVE)}
-        disabled={actionMode === OPERATIONS.RECEIVE}
-      >
-        Receive
-      </button>
+      <OperationButton
+        onClick={() => goToOperation(OPERATIONS.EXCHANGE)}
+        active={mode === OPERATIONS.EXCHANGE}
+        disabled={mode === OPERATIONS.EXCHANGE}
+        label="Exchange"
+      />
+      <OperationButton
+        onClick={() => goToOperation(OPERATIONS.SEND)}
+        active={mode === OPERATIONS.SEND}
+        disabled={mode === OPERATIONS.SEND}
+        label="Send"
+      />
+      <OperationButton
+        onClick={() => goToOperation(OPERATIONS.RECEIVE)}
+        active={mode === OPERATIONS.RECEIVE}
+        disabled={mode === OPERATIONS.RECEIVE}
+        label="Receive"
+      />
     </div>
   );
 }
 
 ActionsMenu.propTypes = {
-  actionMode: PropTypes.string,
-  setActionMode: PropTypes.func.isRequired,
+  mode: PropTypes.string,
+  goToOperation: PropTypes.func.isRequired,
 };
 
 export default ActionsMenu;

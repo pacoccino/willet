@@ -1,7 +1,12 @@
 import React, { PropTypes } from 'react';
 import { Field, propTypes } from 'redux-form';
 
-import { AssetSelector } from 'js/components/ui/AssetSelector';
+import Input from 'js/components/ui/Input';
+
+import OperationButton from 'js/components/ui/OperationButton';
+import CurrencyAmount from 'js/components/ui/CurrencyAmount';
+
+import styles from './style.scss';
 
 class SendComponent extends React.Component {
   getSendableAssets() {
@@ -13,32 +18,29 @@ class SendComponent extends React.Component {
       handleSubmit,
       pristine,
       submitting,
+      balance,
     } = this.props;
 
     return (
-      <div>
+      <div className={styles.container}>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="amount">Amount</label>
-          <Field
-            name="amount"
-            component="input"
-            type="number"
-          />
-          <label htmlFor="currency">Currency</label>
-          <Field
-            name="currency"
-            component={AssetSelector}
+          <CurrencyAmount
             assets={this.getSendableAssets()}
+            balance={balance}
           />
-          <label htmlFor="destination">Destination</label>
           <Field
             name="destination"
-            component="input"
+            component={Input}
             type="text"
+            label="Destination"
+            white
           />
-          <button type="submit" disabled={pristine || submitting}>
-            Send
-          </button>
+          <OperationButton
+            onClick={handleSubmit}
+            label="Send"
+            disabled={pristine || submitting}
+            primary active
+          />
         </form>
       </div>
     );
@@ -47,6 +49,7 @@ class SendComponent extends React.Component {
 
 SendComponent.propTypes = {
   balances: PropTypes.array.isRequired,
+  balance: PropTypes.object,
   ...propTypes,
 };
 
