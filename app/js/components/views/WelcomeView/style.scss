@@ -37,10 +37,31 @@
 }
 
 .bottomText {
-  margin-top: 100px;
+  margin-top: 85px;
+  margin-bottom: 10px;
   font-size: 0.8em;
   @include noselect();
 }
+.arrowDown {
+  height: 18px;
+}
+
+@keyframes animationOut {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+}
+.animationOut {
+  -webkit-animation: animationOut 0.7s cubic-bezier(0.550, 0.085, 0.680, 0.530) infinite both;
+  -moz-animation: animationOut 0.7s cubic-bezier(0.550, 0.085, 0.680, 0.530) infinite both;
+  animation: animationOut 0.7s cubic-bezier(0.550, 0.085, 0.680, 0.530) infinite both;
+}
+
 .gotoContainer {
   display: flex;
   flex-grow: 0;

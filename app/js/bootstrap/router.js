@@ -48,6 +48,11 @@ const RouterContainer = ({ loggedPublic }) =>
                 component={() => <OperationView mode={OPERATIONS.RECEIVE}/>}
                 path={routes.Operation_G(OPERATIONS.RECEIVE)}
               />
+              <Route
+                exact
+                component={AboutView}
+                path={routes.About}
+              />
               <Redirect to={routes.Root} />
             </Switch>
           </div>
