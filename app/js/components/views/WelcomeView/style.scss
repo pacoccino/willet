@@ -38,8 +38,8 @@
 
 .bottomText {
   margin-top: 85px;
-  margin-bottom: 10px;
   font-size: 0.8em;
+  text-align: center;
   @include noselect();
 }
 .arrowDown {
@@ -56,7 +56,9 @@
     opacity: 0;
   }
 }
+
 .animationOut {
+  margin-top: 10px;
   -webkit-animation: animationOut 0.7s cubic-bezier(0.550, 0.085, 0.680, 0.530) infinite both;
   -moz-animation: animationOut 0.7s cubic-bezier(0.550, 0.085, 0.680, 0.530) infinite both;
   animation: animationOut 0.7s cubic-bezier(0.550, 0.085, 0.680, 0.530) infinite both;

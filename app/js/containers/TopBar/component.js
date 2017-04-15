@@ -57,6 +57,13 @@ class TopBar extends React.Component {
           <div className={styles.topLeft}>
             {this.renderGoBack()}
           </div>
+          <div>
+            {loggedPublic &&
+            <span className={styles.centerTitle}>
+              Willet
+            </span>
+            }
+          </div>
           <div className={styles.topRight}>
             {
               loggedPublic ?

@@ -23,8 +23,10 @@ class WelcomeScreen extends Component {
               </div>
                 :
               <Link to={routes.Login}>
-                <p className={styles.bottomText}>Launch the experience</p>
-                <img className={styles.arrowDown+ ' ' + styles.animatheionOut} src={ArrowDown} />
+                <p className={styles.bottomText}>
+                  Launch the experience <br/>
+                  <img className={styles.arrowDown+ ' ' + styles.animationOut} src={ArrowDown} />
+                </p>
               </Link>
           }
       </div>
