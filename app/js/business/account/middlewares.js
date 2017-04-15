@@ -1,8 +1,6 @@
-// import { StellarServer, StellarStreamers } from 'stellar-toolkit';
-import { StellarServer } from 'stellar-toolkit';
+import { StellarStreamers } from 'stellar-toolkit';
 
-import { killStreams } from 'js/helpers/monoStreamer';
-// import { newStream, killStreams } from 'js/helpers/monoStreamer';
+import { newStream, killStreams } from 'js/helpers/monoStreamer';
 import { selKeypair } from 'js/business/account/selectors';
 import * as actions from './actions';
 import { findAsset } from '../wilson/services';
@@ -40,16 +38,12 @@ const stellarStreamerMiddleware = store => next => (action) => {
       }
 
       try {
-        StellarServer.getAccount(keypair.publicKey())
-          .then(a => store.dispatch(actions.setAccount(a)));
-        // Stream account
-        /*
-         newStream('account',
-         StellarStreamers.AccountStream(keypair.publicKey(),
-         (streamAccount) => {
-         store.dispatch(setAccount(streamAccount));
-         }));
-         */
+        newStream('account',
+          StellarStreamers.AccountStream(keypair.publicKey(),
+            (streamAccount) => {
+              store.dispatch(actions.setAccount(streamAccount));
+            }));
+
       } catch (e) {
         traceError(e);
       }
