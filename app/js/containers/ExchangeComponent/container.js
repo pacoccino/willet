@@ -41,7 +41,7 @@ const mapDispatchToProps = dispatch => ({
     return dispatch(exchangeOperation(formData))
       .then(() => {
         props.reset();
-      });
+      }).catch(() => 0);
   },
 });
 

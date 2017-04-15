@@ -5,6 +5,7 @@ const config = {
   STELLAR_NETWORK: process.env.STELLAR_NETWORK || 'test',
   API_SERVER: process.env.API_SERVER || 'http://localhost:3000',
   DEMO: !!process.env.DEMO || false,
+  PROD: process.env.NODE_ENV === 'production',
 };
 
 StellarServer.switchNetwork(config.STELLAR_NETWORK);
