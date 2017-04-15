@@ -7,7 +7,7 @@ import AssetIcon from 'js/components/ui/AssetIcon';
 
 import styles from './style.scss';
 
-export default function CurrencyAmount({ assets, balance, formPrefix }) {
+export default function CurrencyAmount({ assets, balance, formPrefix, da = false, onChange }) {
   const formPrefixC = formPrefix ? `${formPrefix}.` : '';
   return (
     <div className={styles.container}>
@@ -26,6 +26,9 @@ export default function CurrencyAmount({ assets, balance, formPrefix }) {
           type="number"
           placeholder="0"
           step={StellarTools.STROOP}
+          disabled={da}
+          onChange={onChange}
+          className={da && styles.inputDisabled}
         />
       </div>
       }
@@ -42,5 +45,7 @@ CurrencyAmount.propTypes = {
   assets: PropTypes.array.isRequired,
   balance: PropTypes.object,
   formPrefix: PropTypes.string,
+  da: PropTypes.bool,
+  onChange: PropTypes.func,
 };
 

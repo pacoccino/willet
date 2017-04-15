@@ -63,6 +63,11 @@ function RegisterView({
           label="Password (again)"
           placeholder="****"
         />
+        <div
+          className="g-recaptcha"
+          data-sitekey="6LcvJB0UAAAAAJ36r_A7FqHIi64jzBpKCM-i688b"
+          data-theme="dark"
+        />
         <OperationButton
           onClick={handleSubmit}
           disabled={pristine || submitting}

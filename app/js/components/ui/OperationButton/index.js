@@ -7,6 +7,7 @@ const OperationButton = ({ active, primary, onClick, label, disabled }) => (
     className={
       styles.container + ' ' +
       (active ? styles.activated : '') + ' ' +
+      (disabled ? styles.disabled : '') + ' ' +
       (primary ? styles.primary : '') + ' '
     }
     onClick={!disabled && onClick}

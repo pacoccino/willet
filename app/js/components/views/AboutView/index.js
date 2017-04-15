@@ -16,55 +16,57 @@ class AboutView extends Component {
         </Link>
 
         <div className={styles.description}>
-          <h1>
+          <h1 className={styles.h1}>
             What is Willet ?
           </h1>
-          <p>
+          <p className={styles.p}>
             Willet is a web crypto-currency wallet.
           </p>
-          <p>
+          <p className={styles.p}>
             It allows you to store multiple currencies, exchange between them and pay.
             <br/>
             Currently supported currencies are Bitcoins and Ethers.
           </p>
-          <p>
+          <p className={styles.warning}>This application is currently in alpha testing. Use at your own risk. We do not take responsibility if digital tokens are lost. Always manipulate small amounts of money.
+          </p>
+          <p className={styles.p}>
             The main advantage of Willet is that you can pay someone with a currency that you don't hold, transparently. If you hold ETH and you want to pay a shop that only receive BTC, the app will automatically do the exchange and send the BTC.
           </p>
-          <h1>
+          <h1 className={styles.h1}>
             Technical
           </h1>
 
-          <p>
-            The wallet runs thanks to the <a href="https://www.stellar.org/">Stellar Network</a>. All of the datas are stored on the blockchain and most of the operation are run directly through your browser. We do not hold any secret keys and will never be able to act on your wallets. Only non-sensitive data are stored on our servers (such as public username resolution).
+          <p className={styles.p}>
+            The wallet runs thanks to the <a className={styles.a} href="https://www.stellar.org/">Stellar Network</a>. All of the datas are stored on the blockchain and most of the operation are run directly through your browser. We do not hold any secret keys and will never be able to act on your wallets. Only non-sensitive data are stored on our servers (such as public username resolution).
           </p>
 
-          <h1>
+          <h1 className={styles.h1}>
             Stellar details
           </h1>
 
-          <p>
+          <p className={styles.p}>
             User login is processed with a federation server that resolves username to account ID. The seed is stored encrypted inside the account data with a user-chosen password.
           </p>
 
-          <p>
+          <p className={styles.p}>
             When you send or receive money, it pass through anchors via deposit/withdrawal.
             <br/>
             For an easier withdrawal/deposit address resolution, we use a service called Wilson that serves as an Anchor Discovery Service. Its role is to hold a list of well-known anchors, which assets they serve, and the ability to help stellar developers to interact with them.
           </p>
 
-          <h1>
+          <h1 className={styles.h1}>
             Partnerships
           </h1>
 
-          <p>
+          <p className={styles.p}>
             If you want to become an anchor and want to be integrated into our wallet, feel free to ask us (@ngfar on stellar-public slack).
           </p>
 
-          <h1>
+          <h1 className={styles.h1}>
             Roadmap
           </h1>
 
-          <p>
+          <p className={styles.p}>
             - Adding more crypto currencies
             <br/>
             - Adding fiat currency, beginning by Euro and PHP
@@ -72,14 +74,14 @@ class AboutView extends Component {
             - Recover account password
           </p>
 
-          <h1>
+          <h1 className={styles.h1}>
             Contact
           </h1>
 
-          <p>
-            <a href="https://ngfar.io">https://ngfar.io</a>
+          <p className={styles.p}>
+            <a className={styles.a} href="https://ngfar.io">https://ngfar.io</a>
             <br/>
-            <a href="mailto:pakokrew@gmail.com">pakokrew@gmail.com</a>
+            <a className={styles.a} href="mailto:pakokrew@gmail.com">pakokrew@gmail.com</a>
           </p>
         </div>
       </div>

@@ -28,3 +28,7 @@
 .assetIcon {
   flex: 0 0;
 }
+
+.inputDisabled {
+  color: darken($c-white, 30%) !important;
+}

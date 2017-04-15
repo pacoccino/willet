@@ -28,7 +28,7 @@ const mapDispatchToProps = dispatch => ({
     return dispatch(getDepositAddress(asset))
       .then(() => {
         props.reset();
-      });
+      }).catch(() => 0);
   },
 });
 

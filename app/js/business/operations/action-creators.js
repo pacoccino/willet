@@ -6,6 +6,8 @@ import { AsyncActions } from 'js/helpers/asyncActions';
 import { setActionMode } from 'js/business/ui/actions';
 import { selAccount, selKeypair } from 'js/business/account/selectors';
 
+import config from 'js/config';
+
 import { get, send, exchange } from './services';
 
 export const OPERATIONS = {
@@ -34,11 +36,12 @@ export const sendOperation = formData => (dispatch, getState) => {
   return send({ formData, keypair })
     .then((data) => {
       dispatch(AsyncActions.successFetch(ASYNC_OPERATION, data));
-      dispatch(delayResetOperation());
+      // dispatch(delayResetOperation());
     })
     .catch((error) => {
-      console.error(error);
+      !config.PROD && console.error(error);
       dispatch(AsyncActions.errorFetch(ASYNC_OPERATION, error));
+      throw error;
     });
 };
 
@@ -51,11 +54,12 @@ export const exchangeOperation = formData => (dispatch, getState) => {
   return exchange({ formData, keypair })
     .then((data) => {
       dispatch(AsyncActions.successFetch(ASYNC_OPERATION, data));
-      dispatch(delayResetOperation());
+      // dispatch(delayResetOperation());
     })
     .catch((error) => {
-      console.error(error);
+      !config.PROD && console.error(error);
       dispatch(AsyncActions.errorFetch(ASYNC_OPERATION, error));
+      throw error;
     });
 };
 
@@ -75,7 +79,8 @@ export const getDepositAddress = asset => (dispatch, getState) => {
       dispatch(AsyncActions.successFetch(ASYNC_GET_DEPOSIT, depositAddress));
     })
     .catch((error) => {
-      console.error(error);
+      !config.PROD && console.error(error);
       dispatch(AsyncActions.errorFetch(ASYNC_GET_DEPOSIT, error));
+      throw error;
     });
 };

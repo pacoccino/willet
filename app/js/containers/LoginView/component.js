@@ -66,7 +66,7 @@ class LoginView extends React.Component {
         </p>
         }
         <p className={styles.register}>
-          Don't have an account ?
+          Don't have an account yet ?
         </p>
         <OperationButton
           onClick={goToRegister}

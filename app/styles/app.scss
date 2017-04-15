@@ -14,8 +14,11 @@ html {
 a, a:hover, a:visited {
   color: $c-white;
   text-decoration: none;
+  transition: opacity .3s ease;
 }
-
+a:hover {
+  opacity: 0.7;
+}
 p {
   font-family: $f-secondary;
   font-size: 0.9em;

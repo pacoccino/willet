@@ -38,20 +38,27 @@
   }
 }
 
-h1 {
+.h1 {
   font-size: 1.2em;
   color: darken($c-white, 30%);
   margin-left: 1rem;
   margin-bottom: 10px;
 }
 
-p {
+.p {
   font-size: 0.8em;
   color: $c-white;
   text-align: justify;
   line-height: 1.1rem;
 }
 
-a {
+.warning {
+  font-size: 0.8em;
+  color: #fb9b9b;
+  text-align: justify;
+  line-height: 1.1rem;
+}
+
+.a {
   text-align: center;
 }

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import config from 'js/config';
 
 import styles from './style.scss';
+import ArrowDown from 'images/arrow-down.png';
 
 class WelcomeScreen extends Component {
   render() {
@@ -21,9 +22,12 @@ class WelcomeScreen extends Component {
                 <p className={styles.bottomText}>Coming soon...</p>
               </div>
                 :
-              <div>
-                <p className={styles.bottomText}>Launch the experience</p>
-              </div>
+              <Link to={routes.Login}>
+                <p className={styles.bottomText}>
+                  Launch the experience <br/>
+                  <img className={styles.arrowDown+ ' ' + styles.animationOut} src={ArrowDown} />
+                </p>
+              </Link>
           }
       </div>
     );

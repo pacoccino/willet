@@ -32,7 +32,7 @@ const mapDispatchToProps = dispatch => ({
     return dispatch(sendOperation(formData))
       .then(() => {
         props.reset();
-      });
+      }).catch(() => 0);
   },
 });
 
