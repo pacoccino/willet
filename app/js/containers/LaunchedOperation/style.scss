@@ -1,0 +1,27 @@
+@import '~styles/attributes';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  align-items: center;
+  max-width: 450px;
+  margin: 20px auto;
+}
+
+.p {
+  font-size: 0.8rem;
+  text-align: center;
+}
+.success {
+  color: $c-green;
+  font-size: 1.2rem;
+  text-align: center;
+  font-weight: 900;
+}
+.error {
+  font-size: 0.7rem;
+  color: $c-red;
+  text-align: center;
+}

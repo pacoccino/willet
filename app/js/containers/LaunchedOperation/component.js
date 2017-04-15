@@ -1,5 +1,9 @@
 import React, { PropTypes } from 'react';
+
 import Loader from 'js/components/ui/Loader';
+import OperationButton from 'js/components/ui/OperationButton';
+
+import styles from './style.scss';
 
 class LaunchedOperation extends React.Component {
   render() {
@@ -10,25 +14,28 @@ class LaunchedOperation extends React.Component {
 
     let operationInfo = null;
     if (operation.isLoading) {
-      operationInfo = (
-        <div>
-          <Loader/>
-          <p>Processing ...</p>
-        </div>
-      );
+      operationInfo = [
+          <Loader key="loader"/>,
+          <p className={styles.p} key="message">Processing ...</p>,
+      ];
     } else if (operation.data) {
-      operationInfo = <p>Success !</p>;
+      operationInfo = [
+        <p className={styles.success} key="success">Success !</p>,
+        <OperationButton onClick={close} active label="Close" key="close" />,
+      ];
     } else if (operation.error) {
-      operationInfo = <p>Error...</p>;
+      operationInfo = [
+        <p className={styles.error} key="error">
+          There was an error while processing the operation. <br/>
+          Please try again later...
+        </p>,
+        <OperationButton onClick={close} active label="Retry" key="retry" />,
+      ];
     }
 
     return (
-      <div>
+      <div className={styles.container}>
         {operationInfo}
-        {
-          !operation.isLoading &&
-          <button onClick={close}>Close</button>
-        }
       </div>
     );
   }
