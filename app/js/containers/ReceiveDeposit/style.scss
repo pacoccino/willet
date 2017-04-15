@@ -1,0 +1,25 @@
+@import '~styles/attributes';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  align-items: center;
+  max-width: 450px;
+  margin: 20px auto;
+}
+
+.p {
+  font-size: 0.8rem;
+  text-align: center;
+}
+.address {
+  font-size: 0.6rem;
+  color: darken($c-white, 30%);
+  text-align: center;
+}
+.error {
+  font-size: 0.8rem;
+  color: $c-red;
+}
