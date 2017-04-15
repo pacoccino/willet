@@ -26,7 +26,7 @@ class ExchangeComponent extends React.Component {
       sourceAsset: sourceBalance,
       destinationAsset: destinationBalance,
       destinationAmount: newValue,
-    }).then(r => this.props.change('sendMax', r.sendMax));
+    }).then(r => this.props.change('source.amount', r.sendMax));
   }
 
   render() {
@@ -43,6 +43,7 @@ class ExchangeComponent extends React.Component {
             assets={this.getExchangeableAssets()}
             balance={selectedBalances.sourceBalance}
             formPrefix="source"
+            da
           />
           <div className={styles.separator}>
             <div className={styles.line}/>
@@ -54,6 +55,7 @@ class ExchangeComponent extends React.Component {
             assets={this.getExchangeableAssets()}
             balance={selectedBalances.destinationBalance}
             formPrefix="destination"
+            onChange={::this.onChangeToAmount}
           />
           <OperationButton
             onClick={handleSubmit}

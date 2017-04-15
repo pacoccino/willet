@@ -27,6 +27,8 @@ class AboutView extends Component {
             <br/>
             Currently supported currencies are Bitcoins and Ethers.
           </p>
+          <p className={styles.warning}>This application is currently in alpha testing. Use at your own risk. We do not take responsibility if digital tokens are lost. Always manipulate small amounts of money.
+          </p>
           <p className={styles.p}>
             The main advantage of Willet is that you can pay someone with a currency that you don't hold, transparently. If you hold ETH and you want to pay a shop that only receive BTC, the app will automatically do the exchange and send the BTC.
           </p>
