@@ -7,7 +7,7 @@ import { AsyncActions } from 'js/helpers/asyncActions';
 import { ASYNC_FETCH_ACCOUNT, ASYNC_CHANGE_PASSWORD } from 'js/constants/asyncActions';
 import { selKeypair, selAccount } from 'js/business/account/selectors';
 import * as AccountActions from './actions';
-import { getStellarAddress } from './services';
+import { setTrustedAsset, getStellarAddress } from './services';
 
 export const login = ({ username, password }) => (dispatch) => {
   dispatch(AsyncActions.startLoading(ASYNC_FETCH_ACCOUNT));
@@ -121,13 +121,15 @@ export const unsetAccount = () => (dispatch) => {
   dispatch(AccountActions.resetAccount());
 };
 
-export const createAccount = ({ username, password }) => dispatch =>
-  Federation.federationCreate({
-    stellar_address: getStellarAddress(username),
-    password,
-  }).then(() => {
-
-  });
+export const createAccount = ({ username, password }) => dispatch => {
+  return Federation.federationCreate(getStellarAddress(username))
+    .then(keypair => {
+      StellarAccountManager
+        .setAccountSeed(keypair, password)
+        .then(() => setTrustedAsset(keypair))
+        .then(() => keypair)
+    });
+};
 
 export const changePassword = ({ password }) => (dispatch, getState) => {
   dispatch(AsyncActions.startLoading(ASYNC_CHANGE_PASSWORD));

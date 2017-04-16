@@ -969,7 +969,7 @@ babel-runtime@^4.7.16:
   dependencies:
     core-js "^0.6.1"
 
-babel-runtime@^6.18.0, babel-runtime@^6.22.0:
+babel-runtime@^6.18.0, babel-runtime@^6.22.0, babel-runtime@^6.23.0:
   version "6.23.0"
   resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.23.0.tgz#0a9489f144de70efb3ce4300accdb329e2fc543b"
   dependencies:
@@ -5165,10 +5165,11 @@ stellar-sdk@^0.7.3:
     toml "^2.3.0"
     urijs "1.18.4"
 
-stellar-toolkit@^0.3.3:
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/stellar-toolkit/-/stellar-toolkit-0.3.3.tgz#c4afed60abf9d52e52b7ae93770e520cda636945"
+stellar-toolkit@^0.4.0:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/stellar-toolkit/-/stellar-toolkit-0.4.1.tgz#50549ca65f4024c481d0e80f5ce30d41eac307c5"
   dependencies:
+    babel-runtime "^6.23.0"
     crypto-js "^3.1.9-1"
     decimal.js "^7.1.1"
     isomorphic-fetch "^2.2.1"
