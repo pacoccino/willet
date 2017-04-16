@@ -72,7 +72,9 @@
     "redux-thunk": "^2.2.0",
     "reselect": "^2.5.4",
     "stellar-sdk": "^0.7.3",
-    "stellar-toolkit": "^0.3.3",
+    "stellar-toolkit": "^0.4.0",
+    "wallet-address-validator": "^0.1.0",
+    "web3": "^0.18.4",
     "webpack": "^2.2.0",
     "webpack-dev-server": "2.2.0"
   }

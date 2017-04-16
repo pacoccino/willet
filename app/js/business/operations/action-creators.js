@@ -31,7 +31,6 @@ export const sendOperation = formData => (dispatch, getState) => {
   dispatch(AsyncActions.startFetch(ASYNC_OPERATION));
   const state = getState();
   const keypair = selKeypair(state);
-  // TODO Manage native
 
   return send({ formData, keypair })
     .then((data) => {
@@ -72,7 +71,6 @@ export const getDepositAddress = asset => (dispatch, getState) => {
   dispatch(AsyncActions.startFetch(ASYNC_GET_DEPOSIT));
   const state = getState();
   const keypair = selKeypair(state);
-  // TODO Manage native
 
   return get({ asset, keypair })
     .then((depositAddress) => {
