@@ -2,13 +2,13 @@ import React, { PropTypes } from 'react';
 
 import styles from './style.scss';
 
-const OperationButton = ({ active, primary, onClick, label, disabled }) => (
+const OperationButton = ({ active, primary, secondary, onClick, label, disabled }) => (
   <div
     className={
       styles.container + ' ' +
       (active ? styles.activated : '') + ' ' +
       (disabled ? styles.disabled : '') + ' ' +
-      (primary ? styles.primary : '') + ' '
+      (primary ? styles.primary : (secondary ? styles.secondary : ''))
     }
     onClick={!disabled && onClick}
   >
@@ -18,11 +18,12 @@ const OperationButton = ({ active, primary, onClick, label, disabled }) => (
 
 
 OperationButton.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   label: PropTypes.string.isRequired,
   active: PropTypes.bool,
   disabled: PropTypes.bool,
   primary: PropTypes.bool,
+  secondary: PropTypes.bool,
 };
 
 export default OperationButton;

@@ -27,6 +27,12 @@
 
     border: 0 solid $c-dark;
   }
+  &.secondary {
+    background-color: $c-orange;
+    color: $c-dark;
+
+    border: 0 solid $c-dark;
+  }
 
   &.activated {
     background-color: $c-dark;
@@ -39,6 +45,12 @@
       color: $c-rose;
 
       border: 2px solid $c-rose;
+    }
+    &.secondary {
+      background-color: $c-dark;
+      color: $c-orange;
+
+      border: 2px solid $c-orange;
     }
   }
 

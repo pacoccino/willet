@@ -73,6 +73,7 @@
     "reselect": "^2.5.4",
     "stellar-sdk": "^0.7.3",
     "stellar-toolkit": "^0.3.3",
+    "web3": "^0.18.4",
     "webpack": "^2.2.0",
     "webpack-dev-server": "2.2.0"
   }
