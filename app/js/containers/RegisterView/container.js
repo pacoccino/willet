@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-const USERNAME_MIN_LENGTH = 4;
+const USERNAME_MIN_LENGTH = 3;
 const PASSWORD_MIN_LENGTH = 6;
 
 function validate(values) {
@@ -29,7 +29,7 @@ function validate(values) {
     errors.username = 'You must enter a username';
   }
   if(values.username && values.username.length < USERNAME_MIN_LENGTH) {
-    errors.username = `Username must be at least ${PASSWORD_MIN_LENGTH} characters`;
+    errors.username = `Username must be at least ${USERNAME_MIN_LENGTH} characters`;
   }
   if(!values.password) {
     errors.password = 'You must enter a password';
