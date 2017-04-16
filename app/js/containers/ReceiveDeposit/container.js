@@ -7,10 +7,13 @@ import Component from './component';
 
 const FORM_NAME = 'deposit-form';
 
-const mapStateToProps = state => ({
-  depositData: selDepositAddress(state),
-  amount: getFormValues(state).amount,
-});
+const mapStateToProps = state => {
+  const formValues = getFormValues(FORM_NAME)(state);
+  return {
+    depositData: selDepositAddress(state),
+    amount: formValues && formValues.amount,
+  };
+};
 
 const mapDispatchToProps = {
   close: resetDepositAddress,
@@ -19,7 +22,7 @@ const mapDispatchToProps = {
 function validate(values) {
   const errors = {};
   if(!values.amount) {
-    errors.amount = 'You must enter an amount';
+    errors.amount = 'Please enter an amount';
   }
   return errors;
 }

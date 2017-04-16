@@ -28,7 +28,6 @@ class ReceiveDeposit extends React.Component {
   }
 
   payEthereum(depositData, amount) {
-    // get amount
     try {
       const contractAPI = JSON.parse(depositData.specific_data.contract_api);
       const StelereumContract = currentWeb3.eth.contract(contractAPI);
@@ -42,7 +41,10 @@ class ReceiveDeposit extends React.Component {
           }
         ).concat(
         error => {
-          throw error
+          // todo handle
+          if(error) {
+            throw error;
+          }
         }));
     } catch(e) {
       console.error(e);
@@ -112,7 +114,7 @@ class ReceiveDeposit extends React.Component {
 ReceiveDeposit.propTypes = {
   depositData: PropTypes.object.isRequired,
   close: PropTypes.func.isRequired,  ...propTypes,
-  amount: PropTypes.number,
+  amount: PropTypes.string,
 };
 
 export default ReceiveDeposit;
