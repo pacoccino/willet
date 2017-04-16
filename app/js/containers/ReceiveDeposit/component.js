@@ -52,6 +52,8 @@ class ReceiveDeposit extends React.Component {
   }
 
   renderEthereumDeposit(depositData) {
+    return this.renderEthereumUnavailable();
+
     if(currentWeb3) {
       return [
         <Field name="amount" label="Amount to deposit" component={Input} type="number" step={StellarTools.STROOP} key="input" />,
@@ -61,9 +63,16 @@ class ReceiveDeposit extends React.Component {
     return this.renderInstallMetamask();
   }
 
+  renderEthereumUnavailable () {
+    return [
+      <div key="no eth">
+        <p>Sorry Ethereum deposit is not available for the moment.</p>
+      </div>
+    ];
+  }
   renderInstallMetamask () {
     return [
-      <div className="alert alert-warning text-center" key="install metamask">
+      <div key="install metamask">
         <p>No Ethereum provider found.</p>
         <p>Please install:</p>
         <p style={{textAlign: 'center'}}><a href="https://metamask.io/">MetaMask</a><br />or <br /><a href="https://github.com/ethereum/mist/releases">Mist</a></p>
