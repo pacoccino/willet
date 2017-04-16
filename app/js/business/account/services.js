@@ -6,7 +6,6 @@ import trustedAssets from './trustedAssets';
 
 export const getStellarAddress = username => `${username}*${config.FEDERATION_DOMAIN}`;
 
-console.log(trustedAssets)
 export const setTrustedAsset = keypair =>
   StellarOperations.sendTransaction({
     operations: trustedAssets.map(asset =>
