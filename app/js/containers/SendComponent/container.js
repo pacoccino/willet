@@ -1,5 +1,7 @@
 import { connect } from 'react-redux';
 import { getFormValues, reduxForm } from 'redux-form';
+const WAValidator = require('wallet-address-validator');
+const Web3 = require('web3');
 
 import { selBalances } from 'js/business/account/selectors';
 import { sendOperation } from 'js/business/operations/action-creators';
@@ -7,6 +9,7 @@ import { sendOperation } from 'js/business/operations/action-creators';
 import Component from './component';
 
 const FORM_NAME = 'send-form';
+const web3 = new Web3();
 
 const mapStateToProps = state => {
   const formValues = getFormValues(FORM_NAME)(state);
@@ -36,8 +39,18 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-function validate(values) {
+function validate(values, props) {
   const errors = {};
+  if(props.balance && props.balance.asset_code === 'ETH') {
+    if(!web3.isAddress(values.destination)) {
+      errors.destination = 'Invalid ethereum address';
+    }
+  }
+  if(props.balance && props.balance.asset_code === 'BTC') {
+    if(!WAValidator.validate(values.destination)) {
+      errors.destination = 'Invalid bitcoin address';
+    }
+  }
   if(!values.amount) {
     errors.amount = 'You must enter an amount';
   }
