@@ -26,6 +26,7 @@ class AboutView extends Component {
             It is simple to use, fast, decentralized and secured. It allows you to store multiple currencies, exchange and pay with them.
             <br/>
             Currently supported currencies are Bitcoins and Ethers.
+            <span className={styles.warning}> Due to technical problems, Ether is currently disabled.</span>
           </p>
           <p className={styles.warning}>This application is currently in alpha testing. Use at your own risk. We do not take responsibility if digital tokens are lost. Always manipulate small amounts of money.
           </p>
