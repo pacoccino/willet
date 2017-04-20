@@ -20,12 +20,13 @@ class AboutView extends Component {
             What is Willet ?
           </h1>
           <p className={styles.p}>
-            Willet is a web crypto-currency wallet.
+            Willet is a multi-crypto-currency wallet.
           </p>
           <p className={styles.p}>
-            It allows you to store multiple currencies, exchange between them and pay.
+            It is simple to use, fast, decentralized and secured. It allows you to store multiple currencies, exchange and pay with them.
             <br/>
             Currently supported currencies are Bitcoins and Ethers.
+            <span className={styles.warning}> Due to technical problems, Ether is currently disabled.</span>
           </p>
           <p className={styles.warning}>This application is currently in alpha testing. Use at your own risk. We do not take responsibility if digital tokens are lost. Always manipulate small amounts of money.
           </p>
@@ -37,7 +38,10 @@ class AboutView extends Component {
           </h1>
 
           <p className={styles.p}>
-            The wallet runs thanks to the <a className={styles.a} href="https://www.stellar.org/">Stellar Network</a>. All of the datas are stored on the blockchain and most of the operation are run directly through your browser. We do not hold any secret keys and will never be able to act on your wallets. Only non-sensitive data are stored on our servers (such as public username resolution).
+            The wallet runs thanks to the <a className={styles.a} href="https://www.stellar.org/" target="_blank">Stellar Network</a>. All of the datas are stored on the blockchain and most of the operation are run directly through your browser, via <a className={styles.a} href="https://www.stellar.org/developers/reference/" target="_blank">Horizon API</a>. We do not hold any secret keys and will never be able to act on your wallets. Only non-sensitive data are stored on our servers (such as public username resolution).
+          </p>
+          <p className={styles.p}>
+            Willet also heavily relies on a custom API which is public and that can be useful for any Stellar developer. Feel free to use it, you can find documentation about it <a className={styles.a} href="https://api.willet.io/doc" target="_blank">here</a>.
           </p>
 
           <h1 className={styles.h1}>
@@ -59,7 +63,7 @@ class AboutView extends Component {
           </h1>
 
           <p className={styles.p}>
-            If you want to become an anchor and want to be integrated into our wallet, feel free to ask us (@ngfar on stellar-public slack).
+            If you want to become an anchor and want to be integrated into our wallet, feel free to ask us (@ngfar on <a className={styles.a} href="https://stellar-public.slack.com/" target="_blank">stellar-public</a> slack).
           </p>
 
           <h1 className={styles.h1}>
@@ -69,9 +73,15 @@ class AboutView extends Component {
           <p className={styles.p}>
             - Adding more crypto currencies
             <br/>
+            - Improve and stabilize UX/UI
+            <br/>
+            - Allows path payment
+            <br/>
+            - Improve liquidity
+            <br/>
             - Adding fiat currency, beginning by Euro and PHP
             <br/>
-            - Recover account password
+            - Recover account password by mail
           </p>
 
           <h1 className={styles.h1}>
@@ -79,7 +89,7 @@ class AboutView extends Component {
           </h1>
 
           <p className={styles.p}>
-            <a className={styles.a} href="https://ngfar.io">https://ngfar.io</a>
+            <a className={styles.a} href="https://ngfar.io" target="_blank">https://ngfar.io</a>
             <br/>
             <a className={styles.a} href="mailto:pakokrew@gmail.com">pakokrew@gmail.com</a>
           </p>

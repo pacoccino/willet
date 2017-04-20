@@ -7,6 +7,7 @@ import styles from './style.scss';
 export default function BottomBar() {
   return (
     <div className={styles.container}>
+      <a href="https://api.willet.io/doc" target="_blank">API</a>
       <Link to={routes.About}>About us</Link>
     </div>
   );
