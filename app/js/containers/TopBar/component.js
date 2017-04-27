@@ -59,9 +59,11 @@ class TopBar extends React.Component {
           </div>
           <div>
             {loggedPublic &&
-            <span className={styles.centerTitle}>
-              Willet
-            </span>
+            <Link to={routes.Root}>
+              <span className={styles.centerTitle}>
+                Willet
+              </span>
+            </Link>
             }
           </div>
           <div className={styles.topRight}>

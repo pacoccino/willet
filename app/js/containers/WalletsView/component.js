@@ -14,6 +14,9 @@ function BalancesViewer({ loggedPublic, accountLoaded, balances }) {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
+        <div className={styles.alertC}>
+          <p><b>Attention!</b> <i>Willet</i> is alpha software and is published for proof-of-concept purposes, it should be used with precaution.</p>
+        </div>
         <Separator label="Your wallets" />
         <div className={styles.balances}>
           {

@@ -52,8 +52,6 @@ class ReceiveDeposit extends React.Component {
   }
 
   renderEthereumDeposit(depositData) {
-    return this.renderEthereumUnavailable();
-
     if(currentWeb3) {
       return [
         <Field name="amount" label="Amount to deposit" component={Input} type="number" step={StellarTools.STROOP} key="input" />,
