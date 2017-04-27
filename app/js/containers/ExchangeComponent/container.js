@@ -58,9 +58,5 @@ function validate(values) {
 
 export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
   form: FORM_NAME,
-  initialValues: {
-    source: {},
-    destination: {},
-  },
   validate,
 })(Component));

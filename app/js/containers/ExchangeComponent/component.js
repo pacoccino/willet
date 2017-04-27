@@ -8,25 +8,20 @@ import exchangeIcon from 'styles/icons/exchange.svg';
 
 import styles from './style.scss';
 
+const RATE = 4;
 class ExchangeComponent extends React.Component {
 
   getExchangeableAssets() {
     return this.props.balances.map(b => b.asset);
   }
 
-  onChangeToAmount(e, newValue) {
-    const {
-      sourceBalance,
-      destinationBalance,
-    } = this.props.selectedBalances;
-    const account_id = this.props.account.id;
+  onChangeFromAmount(e, newValue) {
+    this.props.change('destination.amount', newValue * RATE);
 
-    StellarStats.getExchangeRateFromAutoPath({
-      account_id,
-      sourceAsset: sourceBalance,
-      destinationAsset: destinationBalance,
-      destinationAmount: newValue,
-    }).then(r => this.props.change('source.amount', r.sendMax));
+  }
+
+  onChangeToAmount(e, newValue) {
+    this.props.change('source.amount', newValue / RATE);
   }
 
   render() {
@@ -43,7 +38,7 @@ class ExchangeComponent extends React.Component {
             assets={this.getExchangeableAssets()}
             balance={selectedBalances.sourceBalance}
             formPrefix="source"
-            da
+            onChange={::this.onChangeFromAmount}
           />
           <div className={styles.separator}>
             <div className={styles.line}/>
@@ -59,7 +54,7 @@ class ExchangeComponent extends React.Component {
           />
           <OperationButton
             onClick={handleSubmit}
-            label="Exchange"
+            label="Invest"
             disabled={pristine || submitting}
             primary active
           />

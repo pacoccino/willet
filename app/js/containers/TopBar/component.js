@@ -61,7 +61,7 @@ class TopBar extends React.Component {
             {loggedPublic &&
             <Link to={routes.Root}>
               <span className={styles.centerTitle}>
-                Willet
+                pwc
               </span>
             </Link>
             }

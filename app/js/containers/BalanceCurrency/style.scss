@@ -15,12 +15,23 @@
 .code {
   line-height: 50px;
   color: $c-grey;
+  width: 50px;
 }
 .code-BTC {
   color: $c-c-btc;
 }
 .code-ETH {
   color: $c-c-eth;
+}
+
+.code-EUR {
+  color: $c-c-eur;
+}
+.code-GNO {
+  color: $c-c-gno;
+}
+.code-HNQ {
+  color: $c-c-hnq;
 }
 
 .balances {

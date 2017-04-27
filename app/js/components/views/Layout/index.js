@@ -11,7 +11,6 @@ const Layout = ({ children }) =>
     <div className={styles.content}>
       {children}
     </div>
-    <BottomBar />
   </div>;
 
 Layout.propTypes = {

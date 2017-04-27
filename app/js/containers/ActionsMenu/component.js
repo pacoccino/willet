@@ -19,19 +19,19 @@ function ActionsMenu({ goToOperation, mode }) {
         onClick={() => goToOperation(OPERATIONS.EXCHANGE)}
         active={mode === OPERATIONS.EXCHANGE}
         disabled={mode === OPERATIONS.EXCHANGE}
-        label="Exchange"
+        label="Invest"
       />
       <OperationButton
         onClick={() => goToOperation(OPERATIONS.SEND)}
         active={mode === OPERATIONS.SEND}
         disabled={mode === OPERATIONS.SEND}
-        label="Send"
+        label="Withdraw"
       />
       <OperationButton
         onClick={() => goToOperation(OPERATIONS.RECEIVE)}
         active={mode === OPERATIONS.RECEIVE}
         disabled={mode === OPERATIONS.RECEIVE}
-        label="Receive"
+        label="Deposit"
       />
     </div>
   );

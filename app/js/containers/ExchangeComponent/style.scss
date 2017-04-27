@@ -38,7 +38,8 @@
   flex: 0 0;
 }
 
-$separatorcolor: lighten($c-dark, 20%);
+$separatorcolor: lighten($c-white, 20%);
+
 .separator {
   position: relative;
   height: 120px;

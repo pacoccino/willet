@@ -2,7 +2,38 @@ import * as actions from './actions';
 import { createReducer } from '../redux';
 
 const initialState = {
-  actions: {},
+  "actions":{
+    "known-anchors":{
+      "isLoading":false,
+      "data":[
+        {
+          "issuer":"GATEMHCCKCY67ZUCKTROYN24ZYT5GK4EQZ65JJLDHKHRUZI3EUEKMTCH",
+          "code":"EUR",
+          "label":"NaoBTC",
+          "domain":"naobtc.com",
+          "symbol":"฿",
+          "name":"Bitcoin"
+        },
+        {
+          "issuer":"GDIR44J6EE3SVP4OAOAF7FAJGBXIHELRKHGC3RFAYXDE4I73S6ZNNW2F",
+          "code":"GNO",
+          "label":"Stellereum",
+          "domain":"stellereum.com",
+          "symbol":"Ξ",
+          "name":"Ether"
+        },
+        {
+          "issuer":"GDIR44J6EE3SVP4OAOAF7FAJGBXIHELRKHGC3RFAYXDE4I73S6ZNNW2F",
+          "code":"HNQ",
+          "label":"Stellereum",
+          "domain":"stellereum.com",
+          "symbol":"Ξ",
+          "name":"Ether"
+        }
+      ],
+      "error":null
+    },
+  }
 };
 
 function editActionState(state, actionName, data) {

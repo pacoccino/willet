@@ -22,7 +22,6 @@ class InitializerComponent extends React.Component {
   }
   componentWillMount() {
     Promise.all([
-      config.DEMO ? null : this.props.getKnownAnchors(),
     ])
       .then(() => {
         this.setState(() => ({ ready: true }));

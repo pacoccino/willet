@@ -8,9 +8,9 @@ import styles from './style.scss';
 const toDP = b => (new DecJS(b)).toDP().toString();
 
 function BalanceCurrency({ balance, knownAnchors }) {
-  const knownAsset = findAsset(balance, knownAnchors);
+  const knownAsset = balance.knownAsset;
   const amount = toDP(balance.balance);
-  const code = balance.asset_code;
+  const code = knownAsset.code;
   return (
     <div className={styles.container}>
       <span className={styles.amount}>{amount}</span>

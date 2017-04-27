@@ -12,10 +12,10 @@ class WelcomeScreen extends Component {
     return (
       <div className={styles.container}>
           <div className={styles.titleContainer}>
-            <span className={styles.title}>Willet</span>
+            <span className={styles.title}>pwc</span>
             <span className={styles.alpha}>Alpha</span>
           </div>
-          <span className={styles.subtitle}>The Intergalactic Wallet</span>
+          <span className={styles.subtitle}>Initial Coin Offering Exchange</span>
           {
             config.DEMO ?
               <div>
