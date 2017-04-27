@@ -23,3 +23,15 @@
   margin-top: 30px;
   flex: 0 0 100%;
 }
+
+.alertC {
+  border: 1px solid #c50404;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: rgba(175, 35, 49, 0.35);
+  p {
+    font-size: 0.7em;
+    color: #f7d0d0;
+  }
+  margin-bottom: 20px;
+}

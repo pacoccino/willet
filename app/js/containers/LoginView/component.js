@@ -54,6 +54,7 @@ class LoginView extends React.Component {
             label="Sign in"
             primary active
           />
+          <input type="submit" style={{visibility: 'hidden'}} />
         </form>
         {submitFailed &&
         <p className={styles.error}>
