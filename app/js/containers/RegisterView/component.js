@@ -37,6 +37,21 @@ function RegisterView({
     );
   }
   return (
+    <div className={styles.containerDisabled}>
+      <p className={styles.disabled}>
+        Account registration is currently disabled.
+        <br/>
+        Please come back later.
+      </p>
+      <OperationButton
+        onClick={goToLogin}
+        label="Sign in"
+        primary active
+      />
+    </div>
+  );
+
+  return (
     <div className={styles.container}>
       <p className={styles.title}>
         Sign up
@@ -77,15 +92,15 @@ function RegisterView({
       </form>
       {
         submitFailed &&
-          <div>
-            <p className={styles.messageError}>
-              There was and error while creating your account.
-            </p>
-            <p className={styles.messageError}>
-              Please try again later...
-            </p>
-          </div>
-        }
+        <div>
+          <p className={styles.messageError}>
+            There was and error while creating your account.
+          </p>
+          <p className={styles.messageError}>
+            Please try again later...
+          </p>
+        </div>
+      }
       <p className={styles.login}>
         Already have an account ?
       </p>
