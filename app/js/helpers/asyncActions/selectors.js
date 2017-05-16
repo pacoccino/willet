@@ -8,10 +8,10 @@ export const asyncSelector = actionName =>
     {},
   );
 
-export const asyncDataSelector = actionName =>
+export const asyncDataSelector = (actionName, defValue) =>
   selectProperty(
     [ASYNC_STATE_KEY, 'actions', actionName, 'data'],
-    null,
+    defValue || null,
   );
 export const asyncIsLoadingSelector = actionName =>
   selectProperty(
