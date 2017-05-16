@@ -7,6 +7,7 @@ import OperationButton from 'js/components/ui/OperationButton';
 import styles from './style.scss';
 
 function RegisterView({
+                        registrationDisabled,
                         handleSubmit,
                         pristine,
                         submitting,
@@ -36,20 +37,23 @@ function RegisterView({
       </div>
     );
   }
-  return (
-    <div className={styles.containerDisabled}>
-      <p className={styles.disabled}>
-        Account registration is currently disabled.
-        <br/>
-        Please come back later.
-      </p>
-      <OperationButton
-        onClick={goToLogin}
-        label="Sign in"
-        primary active
-      />
-    </div>
-  );
+
+  if(registrationDisabled) {
+    return (
+      <div className={styles.containerDisabled}>
+        <p className={styles.disabled}>
+          Account registration is currently disabled.
+          <br/>
+          Please come back later.
+        </p>
+        <OperationButton
+          onClick={goToLogin}
+          label="Sign in"
+          primary active
+        />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.container}>
@@ -77,6 +81,20 @@ function RegisterView({
           type="password"
           label="Password (again)"
           placeholder="****"
+        />
+        <p className={styles.seedWarning}>
+          For the moment you can only register with an existing Stellar account.
+          <br/>
+          Your account must hold at least 150 Lumens to be usable on Willet.
+          <br/>
+          Your seed is not sent to our server, it is only used in your browser to set some data fields needed by Willet.
+        </p>
+        <Field
+          name="seed"
+          component={Input}
+          type="text"
+          label="Account seed"
+          placeholder="SDB..."
         />
         <div
           className="g-recaptcha"
@@ -116,6 +134,7 @@ function RegisterView({
 RegisterView.propTypes = {
   ...propTypes,
   goToLogin: PropTypes.func.isRequired,
+  registrationDisabled: PropTypes.bool,
 };
 
 export default RegisterView;

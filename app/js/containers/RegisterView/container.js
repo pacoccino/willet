@@ -2,15 +2,20 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import * as routes from 'js/constants/routes';
 import { reduxForm } from 'redux-form';
+import { StellarTools } from 'stellar-toolkit';
 
-import { createAccount } from 'js/business/account/action-creators';
+import { registerAccount } from 'js/business/account/action-creators';
 import Component from './component';
 
 const FORM_NAME = 'register-form';
 
+const mapStateToProps = () => ({
+  registrationDisabled: false,
+});
+
 const mapDispatchToProps = dispatch => ({
   onSubmit(values, d, props) {
-    return dispatch(createAccount(values))
+    return dispatch(registerAccount(values))
       .then(() => {
         props.reset();
       });
@@ -40,10 +45,16 @@ function validate(values) {
   if(values.password && values.password.length < PASSWORD_MIN_LENGTH) {
     errors.password = `Password must be at least ${PASSWORD_MIN_LENGTH} characters`;
   }
+  if(!values.seed) {
+    errors.seed = 'You must enter an account seed';
+  }
+  if(values.seed && !StellarTools.validSeed(values.seed)) {
+    errors.seed = 'Incorrect seed';
+  }
   return errors;
 }
 
-export default connect(null, mapDispatchToProps)(reduxForm({
+export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
   form: FORM_NAME,
   initialValues: {},
   validate,

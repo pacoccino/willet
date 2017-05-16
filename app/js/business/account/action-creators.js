@@ -9,6 +9,8 @@ import { selKeypair, selAccount } from 'js/business/account/selectors';
 import * as AccountActions from './actions';
 import { setTrustedAsset, getStellarAddress } from './services';
 
+const MIN_BALANCE = 150;
+
 export const login = ({ username, password }) => (dispatch) => {
   dispatch(AsyncActions.startLoading(ASYNC_FETCH_ACCOUNT));
   const stellar_address = getStellarAddress(username);
@@ -131,6 +133,34 @@ export const createAccount = ({ username, password }) => dispatch => {
     });
 };
 
+export const registerAccount = ({ username, password, seed }) => dispatch => {
+  const keypair = Keypair.fromSecret(seed);
+
+  return StellarServer.getAccount(keypair.publicKey())
+    .then(account => {
+        if(!account) {
+          throw new Error('No account found');
+        }
+
+        const lumenWallet = account.balances.find(b => b.asset.isNative());
+        if(lumenWallet.balance < MIN_BALANCE) {
+          throw new Error('Not enough lumens to register account');
+        }
+
+        return Federation.federationRegister({
+          stellar_address: getStellarAddress(username),
+          keypair,
+        })
+      }
+    )
+    .then(() => {
+      StellarAccountManager
+        .setAccountSeed(keypair, password)
+        .then(() => setTrustedAsset(keypair))
+        .then(() => keypair)
+    });
+};
+
 export const changePassword = ({ password }) => (dispatch, getState) => {
   dispatch(AsyncActions.startLoading(ASYNC_CHANGE_PASSWORD));
   const state = getState();
@@ -158,9 +188,9 @@ export const changeUsername = (username) => (dispatch, getState) => {
   }).then(() => {
     dispatch(AccountActions.setFederationName(username));
     dispatch(AsyncActions.stopLoading(ASYNC_CHANGE_PASSWORD));
-    }).catch((e) => {
-      console.error(e);
-      dispatch(AsyncActions.stopLoading(ASYNC_CHANGE_PASSWORD));
-      throw e;
-    });
+  }).catch((e) => {
+    console.error(e);
+    dispatch(AsyncActions.stopLoading(ASYNC_CHANGE_PASSWORD));
+    throw e;
+  });
 };
