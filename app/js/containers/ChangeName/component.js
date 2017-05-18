@@ -1,11 +1,22 @@
 import React from 'react';
 import { Field, propTypes } from 'redux-form';
+
 import Input from 'js/components/ui/Input';
 import Button from 'js/components/ui/OperationButton';
+import Loader from 'js/components/ui/Loader';
 
 import styles from './style.scss';
 
 function ChangeName({ handleSubmit, pristine, submitting, submitSucceeded, submitFailed }) {
+  if(submitting) {
+    return (
+      <div className={styles.container}>
+        <Loader />
+        <p className={styles.message}>Changing username ...</p>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.container}>
       <span className={styles.title}>Change username</span>

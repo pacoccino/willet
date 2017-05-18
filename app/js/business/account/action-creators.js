@@ -156,10 +156,9 @@ export const createAccount = ({ username, password }) => dispatch => {
 export const changePassword = ({ password }) => (dispatch, getState) => {
   dispatch(AsyncActions.startLoading(ASYNC_CHANGE_PASSWORD));
   const state = getState();
-  const currentKeypair = selKeypair(state);
-  const seed = currentKeypair.secret();
+  const keypair = selKeypair(state);
 
-  return StellarAccountManager.setAccountSeed(seed, password)
+  return StellarAccountManager.setAccountSeed(keypair, password)
     .then(() => {
       dispatch(AsyncActions.stopLoading(ASYNC_CHANGE_PASSWORD));
     }).catch((e) => {
