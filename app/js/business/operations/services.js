@@ -1,11 +1,19 @@
 import { StellarOperations, Wilson } from 'stellar-toolkit';
 
-export const get = ({ asset, keypair }) =>
-  Wilson.anchorDeposit({
+export const get = ({ asset, keypair }) => {
+  if(asset.isNative()) {
+    const pk = keypair.publicKey();
+    return Promise.resolve({
+      qr_code: pk,
+      deposit_address: pk,
+    });
+  }
+  return Wilson.anchorDeposit({
     code: asset.getCode(),
     issuer: asset.getIssuer(),
     address: keypair.publicKey(),
   });
+};
 
 export const send = ({ formData, keypair }) => {
   const { amount, asset, destination } = formData;

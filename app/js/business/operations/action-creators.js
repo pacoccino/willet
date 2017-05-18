@@ -71,16 +71,8 @@ export const getDepositAddress = asset => (dispatch, getState) => {
   dispatch(AsyncActions.startFetch(ASYNC_GET_DEPOSIT));
   const state = getState();
   const keypair = selKeypair(state);
-  const pk = keypair.publicKey();
 
-  const depositData = asset.isNative() ?
-    Promise.resolve({
-      qr_code: pk,
-      deposit_address: pk,
-    })
-    : get({asset, keypair});
-
-  return depositData.then((depositAddress) => {
+  return get({asset, keypair}).then((depositAddress) => {
     dispatch(AsyncActions.successFetch(ASYNC_GET_DEPOSIT, depositAddress));
   })
     .catch((error) => {
