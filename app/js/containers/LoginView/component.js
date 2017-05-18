@@ -17,6 +17,7 @@ class LoginView extends React.Component {
       submitting,
       submitSucceeded,
       submitFailed,
+      alternateLogin,
     } = this.props;
 
     if(submitting) {
@@ -57,7 +58,7 @@ class LoginView extends React.Component {
           />
           <input type="submit" style={{visibility: 'hidden'}} />
         </form>
-        <LoginSeed />
+        {alternateLogin && <LoginSeed />}
         {submitFailed &&
         <p className={styles.error}>
           Invalid credentials
@@ -84,6 +85,7 @@ class LoginView extends React.Component {
 LoginView.propTypes = {
   ...propTypes,
   goToRegister: PropTypes.func.isRequired,
+  alternateLogin: PropTypes.bool,
 };
 
 export default LoginView;

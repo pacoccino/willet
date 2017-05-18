@@ -10,6 +10,7 @@ import * as routes from 'js/constants/routes';
 const FORM_NAME = 'login';
 
 const mapStateToProps = state => ({
+  alternateLogin: false,
 });
 
 const mapDispatchToProps = dispatch => ({
