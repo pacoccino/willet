@@ -7,7 +7,7 @@ import Component from './component';
 
 const FORM_NAME = 'exchange-form';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const formValues = getFormValues(FORM_NAME)(state);
   const balances = selBalances(state);
 
@@ -47,10 +47,10 @@ const mapDispatchToProps = dispatch => ({
 
 function validate(values) {
   const errors = {};
-  if(!values.max_amount) {
+  if (!values.max_amount) {
     errors.max_amount = 'You must enter a source amount';
   }
-  if(!values.amount_destination) {
+  if (!values.amount_destination) {
     errors.amount_destination = 'You must enter a destination amount';
   }
   return errors;

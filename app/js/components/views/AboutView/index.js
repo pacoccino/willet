@@ -24,7 +24,7 @@ class AboutView extends Component {
           </p>
           <p className={styles.p}>
             It is simple to use, fast, decentralized and secured. It allows you to store multiple currencies, exchange and pay with them.
-            <br/>
+            <br />
             Currently supported currencies are Bitcoins and Ethers.
             <span className={styles.warning}> Due to technical problems, Ether is currently disabled.</span>
           </p>
@@ -54,7 +54,7 @@ class AboutView extends Component {
 
           <p className={styles.p}>
             When you send or receive money, it pass through anchors via deposit/withdrawal.
-            <br/>
+            <br />
             For an easier withdrawal/deposit address resolution, we use a service called Wilson that serves as an Anchor Discovery Service. Its role is to hold a list of well-known anchors, which assets they serve, and the ability to help stellar developers to interact with them.
           </p>
 
@@ -72,15 +72,15 @@ class AboutView extends Component {
 
           <p className={styles.p}>
             - Adding more crypto currencies
-            <br/>
+            <br />
             - Improve and stabilize UX/UI
-            <br/>
+            <br />
             - Allows path payment
-            <br/>
+            <br />
             - Improve liquidity
-            <br/>
+            <br />
             - Adding fiat currency, beginning by Euro and PHP
-            <br/>
+            <br />
             - Recover account password by mail
           </p>
 
@@ -90,7 +90,7 @@ class AboutView extends Component {
 
           <p className={styles.p}>
             <a className={styles.a} href="https://ngfar.io" target="_blank">https://ngfar.io</a>
-            <br/>
+            <br />
             <a className={styles.a} href="mailto:pakokrew@gmail.com">pakokrew@gmail.com</a>
           </p>
         </div>

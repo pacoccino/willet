@@ -5,10 +5,10 @@ import styles from './style.scss';
 const OperationButton = ({ active, primary, secondary, onClick, label, disabled }) => (
   <div
     className={
-      styles.container + ' ' +
-      (active ? styles.activated : '') + ' ' +
-      (disabled ? styles.disabled : '') + ' ' +
-      (primary ? styles.primary : (secondary ? styles.secondary : ''))
+      `${styles.container} ${
+      active ? styles.activated : ''} ${
+      disabled ? styles.disabled : ''} ${
+      primary ? styles.primary : (secondary ? styles.secondary : '')}`
     }
     onClick={!disabled && onClick}
   >

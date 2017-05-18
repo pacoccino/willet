@@ -14,7 +14,7 @@ function RegisterView({
                         submitFailed,
                         goToLogin,
                       }) {
-  if(submitting) {
+  if (submitting) {
     return (
       <div className={styles.container}>
         <Loader />
@@ -23,7 +23,7 @@ function RegisterView({
       </div>
     );
   }
-  if(submitSucceeded) {
+  if (submitSucceeded) {
     return (
       <div className={styles.container}>
         <p className={styles.message}>Account successfully created !</p>
@@ -40,7 +40,7 @@ function RegisterView({
     <div className={styles.containerDisabled}>
       <p className={styles.disabled}>
         Account registration is currently disabled.
-        <br/>
+        <br />
         Please come back later.
       </p>
       <OperationButton

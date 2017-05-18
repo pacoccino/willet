@@ -4,7 +4,7 @@ import styles from './style.scss';
 
 export default class AssetSelector extends React.Component {
   componentWillMount() {
-    this.selectFirstAsset(this.props)
+    this.selectFirstAsset(this.props);
   }
   componentWillReceiveProps(newProps) {
     this.selectFirstAsset(newProps);
