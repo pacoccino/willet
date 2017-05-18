@@ -147,12 +147,12 @@ export const unsetAccount = () => (dispatch) => {
 
 export const createAccount = ({ username, password }) => dispatch =>
   Federation.federationCreate(getStellarAddress(username))
-    .then((keypair) => {
+    .then((keypair) =>
       StellarAccountManager
         .setAccountSeed(keypair, password)
         .then(() => setTrustedAsset(keypair))
-        .then(() => keypair);
-    });
+        .then(() => keypair)
+    );
 
 export const registerAccount = ({ username, password, seed }) => dispatch => {
   const keypair = Keypair.fromSecret(seed);
@@ -174,12 +174,12 @@ export const registerAccount = ({ username, password, seed }) => dispatch => {
         })
       }
     )
-    .then(() => {
+    .then(() =>
       StellarAccountManager
         .setAccountSeed(keypair, password)
         .then(() => setTrustedAsset(keypair))
         .then(() => keypair)
-    });
+    );
 };
 
 export const changePassword = ({ password }) => (dispatch, getState) => {
