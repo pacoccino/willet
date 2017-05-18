@@ -40,46 +40,46 @@ class ReceiveDeposit extends React.Component {
             value: currentWeb3.toWei(amount, 'ether'),
           }
         ).concat(
-        error => {
+        (error) => {
           // todo handle
-          if(error) {
+          if (error) {
             throw error;
           }
         }));
-    } catch(e) {
+    } catch (e) {
       console.error(e);
     }
   }
 
   renderEthereumDeposit(depositData) {
-    if(currentWeb3) {
+    if (currentWeb3) {
       return [
         <Field name="amount" label="Amount to deposit" component={Input} type="number" step={StellarTools.STROOP} key="input" />,
-        <OperationButton onClick={() => ::this.payEthereum(depositData, this.props.amount)} label="Pay with Ethereum" active secondary key="pay"/>,
+        <OperationButton onClick={() => ::this.payEthereum(depositData, this.props.amount)} label="Pay with Ethereum" active secondary key="pay" />,
       ];
     }
     return this.renderInstallMetamask();
   }
 
-  renderEthereumUnavailable () {
+  renderEthereumUnavailable() {
     return [
       <div key="no eth">
         <p>Sorry Ethereum deposit is not available for the moment.</p>
-      </div>
+      </div>,
     ];
   }
-  renderInstallMetamask () {
+  renderInstallMetamask() {
     return [
       <div key="install metamask">
         <p>No Ethereum provider found.</p>
         <p>Please install:</p>
-        <p style={{textAlign: 'center'}}><a href="https://metamask.io/">MetaMask</a><br />or <br /><a href="https://github.com/ethereum/mist/releases">Mist</a></p>
-      </div>
+        <p style={{ textAlign: 'center' }}><a href="https://metamask.io/">MetaMask</a><br />or <br /><a href="https://github.com/ethereum/mist/releases">Mist</a></p>
+      </div>,
     ];
   }
 
   renderDepositInfo(depositData) {
-    if(depositData.type === 'ethereum') {
+    if (depositData.type === 'ethereum') {
       return this.renderEthereumDeposit(depositData);
     }
     return [
@@ -97,13 +97,13 @@ class ReceiveDeposit extends React.Component {
     let operationInfo = null;
     if (depositData.isLoading) {
       operationInfo = [
-        <Loader key="loader"/>,
-        <p className={styles.p} key="message">Retrieving deposit address ...</p>
+        <Loader key="loader" />,
+        <p className={styles.p} key="message">Retrieving deposit address ...</p>,
       ];
     } else if (depositData.error) {
       operationInfo = [
         <p className={styles.error} key="error">There was an error while retreiving deposit address. Please try again later.</p>,
-        <OperationButton onClick={close} active label="Close" key="retry" />
+        <OperationButton onClick={close} active label="Close" key="retry" />,
       ];
     } else if (depositData.data) {
       operationInfo = this.renderDepositInfo(depositData.data)
@@ -120,7 +120,8 @@ class ReceiveDeposit extends React.Component {
 
 ReceiveDeposit.propTypes = {
   depositData: PropTypes.object.isRequired,
-  close: PropTypes.func.isRequired,  ...propTypes,
+  close: PropTypes.func.isRequired,
+  ...propTypes,
   amount: PropTypes.string,
 };
 

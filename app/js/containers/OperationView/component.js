@@ -11,7 +11,7 @@ import LaunchedOperation from '../LaunchedOperation';
 import ActionsMenu from '../ActionsMenu';
 
 function OperationView({ mode, operationLaunched }) {
-  if(operationLaunched) {
+  if (operationLaunched) {
     return <LaunchedOperation />;
   }
   let actionComponent = null;

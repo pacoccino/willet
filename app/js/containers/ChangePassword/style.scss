@@ -22,7 +22,9 @@
   font-size: 0.7rem;
   text-align: center;
   display: block;
+  padding-top: 20px;
 }
+
 .messageSuccess {
   composes: message;
   color: $c-green;

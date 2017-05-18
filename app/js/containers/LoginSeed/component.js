@@ -4,20 +4,30 @@ import { Field, propTypes } from 'redux-form';
 import Input from 'js/components/ui/Input';
 import OperationButton from 'js/components/ui/OperationButton';
 import Loader from 'js/components/ui/Loader';
-import LoginSeed from '../LoginSeed';
 
+import arrowDown from 'images/arrow-down.png';
 import styles from './style.scss';
 
-class LoginView extends React.Component {
+
+class LoginSeed extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      open: false,
+    };
+  }
+  open() {
+    this.setState({
+      open: true,
+    });
+  }
   render() {
     const {
-      goToRegister,
       handleSubmit,
       pristine,
       submitting,
       submitSucceeded,
       submitFailed,
-      alternateLogin,
     } = this.props;
 
     if (submitting) {
@@ -30,25 +40,34 @@ class LoginView extends React.Component {
         </div>
       );
     }
+    const title = (
+      <p className={styles.title} onClick={::this.open}>
+        Alternate login <img src={arrowDown} className={styles.arrow} />
+      </p>
+    );
+
+    if (!this.state.open) {
+      return (
+        <div className={styles.container}>
+          {title}
+        </div>
+      );
+    }
     return (
       <div className={styles.container}>
-        <p className={styles.title}>
-          Sign in
+        {title}
+        <p className={styles.subtitle}>
+          You can also login with an existing account seed.
+          <br />
+          The seed will not be sent to our servers.
         </p>
         <form onSubmit={handleSubmit}>
           <Field
-            name="username"
+            name="seed"
             component={Input}
             type="text"
-            label="Username"
-            placeholder="wilson"
-          />
-          <Field
-            name="password"
-            component={Input}
-            type="password"
-            label="Password"
-            placeholder="****"
+            label="Secret seed"
+            placeholder="SDB..."
           />
           <OperationButton
             disabled={pristine || submitting}
@@ -58,10 +77,9 @@ class LoginView extends React.Component {
           />
           <input type="submit" style={{ visibility: 'hidden' }} />
         </form>
-        {alternateLogin && <LoginSeed />}
         {submitFailed &&
         <p className={styles.error}>
-          Invalid credentials
+          Invalid account
         </p>
         }
         {submitSucceeded &&
@@ -69,23 +87,13 @@ class LoginView extends React.Component {
           Login success !
         </p>
         }
-        <p className={styles.register}>
-          Don't have an account yet ?
-        </p>
-        <OperationButton
-          onClick={goToRegister}
-          label="Sign up"
-          primary active
-        />
       </div>
     );
   }
 }
 
-LoginView.propTypes = {
+LoginSeed.propTypes = {
   ...propTypes,
-  goToRegister: PropTypes.func.isRequired,
-  alternateLogin: PropTypes.bool,
 };
 
-export default LoginView;
+export default LoginSeed;

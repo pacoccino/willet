@@ -27,7 +27,7 @@ const mapDispatchToProps = dispatch => ({
 
 function validate(values) {
   const errors = {};
-  if(!values.username) {
+  if (!values.username) {
     errors.username = 'This field could not be empty';
   }
   return errors;

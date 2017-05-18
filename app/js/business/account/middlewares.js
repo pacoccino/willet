@@ -23,9 +23,9 @@ const stellarStreamerMiddleware = store => next => (action) => {
       // Add wilson info to balance and remove unknown assets
       action.account.balances = action.account.balances.map(b => // eslint-disable no-param-reassign
         Object.assign({}, b, {
-          knownAsset: findAsset(b, knownAnchors),
+          wilsonAsset: findAsset(b, knownAnchors),
         }))
-        .filter(b => !!b.knownAsset);
+        .filter(b => !!b.wilsonAsset || b.asset.isNative());
       break;
     }
     case actions.SET_KEYPAIR: {
@@ -43,7 +43,6 @@ const stellarStreamerMiddleware = store => next => (action) => {
             (streamAccount) => {
               store.dispatch(actions.setAccount(streamAccount));
             }));
-
       } catch (e) {
         traceError(e);
       }

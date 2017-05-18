@@ -10,6 +10,6 @@ export const setTrustedAsset = keypair =>
   StellarOperations.sendTransaction({
     operations: trustedAssets.map(asset =>
       Operation.changeTrust({
-        asset: StellarTools.AssetInstance(asset)
-      }))
+        asset: StellarTools.AssetInstance(asset),
+      })),
   }, keypair);

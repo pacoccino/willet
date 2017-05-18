@@ -19,13 +19,13 @@ const PASSWORD_MIN_LENGTH = 2;
 
 function validate(values) {
   const errors = {};
-  if(!values.password) {
+  if (!values.password) {
     errors.password = 'You must enter a password';
   }
-  if(values.password !== values.password_bis) {
+  if (values.password !== values.password_bis) {
     errors.password_bis = 'Password mismatch';
   }
-  if(values.password && values.password.length < PASSWORD_MIN_LENGTH) {
+  if (values.password && values.password.length < PASSWORD_MIN_LENGTH) {
     errors.password = 'Password too short';
   }
   return errors;

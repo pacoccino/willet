@@ -46,7 +46,7 @@ class ExchangeComponent extends React.Component {
             da
           />
           <div className={styles.separator}>
-            <div className={styles.line}/>
+            <div className={styles.line} />
             <div className={styles.circle}>
               <img src={exchangeIcon} className={styles.exchangeIcon} />
             </div>
