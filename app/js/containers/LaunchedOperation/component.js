@@ -15,8 +15,8 @@ class LaunchedOperation extends React.Component {
     let operationInfo = null;
     if (operation.isLoading) {
       operationInfo = [
-          <Loader key="loader"/>,
-          <p className={styles.p} key="message">Processing ...</p>,
+        <Loader key="loader" />,
+        <p className={styles.p} key="message">Processing ...</p>,
       ];
     } else if (operation.data) {
       operationInfo = [
@@ -26,7 +26,7 @@ class LaunchedOperation extends React.Component {
     } else if (operation.error) {
       operationInfo = [
         <p className={styles.error} key="error">
-          There was an error while processing the operation. <br/>
+          There was an error while processing the operation. <br />
           Please try again later...
         </p>,
         <OperationButton onClick={close} active label="Retry" key="retry" />,

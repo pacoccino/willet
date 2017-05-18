@@ -14,8 +14,8 @@ class AccountLoggerPrivate extends React.Component {
       submitting,
     } = this.props;
 
-    if(!account) {
-      return <Loader/>;
+    if (!account) {
+      return <Loader />;
     }
 
     if (loggedPrivate) {

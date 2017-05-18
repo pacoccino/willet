@@ -8,7 +8,7 @@ import Loader from 'js/components/ui/Loader';
 import styles from './style.scss';
 
 function ChangePassword({ handleSubmit, pristine, submitting, submitSucceeded, submitFailed }) {
-  if(submitting) {
+  if (submitting) {
     return (
       <div className={styles.container}>
         <Loader />
@@ -40,7 +40,7 @@ function ChangePassword({ handleSubmit, pristine, submitting, submitSucceeded, s
             label="Change password"
             disabled={pristine || submitting}
             primary active
-            />
+          />
           }
         </div>
       </form>

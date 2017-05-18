@@ -21,10 +21,10 @@ const mapDispatchToProps = dispatch => ({
 
 function validate(values) {
   const errors = {};
-  if(!values.seed) {
+  if (!values.seed) {
     errors.seed = 'This field could not be empty';
   }
-  if(values.seed && !StellarTools.validSeed(values.seed)) {
+  if (values.seed && !StellarTools.validSeed(values.seed)) {
     errors.seed = 'Invalid seed';
   }
   return errors;

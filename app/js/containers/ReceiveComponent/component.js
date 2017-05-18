@@ -37,7 +37,7 @@ class ReceiveComponent extends React.Component {
               assets={this.getReceivableAssets()}
             />
             {balance &&
-            <AssetIcon balance={balance}/>
+            <AssetIcon balance={balance} />
             }
           </div>
           <OperationButton

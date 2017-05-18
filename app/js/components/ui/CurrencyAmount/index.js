@@ -34,7 +34,7 @@ export default function CurrencyAmount({ assets, balance, formPrefix, da = false
       }
       {balance &&
       <div className={styles.assetIcon}>
-        <AssetIcon balance={balance}/>
+        <AssetIcon balance={balance} />
       </div>
       }
     </div>

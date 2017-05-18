@@ -24,7 +24,7 @@ const mapDispatchToProps = dispatch => ({
 
 function validate(values) {
   const errors = {};
-  if(!values.username) {
+  if (!values.username) {
     errors.username = 'You must enter a username';
   }
   return errors;

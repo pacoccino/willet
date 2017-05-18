@@ -24,17 +24,17 @@ class AccountView extends React.Component {
   }
 
   renderSeed() {
-    if(this.state.showSeed) {
+    if (this.state.showSeed) {
       return (
         <div>
           <OperationButton onClick={::this.switchSeed} active label="Hide credentials" />
           <p>Account ID:</p>
           <span className={styles.credentialPub}>
-          {this.props.keypair.publicKey()}
+            {this.props.keypair.publicKey()}
           </span>
           <p>Seed:</p>
           <span className={styles.credentialPriv}>
-          {this.props.keypair.secret()}
+            {this.props.keypair.secret()}
           </span>
         </div>
       );
@@ -46,7 +46,7 @@ class AccountView extends React.Component {
   render() {
     const { account, unsetAccount } = this.props;
     if (!account) {
-      return <Loader/>;
+      return <Loader />;
     }
     return (
       <div className={styles.container}>

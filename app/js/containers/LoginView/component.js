@@ -20,7 +20,7 @@ class LoginView extends React.Component {
       alternateLogin,
     } = this.props;
 
-    if(submitting) {
+    if (submitting) {
       return (
         <div>
           <Loader />
@@ -56,7 +56,7 @@ class LoginView extends React.Component {
             label="Sign in"
             primary active
           />
-          <input type="submit" style={{visibility: 'hidden'}} />
+          <input type="submit" style={{ visibility: 'hidden' }} />
         </form>
         {alternateLogin && <LoginSeed />}
         {submitFailed &&

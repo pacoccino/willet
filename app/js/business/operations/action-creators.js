@@ -72,7 +72,7 @@ export const getDepositAddress = asset => (dispatch, getState) => {
   const state = getState();
   const keypair = selKeypair(state);
 
-  return get({asset, keypair})
+  return get({ asset, keypair })
     .then((depositAddress) => {
       dispatch(AsyncActions.successFetch(ASYNC_GET_DEPOSIT, depositAddress));
     })

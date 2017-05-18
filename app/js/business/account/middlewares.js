@@ -43,7 +43,6 @@ const stellarStreamerMiddleware = store => next => (action) => {
             (streamAccount) => {
               store.dispatch(actions.setAccount(streamAccount));
             }));
-
       } catch (e) {
         traceError(e);
       }

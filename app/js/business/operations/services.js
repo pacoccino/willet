@@ -1,7 +1,7 @@
 import { StellarOperations, Wilson } from 'stellar-toolkit';
 
 export const get = ({ asset, keypair }) => {
-  if(asset.isNative()) {
+  if (asset.isNative()) {
     const pk = keypair.publicKey();
     return Promise.resolve({
       qr_code: pk,
@@ -18,7 +18,7 @@ export const get = ({ asset, keypair }) => {
 export const send = ({ formData, keypair }) => {
   const { amount, asset, destination } = formData;
 
-  if(asset.isNative()) {
+  if (asset.isNative()) {
     return StellarOperations.sendPayment({
       asset,
       destination,

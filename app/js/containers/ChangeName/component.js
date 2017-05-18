@@ -8,7 +8,7 @@ import Loader from 'js/components/ui/Loader';
 import styles from './style.scss';
 
 function ChangeName({ handleSubmit, pristine, submitting, submitSucceeded, submitFailed }) {
-  if(submitting) {
+  if (submitting) {
     return (
       <div className={styles.container}>
         <Loader />
@@ -34,7 +34,7 @@ function ChangeName({ handleSubmit, pristine, submitting, submitSucceeded, submi
             label="Change username"
             disabled={pristine || submitting}
             primary active
-            />
+          />
           }
         </div>
       </form>

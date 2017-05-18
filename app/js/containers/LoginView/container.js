@@ -20,16 +20,16 @@ const mapDispatchToProps = dispatch => ({
     });
   },
   goToRegister() {
-    dispatch(push(routes.Register))
-  }
+    dispatch(push(routes.Register));
+  },
 });
 
 function validate(values) {
   const errors = {};
-  if(!values.username) {
+  if (!values.username) {
     errors.username = 'This field could not be empty';
   }
-  if(!values.password) {
+  if (!values.password) {
     errors.password = 'This field could not be empty';
   }
   return errors;

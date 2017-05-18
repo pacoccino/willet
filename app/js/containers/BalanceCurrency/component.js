@@ -14,7 +14,7 @@ function BalanceCurrency({ balance }) {
     <div className={styles.container}>
       <span className={styles.amount}>{amount}</span>
       <AssetIcon balance={balance} />
-      <span className={styles.code + ' ' + styles['code-'+code]}>{code}</span>
+      <span className={`${styles.code} ${styles[`code-${code}`]}`}>{code}</span>
     </div>
   );
 }

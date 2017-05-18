@@ -19,7 +19,7 @@ class LoginSeed extends React.Component {
   open() {
     this.setState({
       open: true,
-    })
+    });
   }
   render() {
     const {
@@ -30,7 +30,7 @@ class LoginSeed extends React.Component {
       submitFailed,
     } = this.props;
 
-    if(submitting) {
+    if (submitting) {
       return (
         <div>
           <Loader />
@@ -41,12 +41,12 @@ class LoginSeed extends React.Component {
       );
     }
     const title = (
-      <p className={styles.title}  onClick={::this.open}>
+      <p className={styles.title} onClick={::this.open}>
         Alternate login <img src={arrowDown} className={styles.arrow} />
       </p>
     );
 
-    if(!this.state.open) {
+    if (!this.state.open) {
       return (
         <div className={styles.container}>
           {title}
@@ -58,7 +58,7 @@ class LoginSeed extends React.Component {
         {title}
         <p className={styles.subtitle}>
           You can also login with an existing account seed.
-          <br/>
+          <br />
           The seed will not be sent to our servers.
         </p>
         <form onSubmit={handleSubmit}>
@@ -75,7 +75,7 @@ class LoginSeed extends React.Component {
             label="Sign in"
             primary active
           />
-          <input type="submit" style={{visibility: 'hidden'}} />
+          <input type="submit" style={{ visibility: 'hidden' }} />
         </form>
         {submitFailed &&
         <p className={styles.error}>

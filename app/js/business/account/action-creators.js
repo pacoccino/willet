@@ -16,7 +16,7 @@ export const login = ({ username, password }) => (dispatch) => {
   return StellarTools.resolveAddress(stellar_address)
     .then(resolved => resolved.account_id)
     .then(publicKey => StellarServer.getAccount(publicKey))
-    .then(account => {
+    .then((account) => {
       const isSeed = StellarTools.validSeed(password);
       let keypair;
       if (isSeed) {
@@ -47,7 +47,7 @@ export const loginWithSeed = seed => (dispatch) => {
 
   return Promise.resolve(keypair.publicKey())
     .then(publicKey => StellarServer.getAccount(publicKey))
-    .then(account => {
+    .then((account) => {
       dispatch(AccountActions.setAccount(account));
       dispatch(AccountActions.setFederationName('Anonymous'));
       dispatch(AccountActions.setKeypair(keypair));
@@ -143,15 +143,14 @@ export const unsetAccount = () => (dispatch) => {
   dispatch(AccountActions.resetAccount());
 };
 
-export const createAccount = ({ username, password }) => dispatch => {
-  return Federation.federationCreate(getStellarAddress(username))
-    .then(keypair => {
+export const createAccount = ({ username, password }) => dispatch =>
+  Federation.federationCreate(getStellarAddress(username))
+    .then((keypair) => {
       StellarAccountManager
         .setAccountSeed(keypair, password)
         .then(() => setTrustedAsset(keypair))
-        .then(() => keypair)
+        .then(() => keypair);
     });
-};
 
 export const changePassword = ({ password }) => (dispatch, getState) => {
   dispatch(AsyncActions.startLoading(ASYNC_CHANGE_PASSWORD));
@@ -167,7 +166,7 @@ export const changePassword = ({ password }) => (dispatch, getState) => {
       throw e;
     });
 };
-export const changeUsername = (username) => (dispatch, getState) => {
+export const changeUsername = username => (dispatch, getState) => {
   dispatch(AsyncActions.startLoading(ASYNC_CHANGE_PASSWORD));
   const state = getState();
   const keypair = selKeypair(state);
@@ -179,9 +178,9 @@ export const changeUsername = (username) => (dispatch, getState) => {
   }).then(() => {
     dispatch(AccountActions.setFederationName(username));
     dispatch(AsyncActions.stopLoading(ASYNC_CHANGE_PASSWORD));
-    }).catch((e) => {
-      console.error(e);
-      dispatch(AsyncActions.stopLoading(ASYNC_CHANGE_PASSWORD));
-      throw e;
-    });
+  }).catch((e) => {
+    console.error(e);
+    dispatch(AsyncActions.stopLoading(ASYNC_CHANGE_PASSWORD));
+    throw e;
+  });
 };

@@ -70,7 +70,7 @@ class AccountLoggerPublic extends React.Component {
           </button>
           {this.state.addressResolving && <p>Resolving ...</p>}
           {dirty && this.state.addressStatus && <p>{this.state.addressStatus}</p>}
-          {isAccountLoading && <Loader/>}
+          {isAccountLoading && <Loader />}
         </form>
       </div>
     );

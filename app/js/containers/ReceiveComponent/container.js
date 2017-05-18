@@ -8,7 +8,7 @@ import Component from './component';
 
 const FORM_NAME = 'receive-form';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const formValues = getFormValues(FORM_NAME)(state);
   const balances = selBalances(state);
 
