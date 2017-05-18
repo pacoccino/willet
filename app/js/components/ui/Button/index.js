@@ -12,7 +12,8 @@ const Button = ({ onClick, disabled, className }) => (
       container: !disabled,
       disabledC: disabled,
     })}
-    onClick={!disabled && onClick}>
+    onClick={!disabled && onClick}
+  >
     <img src={OkButton} className={styles.icon} />
   </div>
 );

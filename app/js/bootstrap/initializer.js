@@ -31,15 +31,15 @@ class InitializerComponent extends React.Component {
         // this.props.setFederationName('paco');
         this.setState(() => ({ ready: true }));
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState(() => ({ error }));
-      })
+      });
   }
 
   render() {
-    if(this.state.error) {
+    if (this.state.error) {
       return (
-        <p style={{textAlign: 'center'}}>
+        <p style={{ textAlign: 'center' }}>
           There was an error while loading the application.
         </p>
       );

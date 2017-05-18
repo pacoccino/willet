@@ -11,8 +11,8 @@ import config from 'js/config';
 class TopBar extends React.Component {
 
   renderGoBack() {
-    if(this.props.pathname === routes.Root) {
-      return <div/>;
+    if (this.props.pathname === routes.Root) {
+      return <div />;
     }
     const goBack = () => this.context.router.history.replace(routes.Root);
     // const goBack = () => this.context.router.history.goBack();
@@ -42,8 +42,7 @@ class TopBar extends React.Component {
     );
   }
   render() {
-
-    if(config.DEMO) {
+    if (config.DEMO) {
       return null;
     }
 

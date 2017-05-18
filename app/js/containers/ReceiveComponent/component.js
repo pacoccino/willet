@@ -3,7 +3,7 @@ import { Field, propTypes } from 'redux-form';
 
 import AssetSelector from 'js/components/ui/AssetSelector';
 import OperationButton from 'js/components/ui/OperationButton';
-import AssetIcon from 'js/components/ui/AssetIcon';
+import AssetIcon from 'js/containers/AssetIcon';
 
 import ReceiveDeposit from '../ReceiveDeposit';
 import styles from './style.scss';
@@ -37,7 +37,7 @@ class ReceiveComponent extends React.Component {
               assets={this.getReceivableAssets()}
             />
             {balance &&
-            <AssetIcon knownAsset={balance.knownAsset}/>
+            <AssetIcon balance={balance} />
             }
           </div>
           <OperationButton

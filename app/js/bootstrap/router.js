@@ -37,15 +37,15 @@ const RouterContainer = ({ loggedPublic }) =>
                 path={routes.Account}
               />
               <Route
-                component={() => <OperationView mode={OPERATIONS.SEND}/>}
+                component={() => <OperationView mode={OPERATIONS.SEND} />}
                 path={routes.Operation_G(OPERATIONS.SEND)}
               />
               <Route
-                component={() => <OperationView mode={OPERATIONS.EXCHANGE}/>}
+                component={() => <OperationView mode={OPERATIONS.EXCHANGE} />}
                 path={routes.Operation_G(OPERATIONS.EXCHANGE)}
               />
               <Route
-                component={() => <OperationView mode={OPERATIONS.RECEIVE}/>}
+                component={() => <OperationView mode={OPERATIONS.RECEIVE} />}
                 path={routes.Operation_G(OPERATIONS.RECEIVE)}
               />
               <Route

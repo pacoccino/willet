@@ -18,7 +18,7 @@ export const login = ({ username, password }) => (dispatch) => {
   return StellarTools.resolveAddress(stellar_address)
     .then(resolved => resolved.account_id)
     .then(publicKey => StellarServer.getAccount(publicKey))
-    .then(account => {
+    .then((account) => {
       const isSeed = StellarTools.validSeed(password);
       let keypair;
       if (isSeed) {
@@ -30,6 +30,28 @@ export const login = ({ username, password }) => (dispatch) => {
 
       dispatch(AccountActions.setAccount(account));
       dispatch(AccountActions.setFederationName(username));
+      dispatch(AccountActions.setKeypair(keypair));
+
+      dispatch(push(routes.Root));
+      dispatch(AsyncActions.stopLoading(ASYNC_FETCH_ACCOUNT));
+      return keypair;
+    })
+    .catch((e) => {
+      console.error(e);
+      dispatch(AsyncActions.stopLoading(ASYNC_FETCH_ACCOUNT));
+      throw e;
+    });
+};
+
+export const loginWithSeed = seed => (dispatch) => {
+  dispatch(AsyncActions.startLoading(ASYNC_FETCH_ACCOUNT));
+  const keypair = Keypair.fromSecret(seed);
+
+  return Promise.resolve(keypair.publicKey())
+    .then(publicKey => StellarServer.getAccount(publicKey))
+    .then((account) => {
+      dispatch(AccountActions.setAccount(account));
+      dispatch(AccountActions.setFederationName('Anonymous'));
       dispatch(AccountActions.setKeypair(keypair));
 
       dispatch(push(routes.Root));
@@ -123,15 +145,14 @@ export const unsetAccount = () => (dispatch) => {
   dispatch(AccountActions.resetAccount());
 };
 
-export const createAccount = ({ username, password }) => dispatch => {
-  return Federation.federationCreate(getStellarAddress(username))
-    .then(keypair => {
+export const createAccount = ({ username, password }) => dispatch =>
+  Federation.federationCreate(getStellarAddress(username))
+    .then((keypair) => {
       StellarAccountManager
         .setAccountSeed(keypair, password)
         .then(() => setTrustedAsset(keypair))
-        .then(() => keypair)
+        .then(() => keypair);
     });
-};
 
 export const registerAccount = ({ username, password, seed }) => dispatch => {
   const keypair = Keypair.fromSecret(seed);
@@ -164,10 +185,9 @@ export const registerAccount = ({ username, password, seed }) => dispatch => {
 export const changePassword = ({ password }) => (dispatch, getState) => {
   dispatch(AsyncActions.startLoading(ASYNC_CHANGE_PASSWORD));
   const state = getState();
-  const currentKeypair = selKeypair(state);
-  const seed = currentKeypair.secret();
+  const keypair = selKeypair(state);
 
-  return StellarAccountManager.setAccountSeed(seed, password)
+  return StellarAccountManager.setAccountSeed(keypair, password)
     .then(() => {
       dispatch(AsyncActions.stopLoading(ASYNC_CHANGE_PASSWORD));
     }).catch((e) => {
@@ -176,7 +196,7 @@ export const changePassword = ({ password }) => (dispatch, getState) => {
       throw e;
     });
 };
-export const changeUsername = (username) => (dispatch, getState) => {
+export const changeUsername = username => (dispatch, getState) => {
   dispatch(AsyncActions.startLoading(ASYNC_CHANGE_PASSWORD));
   const state = getState();
   const keypair = selKeypair(state);

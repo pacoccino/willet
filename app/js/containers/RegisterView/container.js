@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => ({
   },
   goToLogin() {
     dispatch(push(routes.Login));
-  }
+  },
 });
 
 const USERNAME_MIN_LENGTH = 3;
@@ -30,19 +30,19 @@ const PASSWORD_MIN_LENGTH = 6;
 
 function validate(values) {
   const errors = {};
-  if(!values.username) {
+  if (!values.username) {
     errors.username = 'You must enter a username';
   }
-  if(values.username && values.username.length < USERNAME_MIN_LENGTH) {
+  if (values.username && values.username.length < USERNAME_MIN_LENGTH) {
     errors.username = `Username must be at least ${USERNAME_MIN_LENGTH} characters`;
   }
-  if(!values.password) {
+  if (!values.password) {
     errors.password = 'You must enter a password';
   }
-  if(values.password !== values.password_bis) {
+  if (values.password !== values.password_bis) {
     errors.password_bis = 'Password mismatch';
   }
-  if(values.password && values.password.length < PASSWORD_MIN_LENGTH) {
+  if (values.password && values.password.length < PASSWORD_MIN_LENGTH) {
     errors.password = `Password must be at least ${PASSWORD_MIN_LENGTH} characters`;
   }
   if(!values.seed) {
