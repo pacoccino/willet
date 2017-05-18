@@ -41,6 +41,28 @@ export const login = ({ username, password }) => (dispatch) => {
     });
 };
 
+export const loginWithSeed = seed => (dispatch) => {
+  dispatch(AsyncActions.startLoading(ASYNC_FETCH_ACCOUNT));
+  const keypair = Keypair.fromSecret(seed);
+
+  return Promise.resolve(keypair.publicKey())
+    .then(publicKey => StellarServer.getAccount(publicKey))
+    .then(account => {
+      dispatch(AccountActions.setAccount(account));
+      dispatch(AccountActions.setFederationName('Anonymous'));
+      dispatch(AccountActions.setKeypair(keypair));
+
+      dispatch(push(routes.Root));
+      dispatch(AsyncActions.stopLoading(ASYNC_FETCH_ACCOUNT));
+      return keypair;
+    })
+    .catch((e) => {
+      console.error(e);
+      dispatch(AsyncActions.stopLoading(ASYNC_FETCH_ACCOUNT));
+      throw e;
+    });
+};
+
 export const setUsername = username => (dispatch) => {
   dispatch(AsyncActions.startLoading(ASYNC_FETCH_ACCOUNT));
   const stellar_address = getStellarAddress(username);

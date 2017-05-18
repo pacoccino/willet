@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import { getFormValues, reduxForm } from 'redux-form';
-const WAValidator = require('wallet-address-validator');
-const Web3 = require('web3');
+import WAValidator  from 'wallet-address-validator';
+import Web3 from 'web3';
+import { StellarTools } from 'stellar-toolkit';
 
 import { selBalances } from 'js/business/account/selectors';
 import { sendOperation } from 'js/business/operations/action-creators';
@@ -41,14 +42,21 @@ const mapDispatchToProps = dispatch => ({
 
 function validate(values, props) {
   const errors = {};
-  if(props.balance && props.balance.asset_code === 'ETH') {
-    if(!web3.isAddress(values.destination)) {
-      errors.destination = 'Invalid ethereum address';
+  if(props.balance) {
+    if(props.balance.asset.isNative()) {
+      if(!StellarTools.validPk(values.destination)) {
+        errors.destination = 'Invalid stellar address';
+      }
     }
-  }
-  if(props.balance && props.balance.asset_code === 'BTC') {
-    if(!WAValidator.validate(values.destination)) {
-      errors.destination = 'Invalid bitcoin address';
+    else if(props.balance.asset_code === 'ETH') {
+      if(!web3.isAddress(values.destination)) {
+        errors.destination = 'Invalid ethereum address';
+      }
+    }
+    else if(props.balance.asset_code === 'BTC') {
+      if(!WAValidator.validate(values.destination)) {
+        errors.destination = 'Invalid bitcoin address';
+      }
     }
   }
   if(!values.amount) {

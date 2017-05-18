@@ -3,7 +3,7 @@ import { Field } from 'redux-form';
 import { StellarTools } from 'stellar-toolkit';
 
 import AssetSelector from 'js/components/ui/AssetSelector';
-import AssetIcon from 'js/components/ui/AssetIcon';
+import AssetIcon from 'js/containers/AssetIcon';
 
 import styles from './style.scss';
 
@@ -34,7 +34,7 @@ export default function CurrencyAmount({ assets, balance, formPrefix, da = false
       }
       {balance &&
       <div className={styles.assetIcon}>
-        <AssetIcon knownAsset={balance.knownAsset}/>
+        <AssetIcon balance={balance}/>
       </div>
       }
     </div>

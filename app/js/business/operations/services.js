@@ -1,27 +1,46 @@
 import { StellarOperations, Wilson } from 'stellar-toolkit';
 
-export const get = ({ asset, keypair }) =>
-  Wilson.anchorDeposit({
+export const get = ({ asset, keypair }) => {
+  if(asset.isNative()) {
+    const pk = keypair.publicKey();
+    return Promise.resolve({
+      qr_code: pk,
+      deposit_address: pk,
+    });
+  }
+  return Wilson.anchorDeposit({
     code: asset.getCode(),
     issuer: asset.getIssuer(),
     address: keypair.publicKey(),
   });
+};
 
-export const send = ({ formData, keypair }) =>
-  Wilson.anchorWithdraw({
-    code: formData.asset.getCode(),
-    issuer: formData.asset.getIssuer(),
-    address: formData.destination,
+export const send = ({ formData, keypair }) => {
+  const { amount, asset, destination } = formData;
+
+  if(asset.isNative()) {
+    return StellarOperations.sendPayment({
+      asset,
+      destination,
+      amount,
+    })(keypair);
+  }
+
+  return Wilson.anchorWithdraw({
+    code: asset.getCode(),
+    issuer: asset.getIssuer(),
+    address: destination,
   }).then(withdrawAddress =>
     StellarOperations.sendPayment({
-      asset: formData.asset,
+      asset,
       destination: withdrawAddress.account_id,
-      amount: formData.amount,
+      amount,
       memo: {
         type: withdrawAddress.memo_type,
         value: withdrawAddress.memo,
       },
     })(keypair));
+};
 
 export const exchange = ({ formData, keypair }) =>
   StellarOperations.sendPathPayment({
