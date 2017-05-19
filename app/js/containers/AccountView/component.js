@@ -2,7 +2,10 @@ import React, { PropTypes } from 'react';
 
 import Separator from 'js/components/ui/Separator';
 import OperationButton from 'js/components/ui/OperationButton';
+import ClipboardBtn from "js/components/ui/Clipboard";
 import Loader from 'js/components/ui/Loader';
+
+import config from 'js/config';
 
 import ChangePassword from '../ChangePassword';
 import ChangeName from '../ChangeName';
@@ -24,18 +27,27 @@ class AccountView extends React.Component {
   }
 
   renderSeed() {
+    const pk = this.props.keypair.publicKey();
+    const seed = this.props.keypair.secret();
+    const portalUrl = `https://portal.willet.io/?accountId=${pk}&network=${config.STELLAR_NETWORK}`;
     if (this.state.showSeed) {
       return (
         <div>
           <OperationButton onClick={::this.switchSeed} active label="Hide credentials" fluid />
           <p className={styles.credentialTitle}>Account ID</p>
-          <span className={styles.credentialPub}>
-            {this.props.keypair.publicKey()}
-          </span>
+          <div className={styles.credCont}>
+            <a href={portalUrl} target="_blank" className={styles.credentialPub}>
+              {pk}
+            </a>
+            <ClipboardBtn data={pk} />
+          </div>
           <p className={styles.credentialTitle}>Seed</p>
-          <span className={styles.credentialPriv}>
-            {this.props.keypair.secret()}
-          </span>
+          <div className={styles.credCont}>
+            <span className={styles.credentialPriv}>
+              {seed}
+            </span>
+            <ClipboardBtn data={seed} />
+          </div>
         </div>
       );
     }
@@ -64,9 +76,9 @@ class AccountView extends React.Component {
       <div>
         <div className={styles.categoryContent}>
           <span className={styles.informations}>
-            Your account was not created by willet, so you cannot configure it.
+            Your account was not created by Willet, so you cannot configure it.
             <br />
-             If you want to use Willet full features, please disconnect and register with your private seed.
+             If you want to use full Willet features, please disconnect and register with your private seed.
           </span>
         </div>
       </div>

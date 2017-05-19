@@ -20,17 +20,22 @@
   text-align: center;
   margin: 5px;
 }
+.credCont {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 .credentialPub {
+  flex-grow: 1;
   font-size: 0.7em;
-  display: block;
-  color: $c-green;
+  color: $c-green-l !important;
   text-align: center;
 }
 .credentialPriv {
+  flex-grow: 1;
   font-size: 0.7em;
-  display: block;
+  color: $c-red-l;
   text-align: center;
-  color: $c-red;
 }
 
 .informations {

@@ -18,6 +18,16 @@ class LoginCredentials extends React.Component {
       invalid,
     } = this.props;
 
+    if (submitSucceeded) {
+      return (
+        <div>
+          <p className={styles.success}>
+            Success !
+          </p>
+        </div>
+      );
+    }
+
     if (submitting) {
       return (
         <div>
@@ -28,6 +38,7 @@ class LoginCredentials extends React.Component {
         </div>
       );
     }
+
     return (
       <div className={styles.container}>
         <form onSubmit={handleSubmit}>
@@ -45,6 +56,11 @@ class LoginCredentials extends React.Component {
             label="Password"
             placeholder="****"
           />
+          {submitFailed &&
+          <p className={styles.error}>
+            <i className="fa fa-exclamation-triangle"/> Invalid credentials
+          </p>
+          }
           <OperationButton
             disabled={pristine || submitting || invalid}
             onClick={handleSubmit}
@@ -53,16 +69,6 @@ class LoginCredentials extends React.Component {
           />
           <input type="submit" style={{ visibility: 'hidden' }} />
         </form>
-        {submitFailed &&
-        <p className={styles.error}>
-          Invalid credentials
-        </p>
-        }
-        {submitSucceeded &&
-        <p className={styles.success}>
-          Login success !
-        </p>
-        }
       </div>
     );
   }

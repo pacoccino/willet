@@ -15,12 +15,13 @@
 }
 
 .error {
-  font-size: 0.6rem;
-  color: $c-red;
+  font-size: 0.75rem;
+  text-align: center;
+  color: $c-red-l;
 }
 .success {
   font-size: 0.6rem;
-  color: $c-green;
+  color: $c-green-l;
 }
 .register {
   font-size: 0.7rem;
