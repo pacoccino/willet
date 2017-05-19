@@ -5,22 +5,9 @@ import Input from 'js/components/ui/Input';
 import OperationButton from 'js/components/ui/OperationButton';
 import Loader from 'js/components/ui/Loader';
 
-import arrowDown from 'images/arrow-down.png';
 import styles from './style.scss';
 
-
-class LoginSeed extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      open: true,
-    };
-  }
-  open() {
-    this.setState({
-      open: true,
-    });
-  }
+class LoginCredentials extends React.Component {
   render() {
     const {
       handleSubmit,
@@ -41,19 +28,25 @@ class LoginSeed extends React.Component {
         </div>
       );
     }
-
     return (
       <div className={styles.container}>
         <form onSubmit={handleSubmit}>
           <Field
-            name="seed"
+            name="username"
             component={Input}
             type="text"
-            label="Secret seed"
-            placeholder="SDB..."
+            label="Username"
+            placeholder="wilson"
+          />
+          <Field
+            name="password"
+            component={Input}
+            type="password"
+            label="Password"
+            placeholder="****"
           />
           <OperationButton
-            disabled={pristine || submitting || invalid}
+            disabled={pristine || submitting || invalid}
             onClick={handleSubmit}
             label="Sign in"
             primary
@@ -62,7 +55,7 @@ class LoginSeed extends React.Component {
         </form>
         {submitFailed &&
         <p className={styles.error}>
-          Invalid account
+          Invalid credentials
         </p>
         }
         {submitSucceeded &&
@@ -75,8 +68,9 @@ class LoginSeed extends React.Component {
   }
 }
 
-LoginSeed.propTypes = {
+LoginCredentials.propTypes = {
   ...propTypes,
+  alternateLogin: PropTypes.bool,
 };
 
-export default LoginSeed;
+export default LoginCredentials;

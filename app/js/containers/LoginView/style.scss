@@ -41,3 +41,47 @@
   margin-top: 0;
   margin-bottom: 15px;
 }
+.subtitle {
+  font-size: 0.7rem;
+  font-weight: 200;
+  color: $c-light;
+  text-align: center;
+  margin-bottom: 5px;
+  margin-top: 15px;
+  border-top: 1px solid gray;
+  padding-top: 5px;
+  position: relative;
+}
+.description {
+  font-size: 0.6rem;
+  font-weight: 200;
+  color: $c-light;
+  text-align: justify;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding-top: 5px;
+}
+
+.separator {
+  font-size: 1.3rem;
+  color: $c-light;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.what {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  border: 1px solid $c-light;
+  border-radius: 25px;
+  width: 25px;
+  height: 25px;
+  color: $c-light;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 24px;
+  font-weight: 700;
+  cursor: help;
+}

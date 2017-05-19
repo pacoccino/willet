@@ -14,6 +14,7 @@ function RegisterView({
                         submitSucceeded,
                         submitFailed,
                         goToLogin,
+                        invalid,
                       }) {
   if (submitting) {
     return (
@@ -103,7 +104,7 @@ function RegisterView({
         />
         <OperationButton
           onClick={handleSubmit}
-          disabled={pristine || submitting}
+          disabled={pristine || submitting || invalid}
           label="Create account"
           primary active
         />
