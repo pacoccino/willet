@@ -53,6 +53,11 @@ const webpackConfig = createConfig([
     js: appDir('js'),
   }),
   sassModules(),
+  customConfig({
+    node: {
+      fs: 'empty'
+    }
+  }),
   env('development', [
     entryPoint({
       main: appDir('js/main.js'),

@@ -9,3 +9,19 @@
   max-width: 400px;
   margin: 10px auto;
 }
+
+.scanIntent {
+  text-align: center;
+  cursor: pointer;
+}
+
+.qrContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.videoContainer {
+  width: 70%;
+}
