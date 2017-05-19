@@ -4,6 +4,8 @@
   width: 100%;
   max-width: $s-width;
   margin: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .categoryContent {
@@ -12,6 +14,12 @@
   padding: 10px;
 }
 
+.credentialTitle {
+  font-size: 0.8em;
+  color: $c-light;
+  text-align: center;
+  margin: 5px;
+}
 .credentialPub {
   font-size: 0.7em;
   display: block;

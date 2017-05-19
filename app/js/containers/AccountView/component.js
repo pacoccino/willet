@@ -27,12 +27,12 @@ class AccountView extends React.Component {
     if (this.state.showSeed) {
       return (
         <div>
-          <OperationButton onClick={::this.switchSeed} active label="Hide credentials" />
-          <p>Account ID:</p>
+          <OperationButton onClick={::this.switchSeed} active label="Hide credentials" fluid />
+          <p className={styles.credentialTitle}>Account ID</p>
           <span className={styles.credentialPub}>
             {this.props.keypair.publicKey()}
           </span>
-          <p>Seed:</p>
+          <p className={styles.credentialTitle}>Seed</p>
           <span className={styles.credentialPriv}>
             {this.props.keypair.secret()}
           </span>
@@ -40,7 +40,7 @@ class AccountView extends React.Component {
       );
     }
     return (
-      <OperationButton onClick={::this.switchSeed} label="Show credentials" />
+      <OperationButton onClick={::this.switchSeed} label="Show credentials" fluid />
     );
   }
 

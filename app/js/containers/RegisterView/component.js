@@ -106,7 +106,7 @@ function RegisterView({
           onClick={handleSubmit}
           disabled={pristine || submitting || invalid}
           label="Create account"
-          primary active
+          primary fluid
         />
       </form>
       {

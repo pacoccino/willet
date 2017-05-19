@@ -34,6 +34,7 @@ class ExchangeComponent extends React.Component {
       handleSubmit,
       pristine,
       submitting,
+      invalid,
       selectedBalances,
     } = this.props;
     return (
@@ -60,8 +61,8 @@ class ExchangeComponent extends React.Component {
           <OperationButton
             onClick={handleSubmit}
             label="Exchange"
-            disabled={pristine || submitting}
-            primary active
+            disabled={pristine || submitting || invalid}
+            primary fluid
           />
         </form>
       </div>

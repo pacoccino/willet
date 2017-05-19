@@ -56,7 +56,7 @@ class LoginSeed extends React.Component {
             disabled={pristine || submitting || invalid}
             onClick={handleSubmit}
             label="Sign in"
-            primary
+            primary fluid
           />
           <input type="submit" style={{ visibility: 'hidden' }} />
         </form>
