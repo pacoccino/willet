@@ -11,7 +11,7 @@ import { setTrustedAsset, getStellarAddress } from './services';
 
 const MIN_BALANCE = 150;
 
-export const login = ({ username, password }) => (dispatch) => {
+export const loginWithCredentials = ({ username, password }) => (dispatch) => {
   dispatch(AsyncActions.startLoading(ASYNC_FETCH_ACCOUNT));
   const stellar_address = getStellarAddress(username);
 
@@ -51,7 +51,7 @@ export const loginWithSeed = seed => (dispatch) => {
     .then(publicKey => StellarServer.getAccount(publicKey))
     .then((account) => {
       dispatch(AccountActions.setAccount(account));
-      dispatch(AccountActions.setFederationName('Anonymous'));
+      dispatch(AccountActions.setFederationName(null));
       dispatch(AccountActions.setKeypair(keypair));
 
       dispatch(push(routes.Root));

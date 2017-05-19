@@ -43,14 +43,10 @@ class AccountView extends React.Component {
       <OperationButton onClick={::this.switchSeed} label="Show credentials" />
     );
   }
-  render() {
-    const { account, unsetAccount } = this.props;
-    if (!account) {
-      return <Loader />;
-    }
+
+  renderAccountSettings() {
     return (
-      <div className={styles.container}>
-        <OperationButton onClick={unsetAccount} label="Disconnect" />
+      <div>
         <Separator label="Username" />
         <div className={styles.categoryContent}>
           <ChangeName />
@@ -60,7 +56,37 @@ class AccountView extends React.Component {
         <div className={styles.categoryContent}>
           <ChangePassword />
         </div>
+      </div>
+    );
+  }
+  renderUnregistered() {
+    return (
+      <div>
+        <div className={styles.categoryContent}>
+          <span className={styles.informations}>
+            Your account was not created by willet, so you cannot configure it.
+            <br />
+             If you want to use Willet full features, please disconnect and register with your private seed.
+          </span>
+        </div>
+      </div>
+    );
+  }
 
+  render() {
+    const { account, unsetAccount, username } = this.props;
+    if (!account) {
+      return <Loader />;
+    }
+    return (
+      <div className={styles.container}>
+        <OperationButton onClick={unsetAccount} label="Disconnect" active />
+        {
+          username ?
+            this.renderAccountSettings()
+            :
+            this.renderUnregistered()
+        }
         <Separator label="Account details" />
         {this.renderSeed()}
       </div>

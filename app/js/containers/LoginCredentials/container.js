@@ -3,7 +3,7 @@ import { reduxForm } from 'redux-form';
 import { push } from 'react-router-redux';
 
 import { selLoggedPublic, setAccountLoading, selKeypair, selFederationName } from 'js/business/account/selectors';
-import { login } from 'js/business/account/action-creators';
+import { loginWithCredentials } from 'js/business/account/action-creators';
 import Component from './component';
 import * as routes from 'js/constants/routes';
 
@@ -14,7 +14,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onSubmit(values, d, props) {
-    return dispatch(login(values)).then(() => {
+    return dispatch(loginWithCredentials(values)).then(() => {
       props.reset();
     });
   },

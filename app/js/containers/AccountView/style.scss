@@ -1,6 +1,9 @@
 @import '~styles/attributes';
 
 .container {
+  width: 100%;
+  max-width: $s-width;
+  margin: auto;
 }
 
 .categoryContent {
@@ -20,4 +23,11 @@
   display: block;
   text-align: center;
   color: $c-red;
+}
+
+.informations {
+  font-size: 0.8rem;
+  color: $c-light;
+  text-align: center;
+  line-height: 1rem;
 }
