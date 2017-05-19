@@ -42,7 +42,7 @@ class LoginView extends React.Component {
           Or
         </p>
         <p className={styles.subtitle}>
-          Login with stellar secret key
+          Login with Stellar seed
           <span className={styles.what} onClick={() => this.switchHelp(1)}>?</span>
         </p>
         {this.state['helps_1'] && <p className={styles.description}>

@@ -1,59 +1,12 @@
 @import '~styles/attributes';
+@import '../LoginView/style';
 
-.container {
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-  justify-content: center;
-
-  align-items: stretch;
-  width: 300px;
-  margin: 30px auto;
-}
-
-.containerDisabled {
-  composes: container;
-  align-items: center;
-}
-
-.message {
-  font-size: 0.8em;
+.whatSeed {
+  width: 100%;
   text-align: center;
-}
-
-.messageError {
-  composes: message;
-  color: $c-red;
-}
-
-.login {
-  font-size: 0.7rem;
-  margin-top: 25px;
-  margin-bottom: 0;
-  text-align: center;
-}
-
-.title {
-  font-size: 1.5rem;
-  text-align: center;
-  margin-top: 0;
-  margin-bottom: 15px;
-}
-
-.disabled {
-  color: $c-red;
-  font-size: 1rem;
-  text-align: center;
-  margin-top: 0;
-  margin-bottom: 15px;
-}
-
-.seedWarning {
-  border: 1px solid #c50404;
-  border-radius: 5px;
-  padding: 10px;
-  background-color: rgba(175, 35, 49, 0.35);
-
-  font-weight: 200;
-  font-size: 0.8rem;
+  display: block;
+  font-size: 0.6rem;
+  color: $c-rose-l-2;
+  margin-top: 15px;
+  cursor: pointer;
 }

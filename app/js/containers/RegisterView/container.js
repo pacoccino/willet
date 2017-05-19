@@ -10,7 +10,6 @@ import Component from './component';
 const FORM_NAME = 'register-form';
 
 const mapStateToProps = () => ({
-  registrationDisabled: false,
 });
 
 const mapDispatchToProps = dispatch => ({
