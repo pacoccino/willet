@@ -24,6 +24,8 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .credentialPub {
   flex-grow: 1;
