@@ -1,6 +1,8 @@
+import { StellarOperations } from 'stellar-toolkit';
 import {
   ASYNC_OPERATION,
   ASYNC_GET_DEPOSIT,
+  ASYNC_TRUST_ASSET,
 } from 'js/constants/asyncActions';
 import { AsyncActions } from 'js/helpers/asyncActions';
 import { setActionMode } from 'js/business/ui/actions';
@@ -82,3 +84,25 @@ export const getDepositAddress = asset => (dispatch, getState) => {
       throw error;
     });
 };
+
+export const trustWilsonAsset = wilsonAsset => (dispatch, getState) => {
+  dispatch(AsyncActions.startLoading(ASYNC_TRUST_ASSET + wilsonAsset.code));
+  const state = getState();
+  const keypair = selKeypair(state);
+
+  const asset = {
+    asset_code: wilsonAsset.code,
+    asset_issuer: wilsonAsset.issuer,
+  };
+
+  return StellarOperations.changeTrust({ asset })(keypair)
+    .then(() => {
+      dispatch(AsyncActions.stopLoading(ASYNC_TRUST_ASSET + wilsonAsset.code));
+    })
+    .catch((error) => {
+      !config.PROD && console.error(error);
+      dispatch(AsyncActions.stopLoading(ASYNC_TRUST_ASSET + wilsonAsset.code));
+      throw error;
+    });
+};
+

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Keypair } from 'stellar-sdk';
 
 import { setKeypair, setFederationName } from 'js/business/account/actions';
 import { getKnownAnchors } from 'js/business/wilson/action-creators';
@@ -26,6 +27,8 @@ class InitializerComponent extends React.Component {
       config.DEMO ? null : this.props.getKnownAnchors(),
     ])
       .then(() => {
+        // this.props.setKeypair(Keypair.fromSecret('SAQHSZFSQIIVWH4DL2D5PRF6BARWUVDELSM5RZMRGYFDQA2P2QMNGPF7'));
+        // this.props.setFederationName('paco');
         this.setState(() => ({ ready: true }));
       })
       .catch((error) => {
