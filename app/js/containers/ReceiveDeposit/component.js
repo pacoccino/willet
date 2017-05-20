@@ -107,7 +107,7 @@ class ReceiveDeposit extends React.Component {
       ];
     } else if (depositData.data) {
       operationInfo = this.renderDepositInfo(depositData.data)
-        .concat(<OperationButton onClick={close} active label="Close" key="close" />);
+        .concat(<OperationButton onClick={close} active label="Select another currency" key="close" />);
     }
 
     return (
