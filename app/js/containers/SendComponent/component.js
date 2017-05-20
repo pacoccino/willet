@@ -34,13 +34,13 @@ class SendComponent extends React.Component {
       } else {
         console.error('No cameras found.');
       }
-    }).catch(function (e) {
+    }).catch((e) => {
       console.error(e);
     });
   }
 
   startQrScan() {
-    if(!this.state.camera) return;
+    if (!this.state.camera) return;
 
     this.setState({
       scanning: true,
@@ -55,7 +55,7 @@ class SendComponent extends React.Component {
     const decoded = decode(content);
     console.log(decoded);
     this.props.change('destination', decoded.address);
-    if(decoded.options.amount) {
+    if (decoded.options.amount) {
       this.props.change('amount', decoded.options.amount);
     }
     // TODO select currency
@@ -82,7 +82,7 @@ class SendComponent extends React.Component {
       balance,
     } = this.props;
 
-    if(this.state.scanning) {
+    if (this.state.scanning) {
       return (
         <div className={styles.container}>
           <div className={styles.qrContainer}>

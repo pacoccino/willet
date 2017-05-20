@@ -33,12 +33,11 @@ class ReceiveDeposit extends React.Component {
       const StelereumContract = currentWeb3.eth.contract(contractAPI);
       const contract = StelereumContract.at(depositData.specific_data.contract_address);
 
-      contract.Deposit.apply(contract,
-        depositData.specific_data.params.concat(
-          {
-            from: currentWeb3.eth.accounts[0],
-            value: currentWeb3.toWei(amount, 'ether'),
-          }
+      contract.Deposit(...depositData.specific_data.params.concat(
+        {
+          from: currentWeb3.eth.accounts[0],
+          value: currentWeb3.toWei(amount, 'ether'),
+        },
         ).concat(
         (error) => {
           // todo handle
