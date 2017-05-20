@@ -2,15 +2,11 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import { push } from 'react-router-redux';
 
-import { selLoggedPublic, setAccountLoading, selKeypair, selFederationName } from 'js/business/account/selectors';
 import { loginWithCredentials } from 'js/business/account/action-creators';
 import Component from './component';
 import * as routes from 'js/constants/routes';
 
 const FORM_NAME = 'login-credentials';
-
-const mapStateToProps = state => ({
-});
 
 const mapDispatchToProps = dispatch => ({
   onSubmit(values, d, props) {
@@ -34,7 +30,7 @@ function validate(values) {
   return errors;
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
+export default connect(null, mapDispatchToProps)(reduxForm({
   form: FORM_NAME,
   initialValues: {},
   validate,

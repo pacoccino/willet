@@ -70,8 +70,7 @@ export const loginWithSeed = seed => (dispatch) => {
 
 const tryFederationReverse = account_id => (dispatch) => {
   return Federation.federationReverse(account_id)
-    .then(accountData => {
-      const { stellar_address } = accountData;
+    .then(({ stellar_address }) => {
       const username = getUsername(stellar_address);
       dispatch(AccountActions.setFederationName(username));
       return username;
