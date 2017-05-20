@@ -27,7 +27,6 @@ class SendComponent extends React.Component {
       if (cameras.length > 0) {
         this.cameras = cameras;
         const defaultCamera = cameras[0];
-        console.log(`Using camera ${defaultCamera.name}`);
         this.setState({
           camera: defaultCamera,
         });
@@ -120,6 +119,12 @@ class SendComponent extends React.Component {
         <div className={styles.scanIntent} onClick={::this.startQrScan}>
           <i className={`fa fa-qrcode ${styles.qrIcon}`} /> Scan QR code
         </div>
+        }
+        {this.state.scanError &&
+          <span className={styles.scanError}>
+            <i className="fa fa-exclamation-triangle"/>
+            Invalid QR code
+          </span>
         }
         <form onSubmit={handleSubmit}>
           <CurrencyAmount

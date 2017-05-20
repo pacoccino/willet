@@ -54,6 +54,10 @@ function decode(uri) {
     if (options.amount < 0) throw new Error('Invalid amount');
   }
 
+  if(!isValidAddress(address)) {
+    throw new Error('Invalid address');
+  }
+
   return { type, address, options };
 }
 
