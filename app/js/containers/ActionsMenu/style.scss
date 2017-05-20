@@ -1,0 +1,22 @@
+@import '~styles/attributes';
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: $s-width) {
+  .container {
+    flex-direction: column;
+  }
+}
+@media (min-width: $s-width) {
+  .container {
+    flex-direction: row;
+  }
+}
+
+.nomargin {
+  margin: 0;
+}

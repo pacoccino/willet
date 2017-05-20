@@ -1,22 +1,57 @@
 @import '~styles/attributes';
 
-.container {
+.containerBasis {
   display: flex;
   flex-direction: row;
-  margin: 10px;
+}
+
+@media (max-width: $s-width) {
+  .container {
+    composes: containerBasis;
+    margin-top: 10px;
+  }
+}
+@media (min-width: $s-width) {
+  .container {
+    composes: containerBasis;
+    margin: 10px;
+  }
 }
 
 .amount {
-  font-size: 1.5rem;
   color: $c-white;
   line-height: 50px;
 }
 
+@media (max-width: $s-width) {
+  .amount {
+    line-height: $s-line-sm;
+    font-size: 1.1rem;
+  }
+}
+@media (min-width: $s-width) {
+  .amount {
+    line-height: $s-line-md;
+    font-size: 1.5rem;
+  }
+}
+
 .code {
-  line-height: 50px;
   color: $c-grey;
   width: 50px;
 }
+
+@media (max-width: $s-width) {
+  .code {
+    line-height: $s-line-sm;
+  }
+}
+@media (min-width: $s-width) {
+  .code {
+    line-height: $s-line-md;
+  }
+}
+
 .code-BTC {
   color: $c-c-btc;
 }
