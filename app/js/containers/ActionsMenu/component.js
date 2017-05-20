@@ -1,38 +1,31 @@
 import React, { PropTypes } from 'react';
 
 import { OPERATIONS } from 'js/business/operations/action-creators';
-import OperationButton from 'js/components/ui/OperationButton';
 
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-};
+import styles from './style.scss';
+
+function Button({ op, label, sw, mode }) {
+  return (
+    <div
+      onClick={() => sw(op)}
+      className={`${styles.btn} ${mode === op ? styles.active : ''}`}
+    >
+      {label}
+    </div>
+  );
+}
 
 function ActionsMenu({ goToOperation, mode }) {
+  function sw(m) {
+    if(mode !== m) {
+      goToOperation(m);
+    }
+  }
   return (
-    <div style={styles.container}>
-      <OperationButton
-        onClick={() => goToOperation(OPERATIONS.EXCHANGE)}
-        active={mode === OPERATIONS.EXCHANGE}
-        disabled={mode === OPERATIONS.EXCHANGE}
-        label="Exchange"
-      />
-      <OperationButton
-        onClick={() => goToOperation(OPERATIONS.SEND)}
-        active={mode === OPERATIONS.SEND}
-        disabled={mode === OPERATIONS.SEND}
-        label="Send"
-      />
-      <OperationButton
-        onClick={() => goToOperation(OPERATIONS.RECEIVE)}
-        active={mode === OPERATIONS.RECEIVE}
-        disabled={mode === OPERATIONS.RECEIVE}
-        label="Receive"
-      />
+    <div className={styles.container}>
+      <Button sw={sw} mode={mode} op={OPERATIONS.SEND} label="Send"/>
+      <Button sw={sw} mode={mode} op={OPERATIONS.RECEIVE} label="Receive"/>
+      <Button sw={sw} mode={mode} op={OPERATIONS.EXCHANGE} label="Exchange"/>
     </div>
   );
 }

@@ -1,18 +1,39 @@
 @import '~styles/attributes';
 
-.symbol {
-  color: $c-dark;
-  border: 1px solid $c-dark;
-  width: 50px;
-  height: 50px;
-  border-radius: 50px;
-  line-height: 50px;
-  text-align: center;
-  margin-left: 10px;
-  margin-right: 10px;
-  background-color: $c-grey;
+.symbolBasis {
   display: block;
+  color: $c-dark;
+  background-color: $c-grey;
+  border: 1px solid $c-dark;
+  text-align: center;
 }
+
+
+@media (max-width: $s-width) {
+  .symbol {
+    composes: symbolBasis;
+    width: $s-line-sm;
+    height: $s-line-sm;
+    border-radius: $s-line-sm;
+    line-height: $s-line-sm;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 0.8rem;
+  }
+}
+@media (min-width: $s-width) {
+  .symbol {
+    composes: symbolBasis;
+    width: $s-line-md;
+    height: $s-line-md;
+    border-radius: $s-line-md;
+    line-height: $s-line-md;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 1rem;
+  }
+}
+
 .symbol-BTC {
   background-color: $c-c-btc;
 }

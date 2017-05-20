@@ -1,6 +1,11 @@
 @import '~styles/attributes';
 
 .container {
+  width: 100%;
+  max-width: $s-width;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .categoryContent {
@@ -9,15 +14,35 @@
   padding: 10px;
 }
 
+.credentialTitle {
+  font-size: 0.8em;
+  color: $c-light;
+  text-align: center;
+  margin: 5px;
+}
+.credCont {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 .credentialPub {
+  flex-grow: 1;
   font-size: 0.7em;
-  display: block;
-  color: $c-green;
+  color: $c-green-l !important;
   text-align: center;
 }
 .credentialPriv {
+  flex-grow: 1;
   font-size: 0.7em;
-  display: block;
+  color: $c-red-l;
   text-align: center;
-  color: $c-red;
+}
+
+.informations {
+  font-size: 0.8rem;
+  color: $c-light;
+  text-align: center;
+  line-height: 1rem;
 }

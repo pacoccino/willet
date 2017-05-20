@@ -7,12 +7,21 @@
 
   align-items: center;
   max-width: 450px;
-  margin: 20px auto;
 }
 
 .p {
   font-size: 0.8rem;
   text-align: center;
+}
+
+.addressCont {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
+  margin-bottom: 10px;
 }
 .address {
   font-size: 0.6rem;

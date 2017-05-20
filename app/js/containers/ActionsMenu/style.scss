@@ -1,0 +1,48 @@
+@import '~styles/attributes';
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn {
+  border: 1px solid $c-light;
+  background-color: $c-dark;
+  color: $c-white;
+  height: $s-line-sm;
+  line-height: $s-line-sm;
+  vertical-align: middle;
+  text-align: center;
+  cursor: pointer;
+  margin: 1px;
+  font-size: 0.8rem;
+
+  &.active {
+    background-color: $c-white;
+    color: $c-dark;
+    cursor: not-allowed;
+  }
+}
+
+@media (max-width: $s-width) {
+  .container {
+    flex-direction: column;
+  }
+  .btn {
+    height: $s-line-sm;
+    line-height: $s-line-sm;
+    border-radius: 15px;
+    width: 100%;
+  }
+}
+@media (min-width: $s-width) {
+  .container {
+    flex-direction: row;
+  }
+  .btn {
+    height: 40px;
+    line-height: 40px;
+    border-radius: 20px;
+    width: 33%;
+  }
+}

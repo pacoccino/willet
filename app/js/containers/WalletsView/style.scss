@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   min-height: $content-height;
+  align-items: center;
 }
 
 .balances {
@@ -17,16 +18,19 @@
 
 .content {
   flex: 1 1 100%;
+  max-width: $s-width;
 }
 
 .actionsContainer{
-  margin-top: 30px;
   flex: 0 0 100%;
+  width: 100%;
+  max-width: 400px;
 }
 
 .alertC {
   border: 1px solid #c50404;
   border-radius: 5px;
+  margin-top: 30px;
   padding: 10px;
   background-color: rgba(175, 35, 49, 0.35);
   p {
