@@ -7,7 +7,7 @@ import { AsyncActions } from 'js/helpers/asyncActions';
 import { ASYNC_FETCH_ACCOUNT, ASYNC_CHANGE_PASSWORD } from 'js/constants/asyncActions';
 import { selKeypair, selAccount } from 'js/business/account/selectors';
 import * as AccountActions from './actions';
-import { setTrustedAsset, getStellarAddress } from './services';
+import { setTrustedAsset, getStellarAddress, getUsername } from './services';
 
 const MIN_BALANCE = 150;
 
@@ -56,6 +56,9 @@ export const loginWithSeed = seed => (dispatch) => {
 
       dispatch(push(routes.Root));
       dispatch(AsyncActions.stopLoading(ASYNC_FETCH_ACCOUNT));
+
+      dispatch(tryFederationReverse(account.id));
+
       return keypair;
     })
     .catch((e) => {
@@ -63,6 +66,17 @@ export const loginWithSeed = seed => (dispatch) => {
       dispatch(AsyncActions.stopLoading(ASYNC_FETCH_ACCOUNT));
       throw e;
     });
+};
+
+const tryFederationReverse = account_id => (dispatch) => {
+  return Federation.federationReverse(account_id)
+    .then(accountData => {
+      const { stellar_address } = accountData;
+      const username = getUsername(stellar_address);
+      dispatch(AccountActions.setFederationName(username));
+      return username;
+    })
+    .catch(() => null);
 };
 
 export const setUsername = username => (dispatch) => {
