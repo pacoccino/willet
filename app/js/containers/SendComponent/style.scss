@@ -13,6 +13,11 @@
 .scanIntent {
   text-align: center;
   cursor: pointer;
+  margin: 15px;
+}
+
+.qrIcon {
+  margin-right: 10px;
 }
 
 .qrContainer {
@@ -24,4 +29,8 @@
 
 .videoContainer {
   width: 70%;
+}
+
+.pleaseScan {
+  margin: 15px;
 }

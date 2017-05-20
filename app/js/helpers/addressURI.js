@@ -1,6 +1,45 @@
 const qs = require('qs');
+const { StellarTools } = require('stellar-toolkit');
+const WAValidator = require('wallet-address-validator');
+const Web3 = require('web3');
+
+const web3 = new Web3();
+
+function isValidAddress(address) {
+  return (
+    StellarTools.validPk(address) ||
+    web3.isAddress(address) ||
+    WAValidator.validate(address)
+  );
+}
+
+function decodeRawAddress(address) {
+  let type;
+
+  if(StellarTools.validPk(address)) {
+    type = 'stellar';
+  }
+  else if(web3.isAddress(address)) {
+    type = 'ethereum';
+  }
+  else if(WAValidator.validate(address)) {
+    type = 'bitcoin';
+  }
+  if(!type) {
+    throw new Error(`Invalid address: ${address}`);
+  }
+  return {
+    type,
+    address,
+    options: {},
+  };
+}
 
 function decode(uri) {
+  if(isValidAddress(uri)) {
+    return decodeRawAddress(uri);
+  }
+
   const qregex = /([a-z]+):\/?\/?([^?]+)(\?([^]+))?/.exec(uri);
   if (!qregex) throw new Error(`Invalid URI: ${uri}`);
 
@@ -31,6 +70,8 @@ function encode(type, address, options) {
 }
 
 module.exports = {
+  isValidAddress,
+  decodeRawAddress,
   decode,
   encode,
 };

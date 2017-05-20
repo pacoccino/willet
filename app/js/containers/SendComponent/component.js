@@ -44,6 +44,7 @@ class SendComponent extends React.Component {
 
     this.setState({
       scanning: true,
+      scanError: false,
     }, () => {
       this.scanner = new Instascan.Scanner({ video: this.videoContainer });
       this.scanner.addListener('scan', ::this.fetchContent);
@@ -52,14 +53,28 @@ class SendComponent extends React.Component {
   }
 
   fetchContent(content) {
-    const decoded = decode(content);
-    console.log(decoded);
-    this.props.change('destination', decoded.address);
-    if (decoded.options.amount) {
-      this.props.change('amount', decoded.options.amount);
+    try {
+      const decoded = decode(content);
+      this.props.change('destination', decoded.address);
+      if (decoded.options.amount) {
+        this.props.change('amount', decoded.options.amount);
+      }
+      const balance = decoded.type === 'stellar' ?
+        this.props.balances.find(b => b.asset.isNative())
+        :
+        this.props.balances.find(b =>
+        (b.wilsonAsset.type === decoded.type)
+      );
+      if(balance) {
+        this.props.change('assetUuid', balance.asset.uuid);
+      }
+      this.stopScan();
+    } catch(e) {
+      this.stopScan();
+      this.setState({
+        scanError: true,
+      });
     }
-    // TODO select currency
-    this.stopScan();
   }
 
   stopScan() {
@@ -87,7 +102,7 @@ class SendComponent extends React.Component {
       return (
         <div className={styles.container}>
           <div className={styles.qrContainer}>
-            <span>Please scan your QR code</span>
+            <span className={styles.pleaseScan}>Please scan your QR code</span>
             <video ref={(video) => { this.videoContainer = video; }} className={styles.videoContainer} />
           </div>
           <OperationButton
@@ -103,7 +118,7 @@ class SendComponent extends React.Component {
       <div className={styles.container}>
         {this.state.camera &&
         <div className={styles.scanIntent} onClick={::this.startQrScan}>
-          <i className="fa fa-camera-vintage" /> Scan QR code
+          <i className={`fa fa-qrcode ${styles.qrIcon}`} /> Scan QR code
         </div>
         }
         <form onSubmit={handleSubmit}>
