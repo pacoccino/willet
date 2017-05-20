@@ -1,74 +1,56 @@
 import React, { PropTypes } from 'react';
-import { Field, propTypes } from 'redux-form';
 
-import Input from 'js/components/ui/Input';
 import OperationButton from 'js/components/ui/OperationButton';
-import Loader from 'js/components/ui/Loader';
 import LoginSeed from '../LoginSeed';
+import LoginCredentials from '../LoginCredentials';
 
 import styles from './style.scss';
 
 class LoginView extends React.Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
+  switchHelp(index) {
+    this.setState(state => ({
+      ...state,
+      [`helps_${index}`]: !state[`helps_${index}`],
+    }));
+  }
+
   render() {
     const {
       goToRegister,
-      handleSubmit,
-      pristine,
-      submitting,
-      submitSucceeded,
-      submitFailed,
-      alternateLogin,
     } = this.props;
 
-    if (submitting) {
-      return (
-        <div>
-          <Loader />
-          <p className={styles.loading}>
-            Logging in ...
-          </p>
-        </div>
-      );
-    }
     return (
       <div className={styles.container}>
         <p className={styles.title}>
           Sign in
         </p>
-        <form onSubmit={handleSubmit}>
-          <Field
-            name="username"
-            component={Input}
-            type="text"
-            label="Username"
-            placeholder="wilson"
-          />
-          <Field
-            name="password"
-            component={Input}
-            type="password"
-            label="Password"
-            placeholder="****"
-          />
-          <OperationButton
-            disabled={pristine || submitting}
-            onClick={handleSubmit}
-            label="Sign in"
-            primary active
-          />
-          <input type="submit" style={{ visibility: 'hidden' }} />
-        </form>
-        {alternateLogin && <LoginSeed />}
-        {submitFailed &&
-        <p className={styles.error}>
-          Invalid credentials
+        <p className={styles.subtitle}>
+          Login with credentials
+          <span className={styles.what} onClick={() => this.switchHelp(0)}>?</span>
         </p>
-        }
-        {submitSucceeded &&
-        <p className={styles.success}>
-          Login success !
+        {this.state['helps_0'] && <p className={styles.description}>
+          Login with willet username/password method.
+          <br/>
+          Your username will be resolved by our federation server, and the seed will be decoded with your password from your account data on the Stellar blockchain.
+        </p>}
+        <LoginCredentials />
+        <p className={styles.separator}>
+          Or
         </p>
-        }
+        <p className={styles.subtitle}>
+          Login with Stellar seed
+          <span className={styles.what} onClick={() => this.switchHelp(1)}>?</span>
+        </p>
+        {this.state['helps_1'] && <p className={styles.description}>
+          You will be logged in to willet with any valid Stellar account seed.
+          <br/>
+          The seed will only be used to open your account and will not be sent to our servers.
+        </p>}
+        <LoginSeed />
         <p className={styles.register}>
           Don't have an account yet ?
         </p>
@@ -83,9 +65,7 @@ class LoginView extends React.Component {
 }
 
 LoginView.propTypes = {
-  ...propTypes,
   goToRegister: PropTypes.func.isRequired,
-  alternateLogin: PropTypes.bool,
 };
 
 export default LoginView;

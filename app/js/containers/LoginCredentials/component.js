@@ -5,22 +5,9 @@ import Input from 'js/components/ui/Input';
 import OperationButton from 'js/components/ui/OperationButton';
 import Loader from 'js/components/ui/Loader';
 
-import arrowDown from 'images/arrow-down.png';
 import styles from './style.scss';
 
-
-class LoginSeed extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      open: true,
-    };
-  }
-  open() {
-    this.setState({
-      open: true,
-    });
-  }
+class LoginCredentials extends React.Component {
   render() {
     const {
       handleSubmit,
@@ -30,6 +17,16 @@ class LoginSeed extends React.Component {
       submitFailed,
       invalid,
     } = this.props;
+
+    if (submitSucceeded) {
+      return (
+        <div>
+          <p className={styles.success}>
+            Success !
+          </p>
+        </div>
+      );
+    }
 
     if (submitting) {
       return (
@@ -46,37 +43,40 @@ class LoginSeed extends React.Component {
       <div className={styles.container}>
         <form onSubmit={handleSubmit}>
           <Field
-            name="seed"
+            name="username"
             component={Input}
             type="text"
-            label="Secret seed"
-            placeholder="SDB..."
+            label="Username"
+            placeholder="wilson"
           />
+          <Field
+            name="password"
+            component={Input}
+            type="password"
+            label="Password"
+            placeholder="****"
+          />
+          {submitFailed &&
+          <p className={styles.error}>
+            <i className="fa fa-exclamation-triangle"/> Invalid credentials
+          </p>
+          }
           <OperationButton
-            disabled={pristine || submitting || invalid}
+            disabled={pristine || submitting || invalid}
             onClick={handleSubmit}
             label="Sign in"
             primary fluid
           />
           <input type="submit" style={{ visibility: 'hidden' }} />
         </form>
-        {submitFailed &&
-        <p className={styles.error}>
-          Invalid account
-        </p>
-        }
-        {submitSucceeded &&
-        <p className={styles.success}>
-          Login success !
-        </p>
-        }
       </div>
     );
   }
 }
 
-LoginSeed.propTypes = {
+LoginCredentials.propTypes = {
   ...propTypes,
+  alternateLogin: PropTypes.bool,
 };
 
-export default LoginSeed;
+export default LoginCredentials;

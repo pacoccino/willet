@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { setKeypair, setFederationName } from 'js/business/account/actions';
 import { getKnownAnchors } from 'js/business/wilson/action-creators';
+
 import Loader from 'js/components/ui/Loader';
 import config from 'js/config';
 
