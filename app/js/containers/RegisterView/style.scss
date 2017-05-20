@@ -1,4 +1,5 @@
 @import '~styles/attributes';
+
 @import '../LoginView/style';
 
 .whatSeed {
@@ -9,4 +10,14 @@
   color: $c-rose-l-2;
   margin-top: 15px;
   cursor: pointer;
+}
+
+.containerAfter {
+  composes: container;
+  text-align: center;
+}
+
+.messageLight {
+  color: $c-light;
+  font-size: 0.8rem;
 }

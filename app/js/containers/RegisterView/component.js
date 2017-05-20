@@ -32,18 +32,19 @@ class RegisterView extends React.Component {
 
     if (submitting) {
       return (
-        <div className={styles.container}>
+        <div className={styles.containerAfter}>
           <Loader />
           <p className={styles.message}>Creating account ...</p>
-          <p className={styles.message}>This may take some time, please leave this tab open.</p>
+          <p className={styles.messageLight}>This may take some time, please leave this tab open.</p>
         </div>
       );
     }
+
     if (submitSucceeded) {
       return (
-        <div className={styles.container}>
+        <div className={styles.containerAfter}>
           <p className={styles.message}>Account successfully created !</p>
-          <p className={styles.message}>Please take care of your Username and Password, as there is no way to recover them for the moment.</p>
+          <p className={styles.messageLight}>Please take care of your username and password, as there is no way to recover them for the moment.</p>
           <OperationButton
             onClick={goToLogin}
             label="Sign in"
