@@ -6,6 +6,8 @@ import { StellarTools } from 'stellar-toolkit';
 import Loader from 'js/components/ui/Loader';
 import Input from 'js/components/ui/Input';
 import OperationButton from 'js/components/ui/OperationButton';
+import ClipboardBtn from "js/components/ui/Clipboard";
+
 import styles from './style.scss';
 
 let currentWeb3;
@@ -83,7 +85,10 @@ class ReceiveDeposit extends React.Component {
     }
     return [
       <p className={styles.p} key="a">Send a payment to :</p>,
-      <p className={styles.address} key="b">{depositData.deposit_address}</p>,
+      <div className={styles.addressCont} key="b">
+        <span className={styles.address}>{depositData.deposit_address}</span>
+        <ClipboardBtn data={depositData.deposit_address} />
+      </div>,
       this.getQRCode(depositData),
     ];
   }
@@ -106,7 +111,7 @@ class ReceiveDeposit extends React.Component {
       ];
     } else if (depositData.data) {
       operationInfo = this.renderDepositInfo(depositData.data)
-        .concat(<OperationButton onClick={close} active label="Close" key="close" />);
+        .concat(<OperationButton onClick={close} active label="Select another currency" key="close" />);
     }
 
     return (

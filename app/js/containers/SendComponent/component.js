@@ -79,6 +79,7 @@ class SendComponent extends React.Component {
       handleSubmit,
       pristine,
       submitting,
+      invalid,
       balance,
     } = this.props;
 
@@ -120,8 +121,8 @@ class SendComponent extends React.Component {
           <OperationButton
             onClick={handleSubmit}
             label="Send"
-            disabled={pristine || submitting}
-            primary active
+            disabled={pristine || submitting || invalid}
+            primary fluid
           />
         </form>
       </div>

@@ -13,6 +13,9 @@ function BalancesViewer({ loggedPublic, accountLoaded, balances }) {
   }
   return (
     <div className={styles.container}>
+      <div className={styles.actionsContainer}>
+        <ActionsMenu />
+      </div>
       <div className={styles.content}>
         <div className={styles.alertC}>
           <p><b>Attention!</b> <i>Willet</i> is alpha software and is published for proof-of-concept purposes, it should be used with precaution.</p>
@@ -26,9 +29,6 @@ function BalancesViewer({ loggedPublic, accountLoaded, balances }) {
             )
           }
         </div>
-      </div>
-      <div className={styles.actionsContainer}>
-        <ActionsMenu />
       </div>
     </div>
   );

@@ -44,7 +44,7 @@ class ReceiveComponent extends React.Component {
             onClick={handleSubmit}
             label="Generate address"
             disabled={pristine || submitting}
-            primary active
+            primary fluid
           />
         </form>
       </div>

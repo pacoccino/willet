@@ -1,6 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 
+import 'font-awesome/css/font-awesome.css';
 import 'styles/app.scss';
 
 import Initializer from './initializer';

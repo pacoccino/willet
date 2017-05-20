@@ -7,9 +7,11 @@ import { AsyncActions } from 'js/helpers/asyncActions';
 import { ASYNC_FETCH_ACCOUNT, ASYNC_CHANGE_PASSWORD } from 'js/constants/asyncActions';
 import { selKeypair, selAccount } from 'js/business/account/selectors';
 import * as AccountActions from './actions';
-import { setTrustedAsset, getStellarAddress } from './services';
+import { setTrustedAsset, getStellarAddress, getUsername } from './services';
 
-export const login = ({ username, password }) => (dispatch) => {
+const MIN_BALANCE = 150;
+
+export const loginWithCredentials = ({ username, password }) => (dispatch) => {
   dispatch(AsyncActions.startLoading(ASYNC_FETCH_ACCOUNT));
   const stellar_address = getStellarAddress(username);
 
@@ -49,11 +51,14 @@ export const loginWithSeed = seed => (dispatch) => {
     .then(publicKey => StellarServer.getAccount(publicKey))
     .then((account) => {
       dispatch(AccountActions.setAccount(account));
-      dispatch(AccountActions.setFederationName('Anonymous'));
+      dispatch(AccountActions.setFederationName(null));
       dispatch(AccountActions.setKeypair(keypair));
 
       dispatch(push(routes.Root));
       dispatch(AsyncActions.stopLoading(ASYNC_FETCH_ACCOUNT));
+
+      dispatch(tryFederationReverse(account.id));
+
       return keypair;
     })
     .catch((e) => {
@@ -61,6 +66,16 @@ export const loginWithSeed = seed => (dispatch) => {
       dispatch(AsyncActions.stopLoading(ASYNC_FETCH_ACCOUNT));
       throw e;
     });
+};
+
+const tryFederationReverse = account_id => (dispatch) => {
+  return Federation.federationReverse(account_id)
+    .then(({ stellar_address }) => {
+      const username = getUsername(stellar_address);
+      dispatch(AccountActions.setFederationName(username));
+      return username;
+    })
+    .catch(() => null);
 };
 
 export const setUsername = username => (dispatch) => {
@@ -145,12 +160,40 @@ export const unsetAccount = () => (dispatch) => {
 
 export const createAccount = ({ username, password }) => dispatch =>
   Federation.federationCreate(getStellarAddress(username))
-    .then((keypair) => {
+    .then((keypair) =>
       StellarAccountManager
         .setAccountSeed(keypair, password)
         .then(() => setTrustedAsset(keypair))
-        .then(() => keypair);
-    });
+        .then(() => keypair)
+    );
+
+export const registerAccount = ({ username, password, seed }) => dispatch => {
+  const keypair = Keypair.fromSecret(seed);
+
+  return StellarServer.getAccount(keypair.publicKey())
+    .then(account => {
+        if(!account) {
+          throw new Error('No account found');
+        }
+
+        const lumenWallet = account.balances.find(b => b.asset.isNative());
+        if(lumenWallet.balance < MIN_BALANCE) {
+          throw new Error('Not enough lumens to register account');
+        }
+
+        return Federation.federationRegister({
+          stellar_address: getStellarAddress(username),
+          keypair,
+        })
+      }
+    )
+    .then(() =>
+      StellarAccountManager
+        .setAccountSeed(keypair, password)
+        .then(() => setTrustedAsset(keypair))
+        .then(() => keypair)
+    );
+};
 
 export const changePassword = ({ password }) => (dispatch, getState) => {
   dispatch(AsyncActions.startLoading(ASYNC_CHANGE_PASSWORD));

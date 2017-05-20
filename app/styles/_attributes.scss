@@ -2,10 +2,16 @@
 
 $header-height: 60px;
 $footer-height: 60px;
-$horizontal-padding: 50px;
+$horizontal-padding: 10px;
 $vertical-padding: 20px;
 
+$s-width: 600px;
+
 $content-height: calc(100vh - #{$header-height} - 2*#{$vertical-padding});
+
+
+$s-line-sm: 30px;
+$s-line-md: 50px;
 
 // Colors
 $c-dark: #27272D;
@@ -13,7 +19,9 @@ $c-white: #FFF;
 $c-grey: #dcc7da;
 $c-rose: #E36DBE;
 $c-red: #d6114d;
+$c-red-l: #f55988;
 $c-green: #25cf41;
+$c-green-l: #69d87c;
 $c-orange: #ce6104;
 $c-light: #bfbfbf;
 $c-c-eth: #92CDFF;
