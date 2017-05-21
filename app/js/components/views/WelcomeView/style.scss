@@ -22,7 +22,7 @@
   top: 14px;
   right: -33px;
   font-family: $f-secondary;
-  font-size: 4vw;
+  font-size: 3vw;
   color: $c-green;
   text-transform: uppercase;
   @include noselect();
@@ -30,7 +30,7 @@
 
 .subtitle {
   @include noselect();
-  font-size: 5vw;
+  font-size: 4vw;
   font-family: $f-secondary;
   color: $c-rose;
   text-align: center;
@@ -78,3 +78,14 @@
   }
 }
 
+@media (min-width: 900px) {
+  .title {
+    font-size: 11rem;
+  }
+  .alpha {
+    font-size: 1rem;
+  }
+  .subtitle {
+    font-size: 2rem;
+  }
+}
