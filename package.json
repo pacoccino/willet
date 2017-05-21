@@ -1,6 +1,6 @@
 {
   "name": "willet",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Online multi-cryptocurrencies wallet",
   "scripts": {
     "dev": "webpack-dev-server --devtool source-map --inline --content-base public --history-api-fallback --config webpack.config.js",
@@ -61,6 +61,7 @@
     "lodash": "^4.17.2",
     "mocha": "^3.2.0",
     "moment": "^2.17.1",
+    "qs": "^6.4.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-hot-loader": "next",

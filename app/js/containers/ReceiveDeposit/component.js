@@ -8,18 +8,29 @@ import Input from 'js/components/ui/Input';
 import OperationButton from 'js/components/ui/OperationButton';
 import ClipboardBtn from "js/components/ui/Clipboard";
 
+import { encode } from 'js/helpers/addressURI';
 import styles from './style.scss';
 
 let currentWeb3;
 if (typeof window.web3 !== 'undefined') {
   currentWeb3 = new Web3(window.web3.currentProvider);
-  currentWeb3.defaultAccount = web3.eth.accounts[0];
+  currentWeb3.defaultAccount = currentWeb3.eth.accounts[0];
 }
 
 class ReceiveDeposit extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      amount: 0,
+    };
 
+  }
   getQRCode(depositData) {
-    const qrData = depositData.qr_code || `${depositData.deposit_address}`;
+    const options = {};
+    if(this.state.amount) {
+      options.amount = this.state.amount;
+    }
+    const qrData = encode(depositData.type, depositData.deposit_address, options);
     return (
       <img
         key="qrcode"
@@ -35,12 +46,11 @@ class ReceiveDeposit extends React.Component {
       const StelereumContract = currentWeb3.eth.contract(contractAPI);
       const contract = StelereumContract.at(depositData.specific_data.contract_address);
 
-      contract.Deposit.apply(contract,
-        depositData.specific_data.params.concat(
-          {
-            from: currentWeb3.eth.accounts[0],
-            value: currentWeb3.toWei(amount, 'ether'),
-          }
+      contract.Deposit(...depositData.specific_data.params.concat(
+        {
+          from: currentWeb3.eth.accounts[0],
+          value: currentWeb3.toWei(amount, 'ether'),
+        },
         ).concat(
         (error) => {
           // todo handle
@@ -80,6 +90,19 @@ class ReceiveDeposit extends React.Component {
     ];
   }
 
+  renderAmount() {
+    return (
+      <div key="amount">
+        <Input
+          type="number"
+          label="Amount"
+          placeholder="10 (optional)"
+          input={{ onChange: e => this.setState({ amount: e.target.value })} }
+        />
+      </div>
+    );
+  }
+
   renderDepositInfo(depositData) {
     if (depositData.type === 'ethereum') {
       return this.renderEthereumDeposit(depositData);
@@ -91,6 +114,7 @@ class ReceiveDeposit extends React.Component {
         <ClipboardBtn data={depositData.deposit_address} />
       </div>,
       this.getQRCode(depositData),
+      this.renderAmount(),
     ];
   }
   render() {

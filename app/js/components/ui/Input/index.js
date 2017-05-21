@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './style.scss';
 
-const Input = ({ input, label, placeholder, type, meta: { touched, error, warning } }) => (
+const Input = ({ input, label, placeholder, type, meta: { touched, error, warning } = {} }) => (
   <div className={styles.container}>
     <div className={styles.topC}>
       <span className={styles.label}>

@@ -4,8 +4,39 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 
-  align-items: stretch;
   max-width: 400px;
   margin: 10px auto;
+}
+
+.scanIntent {
+  text-align: center;
+  cursor: pointer;
+  margin: 15px;
+}
+
+.qrIcon {
+  margin-right: 10px;
+}
+
+.qrContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.videoContainer {
+  width: 70%;
+}
+
+.pleaseScan {
+  margin: 15px;
+}
+
+.scanError {
+  color: $c-red-l;
+  font-size: 0.8rem;
+  text-align: center;
 }
