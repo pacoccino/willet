@@ -9,6 +9,7 @@ import CurrencyAmount from 'js/components/ui/CurrencyAmount';
 import styles from './style.scss';
 
 import { decode } from 'js/helpers/addressURI';
+import { getCamera } from 'js/helpers/camera';
 
 class SendComponent extends React.Component {
   constructor() {
@@ -22,18 +23,10 @@ class SendComponent extends React.Component {
   }
 
   componentWillMount() {
-    Instascan.Camera.getCameras().then((cameras) => {
-      if (cameras.length > 0) {
-        this.cameras = cameras;
-        const defaultCamera = cameras[0];
-        this.setState({
-          camera: defaultCamera,
-        });
-      } else {
-        console.error('No cameras found.');
+    getCamera().then((camera) => {
+      if (camera) {
+        this.setState({ camera });
       }
-    }).catch((e) => {
-      console.error(e);
     });
   }
 
