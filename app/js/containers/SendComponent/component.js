@@ -9,7 +9,7 @@ import CurrencyAmount from 'js/components/ui/CurrencyAmount';
 import styles from './style.scss';
 
 import { decode } from 'js/helpers/addressURI';
-import { getCamera } from 'js/helpers/camera';
+import { getCamera, nextCamera, getNumberOfCameras } from 'js/helpers/camera';
 
 class SendComponent extends React.Component {
   constructor() {
@@ -19,13 +19,15 @@ class SendComponent extends React.Component {
     this.state = {
       scanning: false,
       camera: null,
+      nbCamera: 0,
     };
   }
 
   componentWillMount() {
     getCamera().then((camera) => {
       if (camera) {
-        this.setState({ camera });
+        const nbCamera = getNumberOfCameras();
+        this.setState({ camera, nbCamera });
       }
     });
   }
@@ -43,6 +45,24 @@ class SendComponent extends React.Component {
     });
   }
 
+  stopScan() {
+    this.scanner.stop();
+    this.scanner = null;
+
+    this.setState({
+      scanning: false,
+    });
+  }
+
+  changeCamera() {
+    this.stopScan();
+    nextCamera().then(camera => {
+      this.setState({ camera },
+        () => this.startQrScan()
+      );
+    });
+  }
+
   fetchContent(content) {
     try {
       const decoded = decode(content);
@@ -54,8 +74,8 @@ class SendComponent extends React.Component {
         this.props.balances.find(b => b.asset.isNative())
         :
         this.props.balances.find(b =>
-        (b.wilsonAsset.type === decoded.type)
-      );
+          (b.wilsonAsset.type === decoded.type)
+        );
       if(balance) {
         this.props.change('assetUuid', balance.asset.uuid);
       }
@@ -66,14 +86,6 @@ class SendComponent extends React.Component {
         scanError: true,
       });
     }
-  }
-
-  stopScan() {
-    this.scanner.stop();
-
-    this.setState({
-      scanning: false,
-    });
   }
 
   getSendableAssets() {
@@ -96,6 +108,11 @@ class SendComponent extends React.Component {
             <span className={styles.pleaseScan}>Please scan your QR code</span>
             <video ref={(video) => { this.videoContainer = video; }} className={styles.videoContainer} />
           </div>
+          {this.state.nbCamera > 1 && <OperationButton
+            onClick={::this.changeCamera}
+            label="Change camera"
+            primary active
+          />}
           <OperationButton
             onClick={::this.stopScan}
             label="Cancel"
@@ -113,7 +130,7 @@ class SendComponent extends React.Component {
         </div>
         }
         {this.state.scanError &&
-          <span className={styles.scanError}>
+        <span className={styles.scanError}>
             <i className="fa fa-exclamation-triangle"/>
             Invalid QR code
           </span>

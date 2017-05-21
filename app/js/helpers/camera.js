@@ -27,3 +27,16 @@ export function getCamera() {
   }
   return initialize();
 }
+
+export function nextCamera() {
+  return getCamera().then(currentCamera => {
+    const currentIndex = cameras.findIndex(c => c === currentCamera);
+    const newIndex = (currentIndex + 1) % cameras.length;
+    camera = cameras[newIndex];
+    return camera;
+  });
+}
+
+export function getNumberOfCameras() {
+  return cameras.length;
+}
