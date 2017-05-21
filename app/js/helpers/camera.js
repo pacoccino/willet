@@ -7,7 +7,7 @@ function initialize() {
     if (foundCameras.length > 0) {
       cameras = foundCameras;
       camera = foundCameras[0];
-      return camera
+      return camera;
     } else {
       console.error('No cameras found.');
       noCamera = true;

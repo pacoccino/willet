@@ -15,7 +15,6 @@ class SendComponent extends React.Component {
   constructor() {
     super();
 
-    this.cameras = [];
     this.state = {
       scanning: false,
       camera: null,
