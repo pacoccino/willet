@@ -4,6 +4,7 @@ export const get = ({ asset, keypair }) => {
   if (asset.isNative()) {
     const pk = keypair.publicKey();
     return Promise.resolve({
+      type: 'stellar',
       qr_code: pk,
       deposit_address: pk,
     });
