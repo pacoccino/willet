@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { Field, propTypes } from 'redux-form';
-import Instascan from 'instascan';
 
 import Input from 'js/components/ui/Input';
 

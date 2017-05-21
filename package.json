@@ -1,6 +1,6 @@
 {
   "name": "willet",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Online multi-cryptocurrencies wallet",
   "scripts": {
     "dev": "webpack-dev-server --devtool source-map --inline --content-base public --history-api-fallback --config webpack.config.js",
@@ -56,7 +56,6 @@
     "font-awesome": "^4.7.0",
     "history": "^4.6.1",
     "html-webpack-plugin": "^2.22.0",
-    "instascan": "^1.0.0",
     "intl": "^1.2.5",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.2",
